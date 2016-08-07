@@ -46,7 +46,7 @@ extension UIView {
 }
 
 extension UIViewController {
-    func presentModalViewController(viewControllerToPresent: CQPopup, completion: (() -> Void)?) {
+    public func cq_present(viewControllerToPresent: CQPopup, completion: (() -> Void)? = nil) {
         viewControllerToPresent.view.backgroundColor = UIColor.clearColor()
         self.definesPresentationContext = true
         self.presentViewController(viewControllerToPresent, animated: true, completion: completion)

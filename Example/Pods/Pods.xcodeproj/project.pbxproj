@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1575004E53D963174AF5DC4B494B905D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		42EE1D927959B53BED7AB1815BD75A1F /* CQPopupAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E01E50C34224BC30B64A22DB6D616 /* CQPopupAnimation.swift */; };
 		43B2A79A5D43D4074FB127FD657C1D57 /* Pods-CQPopupKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BF096C327848253C0CFD07B43BFF5E /* Pods-CQPopupKit_Example-dummy.m */; };
-		4B83616BCB37602C3D9E052706EF924D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		4DF89E2B9B1CEA4F9291A581615B5A77 /* CQPopupKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A9070AFBFF7268A410FBBE4A9F64ABDE /* CQPopupKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6FAA94BB5DBB3412EE4BD352654DA9C5 /* Pods-CQPopupKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1116B9D31DB94CBB56F0008929C399 /* Pods-CQPopupKit_Tests-dummy.m */; };
-		7A75C8290127AD251428EDA817A3DB1D /* CQPopupKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A9070AFBFF7268A410FBBE4A9F64ABDE /* CQPopupKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70A1CDA0BFD4C4A22DB5AF27EA6C902B /* CQPopupKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41483455C246B27718AB393C32A9E6A1 /* CQPopupKit-dummy.m */; };
+		9835E66FF988A2C274B8A6D7EDDEA103 /* CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BA51281D43D556A2493E20C7E2EDA /* CQPopup.swift */; };
+		98AC9A2752FE8C961E9FD9EBE6763F30 /* CQPopupAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDB1A62525A342FB637B8C74053E4E /* CQPopupAlertController.swift */; };
 		B468852B735029DDB554C11A03DBCD4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		C672FE0087D13179A8AB3040B72C3AE5 /* Pods-CQPopupKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2D7F19D54EA4C7AC13F390C6744B4D /* Pods-CQPopupKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C8817D9A4E72F110509D44F5D5EA2421 /* Pods-CQPopupKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF554B74DFC84A8502DF07201D87BC0 /* Pods-CQPopupKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2D8E1861D56E255001ACC62 /* CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8E17F1D56E255001ACC62 /* CQPopup.swift */; };
-		D2D8E1871D56E255001ACC62 /* CQPopupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8E1801D56E255001ACC62 /* CQPopupContainer.swift */; };
-		D2D8E1881D56E255001ACC62 /* UIView+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8E1811D56E255001ACC62 /* UIView+CQPopup.swift */; };
-		D2D8E1891D56E255001ACC62 /* CQPopupAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8E1821D56E255001ACC62 /* CQPopupAlertController.swift */; };
-		D2D8E18A1D56E256001ACC62 /* CQAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8E1831D56E255001ACC62 /* CQAlertView.swift */; };
-		D2D8E18B1D56E256001ACC62 /* CQPopupAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8E1841D56E255001ACC62 /* CQPopupAppearance.swift */; };
-		D2D8E18C1D56E256001ACC62 /* CQPopupAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8E1851D56E255001ACC62 /* CQPopupAnimation.swift */; };
+		D2AAFE4F1D583FB70017A17D /* CQPopupPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */; };
+		D7FCD78A9500945459EE7C1C6B2E8DC0 /* UIView+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */; };
 		DFC4B203D39A3FE03AE3AD12820A98DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		F5DEE0B5B1F0713321EBEE97A62EC449 /* CQPopupKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41483455C246B27718AB393C32A9E6A1 /* CQPopupKit-dummy.m */; };
+		E07F1F6789D35AF8A5C1148D9DD8A497 /* CQPopupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F3C97DA6C0405D3870660BB5976A84 /* CQPopupContainer.swift */; };
+		EC977A38946E3A8BFDB87123308820C2 /* CQAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217388A9F66FA756DEF146C6E79870DF /* CQAlertView.swift */; };
+		F88A4C7CAEFFC28CAE9F94FFAD9AE937 /* CQPopupAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148695CCE884DDAF8B651141CF9FAB09 /* CQPopupAppearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +31,23 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AFA6131ACA96209F7100C36732181CB1;
+			remoteGlobalIDString = E40541CAC0E15C18428E6DBCD3B1DDEB;
 			remoteInfo = CQPopupKit;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0DCCBCC51129ED65EBB63133148C9AFC /* Pods-CQPopupKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CQPopupKit_Example.modulemap"; sourceTree = "<group>"; };
+		148695CCE884DDAF8B651141CF9FAB09 /* CQPopupAppearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopupAppearance.swift; sourceTree = "<group>"; };
 		20446D76E9BA7F8D377248C2086A5589 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		217388A9F66FA756DEF146C6E79870DF /* CQAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQAlertView.swift; sourceTree = "<group>"; };
+		2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+CQPopup.swift"; sourceTree = "<group>"; };
 		30C0A4039E0246CCDEC07CA5F1DC6B54 /* Pods-CQPopupKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CQPopupKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		35DB5C6501B808888308F84E8AB001B4 /* Pods_CQPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQPopupKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D7028178DB738E59D12C3711C1AB3C /* Pods-CQPopupKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Tests-resources.sh"; sourceTree = "<group>"; };
 		3BF554B74DFC84A8502DF07201D87BC0 /* Pods-CQPopupKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CQPopupKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		41483455C246B27718AB393C32A9E6A1 /* CQPopupKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CQPopupKit-dummy.m"; sourceTree = "<group>"; };
+		4EEDB1A62525A342FB637B8C74053E4E /* CQPopupAlertController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopupAlertController.swift; sourceTree = "<group>"; };
 		5742BC0CF14A486DF8037E449CED751D /* Pods-CQPopupKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CQPopupKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		58BA9BA6E277AC25BFB85D0599A39F51 /* CQPopupKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CQPopupKit-prefix.pch"; sourceTree = "<group>"; };
 		5B1116B9D31DB94CBB56F0008929C399 /* Pods-CQPopupKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CQPopupKit_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -54,25 +59,22 @@
 		9C2D7F19D54EA4C7AC13F390C6744B4D /* Pods-CQPopupKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CQPopupKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		A9070AFBFF7268A410FBBE4A9F64ABDE /* CQPopupKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CQPopupKit-umbrella.h"; sourceTree = "<group>"; };
 		AD0AAD87E1BD14B54FDCFD7E01ED48E2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B31BA51281D43D556A2493E20C7E2EDA /* CQPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopup.swift; sourceTree = "<group>"; };
 		B459BBFE97EAB3915B7B9D7D11A56E41 /* CQPopupKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CQPopupKit.xcconfig; sourceTree = "<group>"; };
 		B6053B925287ED6A3131769028C98816 /* Pods-CQPopupKit_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Example-resources.sh"; sourceTree = "<group>"; };
+		B68E01E50C34224BC30B64A22DB6D616 /* CQPopupAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopupAnimation.swift; sourceTree = "<group>"; };
 		B7E0A3D2E963B8BC9E0542F3A5EB0E9B /* Pods-CQPopupKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CQPopupKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BBF13128F7B614F837143A59DAE2F09B /* Pods-CQPopupKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CQPopupKit_Tests.modulemap"; sourceTree = "<group>"; };
 		BEE980E33B874F5E9AC12DB821E5DCF5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C32F3AD6675D6EC5EDBE20C2340DB09C /* CQPopupKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CQPopupKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC40956331682630116221E5EC68EDEB /* Pods-CQPopupKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D2D8E17F1D56E255001ACC62 /* CQPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopup.swift; sourceTree = "<group>"; };
-		D2D8E1801D56E255001ACC62 /* CQPopupContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupContainer.swift; sourceTree = "<group>"; };
-		D2D8E1811D56E255001ACC62 /* UIView+CQPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CQPopup.swift"; sourceTree = "<group>"; };
-		D2D8E1821D56E255001ACC62 /* CQPopupAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupAlertController.swift; sourceTree = "<group>"; };
-		D2D8E1831D56E255001ACC62 /* CQAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQAlertView.swift; sourceTree = "<group>"; };
-		D2D8E1841D56E255001ACC62 /* CQPopupAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupAppearance.swift; sourceTree = "<group>"; };
-		D2D8E1851D56E255001ACC62 /* CQPopupAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupAnimation.swift; sourceTree = "<group>"; };
+		D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupPresentation.swift; sourceTree = "<group>"; };
 		D61498862008F02E772F22D4D00A6ECC /* Pods-CQPopupKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CQPopupKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		E1AEF65ACC62399911FC1AD6DD5BDDCC /* Pods-CQPopupKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CQPopupKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		EFFB2C42E795B3CD9080EF6048ECA263 /* Pods-CQPopupKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		F10D624D34B7C95EAC81BD2B6581691E /* Pods-CQPopupKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CQPopupKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		F1F3C97DA6C0405D3870660BB5976A84 /* CQPopupContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopupContainer.swift; sourceTree = "<group>"; };
 		F6BF096C327848253C0CFD07B43BFF5E /* Pods-CQPopupKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CQPopupKit_Example-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,19 +87,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		179DFF55944162520B0D32E87F4534A5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4B83616BCB37602C3D9E052706EF924D /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3619E90BD99E94B1B16D6408F9C40A80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B468852B735029DDB554C11A03DBCD4B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66EEBD2464EA3DC59C8E351AE8DA7DDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1575004E53D963174AF5DC4B494B905D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +109,7 @@
 		06B652C56334806DEA6E6A151AC4B318 /* CQPopupKit */ = {
 			isa = PBXGroup;
 			children = (
-				E9E26933A796ABDA1F4AD2460E8CA67D /* CQPopupKit */,
+				998B7A7CA22FC74F192A5194459B8BCF /* CQPopupKit */,
 				3525EB2CB8F640B5FEE990DD464AC094 /* Support Files */,
 			);
 			name = CQPopupKit;
@@ -163,20 +165,6 @@
 			path = "Example/Pods/Target Support Files/CQPopupKit";
 			sourceTree = "<group>";
 		};
-		396F702E95F6FF91F9A825EFC945CE99 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				D2D8E17F1D56E255001ACC62 /* CQPopup.swift */,
-				D2D8E1801D56E255001ACC62 /* CQPopupContainer.swift */,
-				D2D8E1811D56E255001ACC62 /* UIView+CQPopup.swift */,
-				D2D8E1821D56E255001ACC62 /* CQPopupAlertController.swift */,
-				D2D8E1831D56E255001ACC62 /* CQAlertView.swift */,
-				D2D8E1841D56E255001ACC62 /* CQPopupAppearance.swift */,
-				D2D8E1851D56E255001ACC62 /* CQPopupAnimation.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +212,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		998B7A7CA22FC74F192A5194459B8BCF /* CQPopupKit */ = {
+			isa = PBXGroup;
+			children = (
+				C4EB4B7CF25D199B9ACFED78CE3FA412 /* Classes */,
+			);
+			path = CQPopupKit;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,22 +228,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E9E26933A796ABDA1F4AD2460E8CA67D /* CQPopupKit */ = {
+		C4EB4B7CF25D199B9ACFED78CE3FA412 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				396F702E95F6FF91F9A825EFC945CE99 /* Classes */,
+				217388A9F66FA756DEF146C6E79870DF /* CQAlertView.swift */,
+				B31BA51281D43D556A2493E20C7E2EDA /* CQPopup.swift */,
+				4EEDB1A62525A342FB637B8C74053E4E /* CQPopupAlertController.swift */,
+				B68E01E50C34224BC30B64A22DB6D616 /* CQPopupAnimation.swift */,
+				148695CCE884DDAF8B651141CF9FAB09 /* CQPopupAppearance.swift */,
+				F1F3C97DA6C0405D3870660BB5976A84 /* CQPopupContainer.swift */,
+				2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */,
+				D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */,
 			);
-			path = CQPopupKit;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0E1F7F78735DA835CD37D715FA89A31C /* Headers */ = {
+		38FDCC1314378C2D6D8283D54CE418BB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A75C8290127AD251428EDA817A3DB1D /* CQPopupKit-umbrella.h in Headers */,
+				4DF89E2B9B1CEA4F9291A581615B5A77 /* CQPopupKit-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,23 +290,6 @@
 			productReference = 5E5A999574005D24C67FA9A2DF2A1121 /* Pods_CQPopupKit_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AFA6131ACA96209F7100C36732181CB1 /* CQPopupKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3A3BBBA6F552484B25ECA876AFE58B0F /* Build configuration list for PBXNativeTarget "CQPopupKit" */;
-			buildPhases = (
-				F3AD88E5EFDB93E53A91D04CF2BBB2B5 /* Sources */,
-				179DFF55944162520B0D32E87F4534A5 /* Frameworks */,
-				0E1F7F78735DA835CD37D715FA89A31C /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CQPopupKit;
-			productName = CQPopupKit;
-			productReference = C32F3AD6675D6EC5EDBE20C2340DB09C /* CQPopupKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		E21A189C466A43B917CE4022EE8439B6 /* Pods-CQPopupKit_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFCA3008B184004F817AA9FF05A10AD1 /* Build configuration list for PBXNativeTarget "Pods-CQPopupKit_Example" */;
@@ -320,6 +306,23 @@
 			name = "Pods-CQPopupKit_Example";
 			productName = "Pods-CQPopupKit_Example";
 			productReference = 35DB5C6501B808888308F84E8AB001B4 /* Pods_CQPopupKit_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E40541CAC0E15C18428E6DBCD3B1DDEB /* CQPopupKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FD174F2C6B2CDB9B9740F80DF8C6805 /* Build configuration list for PBXNativeTarget "CQPopupKit" */;
+			buildPhases = (
+				275983497E71C6E923822FF565519D5D /* Sources */,
+				66EEBD2464EA3DC59C8E351AE8DA7DDF /* Frameworks */,
+				38FDCC1314378C2D6D8283D54CE418BB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CQPopupKit;
+			productName = CQPopupKit;
+			productReference = C32F3AD6675D6EC5EDBE20C2340DB09C /* CQPopupKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -343,7 +346,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AFA6131ACA96209F7100C36732181CB1 /* CQPopupKit */,
+				E40541CAC0E15C18428E6DBCD3B1DDEB /* CQPopupKit */,
 				E21A189C466A43B917CE4022EE8439B6 /* Pods-CQPopupKit_Example */,
 				AAD854FF303548136AFBB862284EB75B /* Pods-CQPopupKit_Tests */,
 			);
@@ -359,26 +362,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		275983497E71C6E923822FF565519D5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC977A38946E3A8BFDB87123308820C2 /* CQAlertView.swift in Sources */,
+				9835E66FF988A2C274B8A6D7EDDEA103 /* CQPopup.swift in Sources */,
+				98AC9A2752FE8C961E9FD9EBE6763F30 /* CQPopupAlertController.swift in Sources */,
+				D2AAFE4F1D583FB70017A17D /* CQPopupPresentation.swift in Sources */,
+				42EE1D927959B53BED7AB1815BD75A1F /* CQPopupAnimation.swift in Sources */,
+				F88A4C7CAEFFC28CAE9F94FFAD9AE937 /* CQPopupAppearance.swift in Sources */,
+				E07F1F6789D35AF8A5C1148D9DD8A497 /* CQPopupContainer.swift in Sources */,
+				70A1CDA0BFD4C4A22DB5AF27EA6C902B /* CQPopupKit-dummy.m in Sources */,
+				D7FCD78A9500945459EE7C1C6B2E8DC0 /* UIView+CQPopup.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D94D6FB60812A6C053288094DFBE0204 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				43B2A79A5D43D4074FB127FD657C1D57 /* Pods-CQPopupKit_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F3AD88E5EFDB93E53A91D04CF2BBB2B5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D8E1861D56E255001ACC62 /* CQPopup.swift in Sources */,
-				D2D8E18C1D56E256001ACC62 /* CQPopupAnimation.swift in Sources */,
-				D2D8E18A1D56E256001ACC62 /* CQAlertView.swift in Sources */,
-				F5DEE0B5B1F0713321EBEE97A62EC449 /* CQPopupKit-dummy.m in Sources */,
-				D2D8E1871D56E255001ACC62 /* CQPopupContainer.swift in Sources */,
-				D2D8E1891D56E255001ACC62 /* CQPopupAlertController.swift in Sources */,
-				D2D8E1881D56E255001ACC62 /* UIView+CQPopup.swift in Sources */,
-				D2D8E18B1D56E256001ACC62 /* CQPopupAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +392,7 @@
 		09F05427CE3EC6E2ABD7BD3D413B3481 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CQPopupKit;
-			target = AFA6131ACA96209F7100C36732181CB1 /* CQPopupKit */;
+			target = E40541CAC0E15C18428E6DBCD3B1DDEB /* CQPopupKit */;
 			targetProxy = E338E62BC82E02392326B25662E24E70 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -432,37 +436,6 @@
 			};
 			name = Release;
 		};
-		233522F0164CF5F41169D9EB5AC73DE1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B459BBFE97EAB3915B7B9D7D11A56E41 /* CQPopupKit.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CQPopupKit/CQPopupKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CQPopupKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CQPopupKit/CQPopupKit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = CQPopupKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		350DCEF69F88D28B02DCB67E6558C326 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7E0A3D2E963B8BC9E0542F3A5EB0E9B /* Pods-CQPopupKit_Example.debug.xcconfig */;
@@ -497,11 +470,40 @@
 			};
 			name = Debug;
 		};
-		77294D5C81D19B2ED84DA9D068F057A2 /* Release */ = {
+		5C51A5A6AC51A836AE57B01DB2A7ADFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B459BBFE97EAB3915B7B9D7D11A56E41 /* CQPopupKit.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CQPopupKit/CQPopupKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CQPopupKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CQPopupKit/CQPopupKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CQPopupKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6EADD27268ACC8DA2E80C8C82E48F5CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B459BBFE97EAB3915B7B9D7D11A56E41 /* CQPopupKit.xcconfig */;
+			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -680,11 +682,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A3BBBA6F552484B25ECA876AFE58B0F /* Build configuration list for PBXNativeTarget "CQPopupKit" */ = {
+		4FD174F2C6B2CDB9B9740F80DF8C6805 /* Build configuration list for PBXNativeTarget "CQPopupKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				233522F0164CF5F41169D9EB5AC73DE1 /* Debug */,
-				77294D5C81D19B2ED84DA9D068F057A2 /* Release */,
+				5C51A5A6AC51A836AE57B01DB2A7ADFC /* Debug */,
+				6EADD27268ACC8DA2E80C8C82E48F5CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

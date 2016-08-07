@@ -9,6 +9,23 @@
 import UIKit
 
 /**
+ The position of containers
+ 
+ - Center: The container has CenterX and CenterY equivalent with parent(aka. CQPopup.view)
+ - Left:   The container has CenterY and Leading equivalent with parent(aka. CQPopup.view)
+ - Right:  The container has CenterY and Trailing equivalent with parent(aka. CQPopup.view)
+ - Top:    The container has CenterX and Top equivalent with parent(aka. CQPopup.view)
+ - Bottom: The container has CenterX and Bottom1980 equivalent with parent(aka. CQPopup.view)
+ */
+public enum AttachedPosition: Int {
+    case Center = 0
+    case Left = 1
+    case Right = 2
+    case Top = 3
+    case Bottom = 4
+}
+
+/**
  Popup transition animation style
  
  - Zoom:   Zoom in and zoom out (Center direction ONLY)
@@ -16,7 +33,7 @@ import UIKit
  - Bounce: Bounce in and bounce out
  - Custom: Custom implementation
  */
-@objc public enum CQPopupTransitionStyle: Int {
+public enum CQPopupTransitionStyle: Int {
     case Zoom = 0
     case Fade = 1
     case Bounce = 2
@@ -32,7 +49,7 @@ import UIKit
  - BottomToTop: From bottom to top
  - Center:      Stay at center (For Zoom / Custom transition style ONLY!)
  */
-@objc public enum CQPopupTransitionDirection: Int {
+public enum CQPopupTransitionDirection: Int {
     case LeftToRight = 0
     case RightToLeft = 1
     case TopToBottom = 2
@@ -46,27 +63,43 @@ import UIKit
  - In:  Transition in
  - Out: Transition out
  */
-@objc public enum CQPopupAnimationStatus: Int {
+public enum CQPopupAnimationStatus: Int {
     case In = 0
     case Out = 1
 }
 
-/// The appearance of pop up
-@objc public class CQPopupAppearance: NSObject {
+/// CQPopupKit global appearance
+public class CQAppearance: NSObject {
+    static let appearance = CQAppearance()
     
-    /// Default appearance of popup
-    public static let appearance = CQPopupAppearance()
+    public lazy var popup: CQPopupAppearance = {
+        return CQPopupAppearance()
+    }()
+    
+    public lazy var animation: CQPopupAnimationAppearance = {
+        return CQPopupAnimationAppearance()
+    }()
+    
+    public lazy var alert: CQAlertControllerAppearance = {
+        return CQAlertControllerAppearance()
+    }()
+    
+    private override init(){}
+}
+
+/// Popup basic appearance
+public struct CQPopupAppearance {
     
     /// Background color of pop up
     public var popUpBackgroundColor: UIColor = UIColor(white: 0, alpha: 0.5)
     
-    /// If ture tap outside of the container will dimiss the popup, otherwise false, default is `true`
+    /// If true tap outside of the container will dismiss the popup, otherwise false, default is `true`
     public var enableTouchOutsideToDismiss: Bool = true
     
     /// Position of container, default is `Center`
     public var viewAttachedPosition: AttachedPosition = .Center
     
-    /// Padding space between container and popup's view, defalut is `UIEdgeInsetsZero`
+    /// Padding space between container and popup's view, default is `UIEdgeInsetsZero`
     public var containerPadding: UIEdgeInsets = UIEdgeInsetsZero
     
     /// Control the width of container, maximum is 1.0, means container width equals to popup view width, default is `1.0`
@@ -101,7 +134,10 @@ import UIKit
     
     /// Container shadow color, default is `white`s
     public var shadowColor: UIColor = UIColor.whiteColor()
-    
+}
+
+/// Popup animation appearance
+public struct CQPopupAnimationAppearance {
     /// Popup transition style
     public var transitionStyle: CQPopupTransitionStyle = .Fade
     
@@ -109,24 +145,14 @@ import UIKit
     public var transitionDirection: CQPopupTransitionDirection = .LeftToRight
     
     /// Popup transition in time duration
-    public var transitionInDuration: NSTimeInterval = 0.6
+    public var transitionInDuration: NSTimeInterval = 0.4
     
     /// Popup transition out time duration
-    public var transitionOutDuration: NSTimeInterval = 0.3
-    
-    // MARK: Initializer
-    
-    private override init(){}
+    public var transitionOutDuration: NSTimeInterval = 0.2
 }
 
-/**
- *  Alert controller metrics, control alert controller's size, padding, button size, etc
- */
-@objc public class CQAlertControllerAppearance: NSObject {
-    
-    /// Default appearance of alert controller
-    static let appearance = CQAlertControllerAppearance()
-    
+/// Popup alert controller appearance
+public struct CQAlertControllerAppearance {
     /// Font of title
     public var titleFont: UIFont = UIFont.systemFontOfSize(18)
     
@@ -171,8 +197,4 @@ import UIKit
     
     /// Color of button separator
     public var buttonSeparatorColor: UIColor = UIColor(white: 0.9, alpha: 1.0)
-
-    // MARK: Initializer
-    
-    private override init(){}
 }

@@ -14,7 +14,7 @@ public class CQPopupAlertController: CQPopup {
     // MARK: Public
     
     /// Alert controller appearance
-    public let alertControllerAppearance = CQAlertControllerAppearance.appearance
+    public let alertAppearance = CQAppearance.appearance.alert
     
     /// Title of alert controller
     public var titleText: String!
@@ -75,11 +75,9 @@ public class CQPopupAlertController: CQPopup {
      */
     public init(title: String, message: String?, dismiss: String?, options: [String] = []) {
         // create container for alert title, message and buttons
-        let content = UIView()
+        self.content = UIView()
         content.translatesAutoresizingMaskIntoConstraints = false
-        self.content = content
-        
-        super.init(contentView: content, negativeAction: nil, positiveAction: nil)
+        super.init(contentView: self.content, negativeAction: nil, positiveAction: nil)
         
         self.titleText = title
         self.messageText = message
@@ -118,12 +116,12 @@ public class CQPopupAlertController: CQPopup {
      - returns: Alert title
      */
     private func configureAlertTitle() -> UILabel {
-        let title = self.createLabel(self.alertControllerAppearance.titleFont)
+        let title = self.createLabel(self.alertAppearance.titleFont)
         title.text = self.titleText
         self.content.addSubview(title)
         
-        let hs = self.alertControllerAppearance.horizontalSpace
-        let constant = self.alertControllerAppearance.verticalSpaceBetweenTitleAndTop
+        let hs = self.alertAppearance.horizontalSpace
+        let constant = self.alertAppearance.verticalSpaceBetweenTitleAndTop
         self.content.bindWith(title, attribute: .Top, constant: constant).bindFrom("H:|-(\(hs))-[title]-(\(hs))-|", views: ["title" : title])
         return title
     }
@@ -134,12 +132,12 @@ public class CQPopupAlertController: CQPopup {
      - returns: Alert message
      */
     private func configureAlertMessage() -> UILabel {
-        let message = self.createLabel(self.alertControllerAppearance.messageFont)
+        let message = self.createLabel(self.alertAppearance.messageFont)
         message.text = self.messageText
         self.content.addSubview(message)
         
-        let hs = self.alertControllerAppearance.horizontalSpace
-        let constant = self.alertControllerAppearance.verticalSpaceBetweenTitleAndMessage
+        let hs = self.alertAppearance.horizontalSpace
+        let constant = self.alertAppearance.verticalSpaceBetweenTitleAndMessage
         self.content.bindBetween((view: message, attribute: .Top), and: (view: self.alertTitle, attribute: .Bottom), constant: constant).bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
         return message
     }
@@ -153,14 +151,14 @@ public class CQPopupAlertController: CQPopup {
         //let subclass implement
         var buttons = [CQPopupAlertButton]()
         if self.hasCancelButton {   //if cancel button was set, set it with Cancel style
-            let cancelButton = CQPopupAlertButton(style: .Cancel, title: self.cancelTitle!, appearance: self.alertControllerAppearance)
+            let cancelButton = CQPopupAlertButton(style: .Cancel, title: self.cancelTitle!, appearance: self.alertAppearance)
             cancelButton.addTarget(self, action: #selector(cancelButtonSelected), forControlEvents: .TouchUpInside)
             self.content.addSubview(cancelButton)
             buttons.append(cancelButton)
         }
         
         for option in self.itemOptions {    //set other buttons with Plain style
-            let button = CQPopupAlertButton(style: .Plain, title: option, appearance: self.alertControllerAppearance)
+            let button = CQPopupAlertButton(style: .Plain, title: option, appearance: self.alertAppearance)
             button.addTarget(self, action: #selector(buttonSelected), forControlEvents: .TouchUpInside)
             self.content.addSubview(button)
             buttons.append(button)
@@ -178,15 +176,21 @@ public class CQPopupAlertController: CQPopup {
         super.viewDidLoad()
     }
     
+    public final override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.alertCanceledAction = nil
+        self.alertSelectedAction = nil
+    }
+    
     /**
      Calculate minimum necessary height to fully display alert controller
      
      - returns: Minimum necessary height of alert controller
      */
     private func calcNecessaryHeightMultiplier() -> CGFloat {
-        let titleHeight = self.calcHeightOfAlertTitle() + self.alertControllerAppearance.verticalSpaceBetweenTitleAndTop
-        let messageHeight = self.calcHeightOfAlertMessage() + alertControllerAppearance.verticalSpaceBetweenTitleAndMessage
-        let buttonsHeight = alertControllerAppearance.verticalSpaceBetweenMessageAndButtons + self.calcHeightOfAlertButtons()
+        let titleHeight = self.calcHeightOfAlertTitle() + self.alertAppearance.verticalSpaceBetweenTitleAndTop
+        let messageHeight = self.calcHeightOfAlertMessage() + alertAppearance.verticalSpaceBetweenTitleAndMessage
+        let buttonsHeight = alertAppearance.verticalSpaceBetweenMessageAndButtons + self.calcHeightOfAlertButtons()
         return (titleHeight + messageHeight + buttonsHeight) / UIScreen.mainScreen().bounds.height
     }
     
@@ -198,7 +202,7 @@ public class CQPopupAlertController: CQPopup {
      */
     private func calcHeightOfAlertTitle() -> CGFloat {
         let width = self.appearance.widthMultiplier * UIScreen.mainScreen().bounds.width
-        return self.alertTitle.font.sizeOfString(self.titleText, constrainedToWidth: Double(width - self.alertControllerAppearance.horizontalSpace - self.alertControllerAppearance.horizontalSpace)).height
+        return self.alertTitle.font.sizeOfString(self.titleText, constrainedToWidth: Double(width - self.alertAppearance.horizontalSpace - self.alertAppearance.horizontalSpace)).height
     }
     
     /**
@@ -211,7 +215,7 @@ public class CQPopupAlertController: CQPopup {
             return 0
         }
         let width = self.appearance.widthMultiplier * UIScreen.mainScreen().bounds.width
-        return self.alertMessage.font.sizeOfString(text, constrainedToWidth: Double(width - self.alertControllerAppearance.horizontalSpace - self.alertControllerAppearance.horizontalSpace)).height
+        return self.alertMessage.font.sizeOfString(text, constrainedToWidth: Double(width - self.alertAppearance.horizontalSpace - self.alertAppearance.horizontalSpace)).height
     }
     
     /**
@@ -219,7 +223,7 @@ public class CQPopupAlertController: CQPopup {
      
      - parameter sender: Cancel button
      */
-    @objc private func cancelButtonSelected(sender: AnyObject) {
+    func cancelButtonSelected(sender: AnyObject) {
         CQPopup.sendPopupNegative(nil)
     }
     
@@ -228,7 +232,7 @@ public class CQPopupAlertController: CQPopup {
      
      - parameter sender: Selected alert button
      */
-    @objc private func buttonSelected(sender: AnyObject) {
+    func buttonSelected(sender: AnyObject) {
         let button = sender as! UIButton
         let title = button.titleForState(.Normal)!
         let index = self.itemOptions.indexOf(title)!
@@ -283,7 +287,7 @@ public class CQPopupAlertController: CQPopup {
  - Cancel:      Cancel style
  - Destructive: Destructive style
  */
-@objc public enum CQPopupAlertButtonStype: Int {
+public enum CQPopupAlertButtonStype: Int {
     case Plain = 0
     case Cancel = 1
 }
@@ -312,8 +316,8 @@ public class CQPopupAlertButton: UIButton {
     
     /// if true right separator will be rendered, otherwise, false
     var enableRightSeparator: Bool = false {
-        didSet {
-            self.rightSeparator.alpha = enableRightSeparator ? 1.0 : 0.0
+        willSet {
+            self.rightSeparator.alpha = newValue ? 1.0 : 0.0
         }
     }
     
@@ -339,7 +343,14 @@ public class CQPopupAlertButton: UIButton {
         if appearance!.enableButtonSeparator {
             self.topSeparator.backgroundColor = appearance!.buttonSeparatorColor
             self.addSubview(self.topSeparator)
-            self.bindWith(self.topSeparator, attribute: .Top).bindWith(self.topSeparator, attribute: .Leading).bindWith(self.topSeparator, attribute: .Trailing).bindBetween((view: self.topSeparator, attribute: .Height), and: (view: nil, attribute: .NotAnAttribute), constant: 1.0)
+            self.bindFrom("V:|[separator(1)]", views: ["separator": self.topSeparator]).bindFrom("H:|[separator]|", views: ["separator": self.topSeparator])
+            
+            if self.style == .Cancel {
+                self.rightSeparator.backgroundColor = appearance!.buttonSeparatorColor
+                self.addSubview(self.rightSeparator)
+                
+                self.bindFrom("H:[separator(1)]|", views: ["separator": self.rightSeparator]).bindFrom("V:|[separator]|", views: ["separator": self.rightSeparator])
+            }
         }
         
         switch self.style {
@@ -351,12 +362,6 @@ public class CQPopupAlertButton: UIButton {
             self.backgroundColor = appearance!.cancelButtonBackgroundColor
             self.titleLabel?.font = appearance!.cancelButtonFont
             self.setTitleColor(appearance!.cancelButtonTitleColor, forState: .Normal)
-        
-            if appearance!.enableButtonSeparator {
-                self.rightSeparator.backgroundColor = appearance!.buttonSeparatorColor
-                self.addSubview(self.rightSeparator)
-                self.bindWith(self.rightSeparator, attribute: .Top).bindWith(self.rightSeparator, attribute: .Bottom).bindWith(self.rightSeparator, attribute: .Trailing).bindBetween((view: self.rightSeparator, attribute: .Width), and: (view: nil, attribute: .NotAnAttribute), constant: 1.0)
-            }
         }
     }
 

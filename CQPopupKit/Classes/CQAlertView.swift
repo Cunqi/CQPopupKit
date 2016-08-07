@@ -51,7 +51,9 @@ final public class CQAlertView: CQPopupAlertController {
      - returns: Alert view
      */
     public override init(title: String, message: String?, dismiss: String?, options: [String]) {
-        CQPopupAppearance.appearance.viewAttachedPosition = .Center
+        CQAppearance.appearance.popup.viewAttachedPosition = .Center
+        CQAppearance.appearance.animation.transitionDirection = .Center
+        CQAppearance.appearance.animation.transitionStyle = .Zoom
         super.init(title: title, message: message, dismiss: dismiss, options: options)
     }
     
@@ -73,14 +75,14 @@ final public class CQAlertView: CQPopupAlertController {
         }
         
         let anchorButton = buttons[0]
-        parent.bindWith(anchorButton, attribute: .Leading).bindWith(anchorButton, attribute: .Bottom).bindBetween((view: anchorButton, attribute: .Height), and: (view: nil, attribute: .NotAnAttribute), constant: self.alertControllerAppearance.alertButtonHeight)
+        parent.bindWith(anchorButton, attribute: .Leading).bindWith(anchorButton, attribute: .Bottom).bindBetween((view: anchorButton, attribute: .Height), and: (view: nil, attribute: .NotAnAttribute), constant: self.alertAppearance.alertButtonHeight)
         
         if self.hasCancelButton && buttons.count == 2 {
             let confirmButton = buttons[1]
             parent.bindWith(anchorButton, attribute: .Width, multiplier: 0.5)
             parent.bindBetween((view: confirmButton, attribute: .Width), and: (view: anchorButton, attribute: .Width))
                     .bindBetween((view: confirmButton, attribute: .Height), and: (view: anchorButton, attribute: .Height))
-                    .bindWith(confirmButton, attribute: .Trailing)
+                    .bindBetween((view: anchorButton, attribute: .Trailing), and: (view: confirmButton, attribute: .Leading))
                     .bindWith(confirmButton, attribute: .Bottom)
             anchorButton.enableRightSeparator = true    //Two buttons on a row, shold render the right separator
         } else {
@@ -114,9 +116,9 @@ final public class CQAlertView: CQPopupAlertController {
      */
     override func calcHeightOfAlertButtons() -> CGFloat {
         if self.hasCancelButton && self.alertButtons.count <= 2 {
-            return self.alertControllerAppearance.alertButtonHeight
+            return self.alertAppearance.alertButtonHeight
         } else if (!self.hasCancelButton) || (self.hasCancelButton && self.alertButtons.count > 2) {
-            return self.alertControllerAppearance.alertButtonHeight * CGFloat(self.alertButtons.count)
+            return self.alertAppearance.alertButtonHeight * CGFloat(self.alertButtons.count)
         } else {
             return 0
         }

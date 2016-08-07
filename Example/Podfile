@@ -2,7 +2,6 @@ use_frameworks!
 
 target 'CQPopupKit_Example' do
   pod 'CQPopupKit', :path => '../'
-
   target 'CQPopupKit_Tests' do
     inherit! :search_paths
 

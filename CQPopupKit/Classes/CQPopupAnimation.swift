@@ -5,85 +5,6 @@
 
 import UIKit
 
-/// Popup presentation manager
-public class CQPopupPresentationManager: UIPresentationController {
-    
-    // MARK: Private & Internal
-    
-    /// Animation factory
-    var animationFactory = CQPopupAnimationFactory()
-    
-    /// Animation appearance
-    var appearance: CQPopupAppearance!
-    
-    var factory: CQPopupAnimationFactory {
-        get {
-            self.animationFactory.appearance = self.appearance
-            return self.animationFactory
-        }
-        set {
-            self.animationFactory = newValue
-        }
-    }
-    
-    /// Background view for transiting
-    private lazy var background: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = self.appearance.popUpBackgroundColor
-        return view
-    }()
-    
-    public override func presentationTransitionWillBegin() {
-        self.background.frame = self.containerView!.bounds
-        self.containerView!.insertSubview(self.background, atIndex: 0)
-        
-        let alpha = self.background.alpha
-        self.background.alpha = 0
-        
-        self.presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
-            self.background.alpha = alpha
-        }, completion: nil)
-    }
-    
-    public override func dismissalTransitionWillBegin() {
-        self.presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
-            self.background.alpha = 0.0
-        }, completion: nil)
-    }
-}
-
-/// Create Popup animation
-public class CQPopupAnimationFactory: NSObject {
-    /// animation appearance
-    var appearance: CQPopupAppearance!
-    
-    /**
-     get popup animation
-     
-     - parameter status: CQPopupAnimationStatus
-     
-     - returns: Popup animation
-     */
-    func getAnimation(status: CQPopupAnimationStatus) -> CQPopupAnimation {
-        let duration = status == .In ? appearance.transitionInDuration : appearance.transitionOutDuration
-        switch appearance.transitionStyle {
-        case .Fade:
-            return CQPopupFadeAnimation(duration: duration, status: status, direction: appearance.transitionDirection)
-        case .Bounce:
-            return CQPopupBounceAniamtion(duration: duration, status: status, direction: appearance.transitionDirection)
-        case .Zoom:
-            return CQPopupZoomAnimation(duration: duration, status: status, direction: appearance.transitionDirection)
-        case .Custom:
-            return self.customPopupAnimation(duration, status: status)
-        }
-    }
-    
-    func customPopupAnimation(duration: NSTimeInterval, status: CQPopupAnimationStatus) -> CQPopupAnimation {
-        return CQPopupFadeAnimation(duration: duration, status: status, direction: appearance.transitionDirection)
-    }
-}
-
 /// Root of all popup animation
 class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     
@@ -144,7 +65,7 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         
         let bounds = UIScreen.mainScreen().bounds
         
-        // Set in inital frame & in final frame & out final frame
+        // Set in initial frame & in final frame & out final frame
         self.inFinalFrame = transitionContext.finalFrameForViewController(self.popup)
         switch self.direction {
         case .LeftToRight:

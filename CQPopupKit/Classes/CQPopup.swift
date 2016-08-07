@@ -5,23 +5,6 @@
 
 import UIKit
 
-/**
- The position of containers
- 
- - Center: The container has CenterX and CenterY equivalent with parent(aka. CQPopup.view)
- - Left:   The container has CenterY and Leading equivalent with parent(aka. CQPopup.view)
- - Right:  The container has CenterY and Trailing equivalent with parent(aka. CQPopup.view)
- - Top:    The container has CenterX and Top equivalent with parent(aka. CQPopup.view)
- - Bottom: The container has CenterX and Bottom1980 equivalent with parent(aka. CQPopup.view)
- */
-@objc public enum AttachedPosition: Int {
-    case Center = 0
-    case Left = 1
-    case Right = 2
-    case Top = 3
-    case Bottom = 4
-}
-
 /// Typealias of popup action
 public typealias PopupAction = ([NSObject: AnyObject]?) -> Void
 
@@ -30,8 +13,18 @@ public class CQPopup: UIViewController {
     
     // MARK: Public
     
-    /// Custom appearance configuration for instance
-    public let appearance = CQPopupAppearance.appearance
+    /// Custom popup appearance
+    public var appearance = CQAppearance.appearance.popup
+    
+    /// Custom popup animation appearance
+    public var animationAppearance: CQPopupAnimationAppearance {
+        get {
+            return self.presentationManager.animationAppearance
+        }
+        set {
+            self.presentationManager.animationAppearance = newValue
+        }
+    }
     
     /// Negative action after popup returning with a negative status
     public internal(set) var negativeAction: PopupAction?
@@ -42,7 +35,7 @@ public class CQPopup: UIViewController {
     /// The view displayed on the container
     public private(set) var contentView: UIView?
     
-    public private(set) var presentationManager: CQPopupPresentationManager!
+    private var presentationManager: PresentationManager!
 
     // MARK: Private / Internal
 
@@ -54,14 +47,13 @@ public class CQPopup: UIViewController {
 
     /// The fake background view used for receiving touche events ONLY!
     lazy var touchReceiverView: UIView = {
+
         let touchReceiverView = UIView.init()
         touchReceiverView.translatesAutoresizingMaskIntoConstraints = false
-        
         if self.appearance.enableTouchOutsideToDismiss {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismiss))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToDismiss))
             touchReceiverView.addGestureRecognizer(tapGesture)
         }
-        
         return touchReceiverView
     }()
 
@@ -98,15 +90,24 @@ public class CQPopup: UIViewController {
     // MARK: Initializers
     
     /**
+     Creates a popup with blank container
+     
+     - returns: Popup with blank container
+     */
+    public convenience init() {
+        self.init(contentView: UIView(), negativeAction: nil, positiveAction: nil)
+    }
+    
+    /**
      Creates a popup view controller containing a custom view
      
      - parameter contentView:    Custom view to be displayed on popup container
      - parameter negativeAction: Negative action when popup returns with negative status (like canceled, failed etc.)
      - parameter positiveAction: Positive action when popup returns with positive status (like confirmed, selected etc.)
      
-     - returns: Pop view controller with custom view
+     - returns: Popup with custom view
      */
-    public init(contentView: UIView?, negativeAction: PopupAction?, positiveAction: PopupAction?) {
+    public init(contentView: UIView?, negativeAction: PopupAction? = nil, positiveAction: PopupAction? = nil) {
         self.contentView = contentView
         self.negativeAction = negativeAction
         self.positiveAction = positiveAction
@@ -117,7 +118,8 @@ public class CQPopup: UIViewController {
         self.modalPresentationStyle = .Custom
         
         // Transition delegate
-        self.transitioningDelegate = self
+        self.presentationManager = PresentationManager(animationAppearance: CQAppearance.appearance.animation, backgroundColor: self.appearance.popUpBackgroundColor)
+        self.transitioningDelegate = self.presentationManager
     }
     
     // Hide super class's designated initializer
@@ -129,7 +131,7 @@ public class CQPopup: UIViewController {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+        
     // MARK: View Controller life cycle
     
     public override func viewDidLoad() {
@@ -141,12 +143,17 @@ public class CQPopup: UIViewController {
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.fillSubview(touchReceiverView)    //fix the issue of background view from PresentationManager will block the gesture
+        
+        //fix the issue of background view from PresentationManager will block the gesture
+        self.view.insertSubview(self.touchReceiverView, belowSubview: self.shadowContainer)
+        self.view.bindFrom("H:|[view]|", views: ["view": self.touchReceiverView]).bindFrom("V:|[view]|", views: ["view": self.touchReceiverView])
     }
     
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         self.unsubscribeNotifications()
+        self.positiveAction = nil
+        self.negativeAction = nil
     }
     
     /**
@@ -253,9 +260,9 @@ public class CQPopup: UIViewController {
      
      - parameter notification: Notification contains nothing
      */
-    @objc private func cancelActionInvoked(notification: NSNotification) {
+    @objc private func cancelActionInvoked(notification: NSNotification?) {
         if let action = self.negativeAction {
-            action(notification.userInfo)
+            action(notification?.userInfo)
         }
         self.delay(0.15) {self.dismiss()}
     }
@@ -270,6 +277,13 @@ public class CQPopup: UIViewController {
             action(notification.userInfo)
         }
         self.delay(0.15) {self.dismiss()}
+    }
+    
+    /**
+     Dismiss the popup when outside of the container is tapped, negative action (if have) will be invoked first
+     */
+    @objc private func tapToDismiss() {
+        self.cancelActionInvoked(nil)
     }
     
     /**
@@ -295,21 +309,5 @@ public class CQPopup: UIViewController {
      */
     public static func sendPopupNegative(popUpInfo: [NSObject: AnyObject]?) {
         NSNotificationCenter.defaultCenter().postNotificationName(negativeActionNotification, object: nil, userInfo: popUpInfo)
-    }
-}
-
-extension CQPopup: UIViewControllerTransitioningDelegate {
-    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        self.presentationManager = CQPopupPresentationManager(presentedViewController: presented, presentingViewController: presenting)
-        self.presentationManager.appearance = self.appearance
-        return self.presentationManager
-    }
-    
-    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self.presentationManager.factory.getAnimation(.In)
-    }
-    
-    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self.presentationManager.factory.getAnimation(.Out)
     }
 }
