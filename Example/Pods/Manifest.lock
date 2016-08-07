@@ -1,0 +1,16 @@
+PODS:
+  - CQPopupKit (0.1.0)
+
+DEPENDENCIES:
+  - CQPopupKit (from `../`)
+
+EXTERNAL SOURCES:
+  CQPopupKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CQPopupKit: 2e838c2cf1d9549de59881f834bd1d90f2a1a503
+
+PODFILE CHECKSUM: 1970934be05470a532eeb1d9ed1b35806984bf1a
+
+COCOAPODS: 1.0.0

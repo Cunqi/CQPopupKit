@@ -1,0 +1,22 @@
+{
+  "name": "CQPopupKit",
+  "version": "0.1.0",
+  "summary": "A short description of CQPopupKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/CQPopupKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "cunqi": "cx363@nyu.edu"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/CQPopupKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "CQPopupKit/Classes/**/*"
+}
