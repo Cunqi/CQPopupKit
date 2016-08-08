@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Creates an alert view similar to UIAlertController
+/// Creates an alert view similar to UIAlertController .alertView style
 final public class CQAlertView: CQPopupAlertController {
     
     // MARK: Initializer

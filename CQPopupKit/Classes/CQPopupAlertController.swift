@@ -14,7 +14,7 @@ public class CQPopupAlertController: CQPopup {
     // MARK: Public
     
     /// Alert controller appearance
-    public let alertAppearance = CQAppearance.appearance.alert
+    public var alertAppearance = CQAppearance.appearance.alert
     
     /// Title of alert controller
     public var titleText: String!

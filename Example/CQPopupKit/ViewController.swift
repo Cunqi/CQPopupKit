@@ -19,6 +19,10 @@ class ViewController: UITableViewController {
         "AlertView - Multiple Choose & selection response"
     ]
     
+    let actionSheets = [
+        "ActionSheet - Basic"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +42,7 @@ class ViewController: UITableViewController {
         if section == 0 {
             return self.alertViews.count
         } else {
-            return 0
+            return self.actionSheets.count
         }
     }
     
@@ -46,8 +50,8 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("option", forIndexPath: indexPath)
         if indexPath.section == 0 {
             cell.textLabel?.text = alertViews[indexPath.row]
-        } else {
-            
+        } else if indexPath.section == 1 {
+            cell.textLabel?.text = actionSheets[indexPath.row]
         }
         return cell
     }
@@ -101,6 +105,20 @@ extension ViewController {
                 }
                 
                 self.cq_present(alertView)
+            }
+        } else if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                let actionSheet = CQActionSheet.init(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
+                
+                actionSheet.alertCanceledAction = {
+                    print("Fight by my self!")
+                }
+                
+                actionSheet.alertSelectedAction = {index, title in
+                    print("You picked \(title) @ \(index)")
+                }
+                
+                self.cq_present(actionSheet)
             }
         }
     }

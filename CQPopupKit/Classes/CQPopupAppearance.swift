@@ -108,8 +108,8 @@ public struct CQPopupAppearance {
     /// Control the height of container, maximum is 1.0, means container height equals to popup view height, default is `1.0`
     public var heightMultiplier: CGFloat = 1.0
     
-    /// Corner radius of container, default is `5`
-    public var cornerRadius: CGFloat = 5
+    /// Corner radius of container, default is `10`
+    public var cornerRadius: CGFloat = 10
     
     /// Container's background color, default is `White`
     public var containerBackgroundColor: UIColor = UIColor.whiteColor()

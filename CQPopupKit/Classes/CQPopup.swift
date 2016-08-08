@@ -131,7 +131,11 @@ public class CQPopup: UIViewController {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
+    deinit {
+        print("All cleared")
+    }
+    
     // MARK: View Controller life cycle
     
     public override func viewDidLoad() {

@@ -19,6 +19,7 @@
 		C672FE0087D13179A8AB3040B72C3AE5 /* Pods-CQPopupKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2D7F19D54EA4C7AC13F390C6744B4D /* Pods-CQPopupKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C8817D9A4E72F110509D44F5D5EA2421 /* Pods-CQPopupKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF554B74DFC84A8502DF07201D87BC0 /* Pods-CQPopupKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2AAFE4F1D583FB70017A17D /* CQPopupPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */; };
+		D2AAFE511D58498E0017A17D /* CQActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AAFE501D58498E0017A17D /* CQActionSheet.swift */; };
 		D7FCD78A9500945459EE7C1C6B2E8DC0 /* UIView+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */; };
 		DFC4B203D39A3FE03AE3AD12820A98DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		E07F1F6789D35AF8A5C1148D9DD8A497 /* CQPopupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F3C97DA6C0405D3870660BB5976A84 /* CQPopupContainer.swift */; };
@@ -70,6 +71,7 @@
 		CC40956331682630116221E5EC68EDEB /* Pods-CQPopupKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupPresentation.swift; sourceTree = "<group>"; };
+		D2AAFE501D58498E0017A17D /* CQActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQActionSheet.swift; sourceTree = "<group>"; };
 		D61498862008F02E772F22D4D00A6ECC /* Pods-CQPopupKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CQPopupKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		E1AEF65ACC62399911FC1AD6DD5BDDCC /* Pods-CQPopupKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CQPopupKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		EFFB2C42E795B3CD9080EF6048ECA263 /* Pods-CQPopupKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				F1F3C97DA6C0405D3870660BB5976A84 /* CQPopupContainer.swift */,
 				2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */,
 				D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */,
+				D2AAFE501D58498E0017A17D /* CQActionSheet.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC977A38946E3A8BFDB87123308820C2 /* CQAlertView.swift in Sources */,
+				D2AAFE511D58498E0017A17D /* CQActionSheet.swift in Sources */,
 				9835E66FF988A2C274B8A6D7EDDEA103 /* CQPopup.swift in Sources */,
 				98AC9A2752FE8C961E9FD9EBE6763F30 /* CQPopupAlertController.swift in Sources */,
 				D2AAFE4F1D583FB70017A17D /* CQPopupPresentation.swift in Sources */,
