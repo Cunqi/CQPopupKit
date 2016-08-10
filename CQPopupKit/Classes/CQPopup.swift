@@ -112,7 +112,8 @@ public class CQPopup: UIViewController {
     modalPresentationStyle = .Custom
     
     // Transition delegate
-    presentationManager = PresentationManager(animationAppearance: CQAppearance.appearance.animation, backgroundColor: appearance.popUpBackgroundColor)
+    presentationManager = PresentationManager(animationAppearance: CQAppearance.appearance.animation)
+    presentationManager.canvasLayer.backgroundColor = appearance.popUpBackgroundColor
     transitioningDelegate = presentationManager
   }
   

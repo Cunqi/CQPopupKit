@@ -27,17 +27,19 @@ public enum AttachedPosition: Int {
 
 /**
  Popup transition animation style
- 
+
+ - plain:  Move without fade effect
  - zoom:   Zoom in and zoom out (Center direction ONLY)
  - fade:   Fade in and fade out
  - bounce: Bounce in and bounce out
  - custom: Custom implementation
  */
 public enum CQPopupTransitionStyle: Int {
-  case zoom = 0
-  case fade = 1
-  case bounce = 2
-  case custom = 3
+  case plain = 0
+  case zoom = 1
+  case fade = 2
+  case bounce = 3
+  case custom = 4
 }
 
 /**

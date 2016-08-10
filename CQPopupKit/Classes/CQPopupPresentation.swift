@@ -17,7 +17,7 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
   
   // MARK: Private & Internal
   
-  let backgroundColor: UIColor
+  let canvasLayer: UIView
   
   // MARK: Initializer
   
@@ -25,18 +25,19 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
    Creates presentation manager
    
    - parameter animationAppearance: Animation appearance
-   - parameter backgroundColor:     background color during transition
+   - parameter coverLayer:     background cover layer during transition
    
    - returns: presentation manager
    */
-  public init(animationAppearance: CQPopupAnimationAppearance, backgroundColor: UIColor) {
+  public init(animationAppearance: CQPopupAnimationAppearance, canvasLayer: UIView = UIView()) {
     self.animationAppearance = animationAppearance
-    self.backgroundColor = backgroundColor
+    self.canvasLayer = canvasLayer
   }
   
   public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
     let controller = PresentationController(presentedViewController: presented, presentingViewController: presenting)
-    controller.background.backgroundColor = backgroundColor
+    controller.coverLayer = canvasLayer
+    controller.shouldFade = animationAppearance.transitionStyle == .fade
     return controller
   }
   
@@ -52,7 +53,7 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
    Create transition animation
    
    - parameter duration:  Transition duration
-   - parameter status:    Transation status
+   - parameter status:    Transition status
    - parameter direction: Transition direction
    - parameter style:     Transition style
    
@@ -60,6 +61,8 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
    */
   func getAnimation(duration: NSTimeInterval, status: CQPopupAnimationStatus, direction: CQPopupTransitionDirection, style: CQPopupTransitionStyle) -> CQPopupAnimation {
     switch style {
+    case .plain:
+      return CQPopupPlainAnimation(duration: duration, status: status, direction: direction)
     case .fade:
       return CQPopupFadeAnimation(duration: duration, status: status, direction: direction)
     case .bounce:
@@ -92,25 +95,27 @@ public class PresentationController: UIPresentationController {
   
   // MARK: Private & Internal
   
-  /// Background view for transiting
-  var background: UIView = UIView()
+  /// A background cover layer rendering an obvious background during transiting
+  public var coverLayer: UIView!
+
+  public var shouldFade: Bool = false
   
   public override func presentationTransitionWillBegin() {
-    background.translatesAutoresizingMaskIntoConstraints = false
-    background.frame = containerView!.bounds
-    containerView!.insertSubview(background, atIndex: 0)
+    coverLayer.translatesAutoresizingMaskIntoConstraints = false
+    coverLayer.frame = containerView!.bounds
+    containerView!.insertSubview(coverLayer, atIndex: 0)
     
-    let alpha = background.alpha
-    background.alpha = 0
+    let alpha = coverLayer.alpha
+    if shouldFade {coverLayer.alpha = 0}
     
     presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
-      self.background.alpha = alpha
+      self.coverLayer.alpha = alpha
       }, completion: nil)
   }
   
   public override func dismissalTransitionWillBegin() {
     presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
-      self.background.alpha = 0.0
+      if self.shouldFade {self.coverLayer.alpha = 0.0}
       }, completion: nil)
   }
 }

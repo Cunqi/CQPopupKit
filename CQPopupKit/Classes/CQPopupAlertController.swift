@@ -151,14 +151,14 @@ public class CQPopupAlertController: CQPopup {
     //let subclass implement
     var buttons = [CQPopupAlertButton]()
     if hasCancelButton {   //if cancel button was set, set it with Cancel style
-      let cancelButton = CQPopupAlertButton(style: .Cancel, title: cancelTitle!, appearance: alertAppearance)
+      let cancelButton = CQPopupAlertButton(style: .cancel, title: cancelTitle!, appearance: alertAppearance)
       cancelButton.addTarget(self, action: #selector(cancelButtonSelected), forControlEvents: .TouchUpInside)
       content.addSubview(cancelButton)
       buttons.append(cancelButton)
     }
     
     for option in itemOptions {    //set other buttons with Plain style
-      let button = CQPopupAlertButton(style: .Plain, title: option, appearance: alertAppearance)
+      let button = CQPopupAlertButton(style: .plain, title: option, appearance: alertAppearance)
       button.addTarget(self, action: #selector(buttonSelected), forControlEvents: .TouchUpInside)
       content.addSubview(button)
       buttons.append(button)
@@ -285,8 +285,8 @@ public class CQPopupAlertController: CQPopup {
  - Destructive: Destructive style
  */
 public enum CQPopupAlertButtonStype: Int {
-  case Plain = 0
-  case Cancel = 1
+  case plain = 0
+  case cancel = 1
 }
 
 /// Popup Alert Button
@@ -342,7 +342,7 @@ public class CQPopupAlertButton: UIButton {
       addSubview(topSeparator)
       bindFrom("V:|[separator(1)]", views: ["separator": topSeparator]).bindFrom("H:|[separator]|", views: ["separator": topSeparator])
       
-      if style == .Cancel {
+      if style == .cancel {
         rightSeparator.backgroundColor = appearance!.buttonSeparatorColor
         addSubview(rightSeparator)
         
@@ -351,11 +351,11 @@ public class CQPopupAlertButton: UIButton {
     }
     
     switch style {
-    case .Plain:
+    case .plain:
       backgroundColor = appearance!.plainButtonBackgroundColor
       titleLabel?.font = appearance!.plainButtonFont
       setTitleColor(appearance!.plainButtonTitleColor, forState: .Normal)
-    case .Cancel:
+    case .cancel:
       backgroundColor = appearance!.cancelButtonBackgroundColor
       titleLabel?.font = appearance!.cancelButtonFont
       setTitleColor(appearance!.cancelButtonTitleColor, forState: .Normal)

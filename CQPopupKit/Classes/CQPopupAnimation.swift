@@ -87,13 +87,31 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
   }
 }
 
+/// CQPopup plain animation
+class CQPopupPlainAnimation: CQPopupAnimation {
+  override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    super.animateTransition(transitionContext)
+    switch status {
+    case .transitIn:
+      popup.view.frame = inStartFrame
+      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveLinear, animations: {
+        self.popup.view.frame = self.inFinalFrame
+      }, completion: {finished in
+        transitionContext.completeTransition(finished)
+      })
+    case .transitOut:
+      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveLinear, animations: {
+        self.popup.view.frame = self.outFinalFrame
+      }, completion: {finished in
+        transitionContext.completeTransition(finished)
+      })
+    }
+  }
+}
+
 /// CQPopup fade animation
 class CQPopupFadeAnimation: CQPopupAnimation {
-  var alpha: CGFloat = 0.0
-  
-  override init(duration: NSTimeInterval, status: CQPopupAnimationStatus, direction: CQPopupTransitionDirection) {
-    super.init(duration: duration, status: status, direction: direction)
-  }
+  var alpha: CGFloat = 0
   
   override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
     super.animateTransition(transitionContext)

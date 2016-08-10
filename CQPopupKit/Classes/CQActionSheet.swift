@@ -29,7 +29,7 @@ public class CQActionSheet: CQPopupAlertController {
     appearance.widthMultiplier = 0.95
     alertAppearance.messageFont = UIFont.systemFontOfSize(12)
     animationAppearance.transitionDirection = .bottomToTop
-    animationAppearance.transitionStyle = .fade
+    animationAppearance.transitionStyle = .plain
     animationAppearance.transitionInDuration = 0.3
     animationAppearance.transitionInDuration = 0.15
   }
