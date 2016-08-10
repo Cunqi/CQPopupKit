@@ -20,7 +20,7 @@
 		C8817D9A4E72F110509D44F5D5EA2421 /* Pods-CQPopupKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF554B74DFC84A8502DF07201D87BC0 /* Pods-CQPopupKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2AAFE4F1D583FB70017A17D /* CQPopupPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */; };
 		D2AAFE511D58498E0017A17D /* CQActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AAFE501D58498E0017A17D /* CQActionSheet.swift */; };
-		D7FCD78A9500945459EE7C1C6B2E8DC0 /* UIView+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */; };
+		D7FCD78A9500945459EE7C1C6B2E8DC0 /* UIKit+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693793B81D0C789ACEB734CF52A9281 /* UIKit+CQPopup.swift */; };
 		DFC4B203D39A3FE03AE3AD12820A98DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		E07F1F6789D35AF8A5C1148D9DD8A497 /* CQPopupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F3C97DA6C0405D3870660BB5976A84 /* CQPopupContainer.swift */; };
 		EC977A38946E3A8BFDB87123308820C2 /* CQAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217388A9F66FA756DEF146C6E79870DF /* CQAlertView.swift */; };
@@ -42,7 +42,7 @@
 		148695CCE884DDAF8B651141CF9FAB09 /* CQPopupAppearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopupAppearance.swift; sourceTree = "<group>"; };
 		20446D76E9BA7F8D377248C2086A5589 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		217388A9F66FA756DEF146C6E79870DF /* CQAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CQAlertView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+CQPopup.swift"; sourceTree = "<group>"; };
+		2693793B81D0C789ACEB734CF52A9281 /* UIKit+CQPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIKit+CQPopup.swift"; sourceTree = "<group>"; };
 		30C0A4039E0246CCDEC07CA5F1DC6B54 /* Pods-CQPopupKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CQPopupKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		35DB5C6501B808888308F84E8AB001B4 /* Pods_CQPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQPopupKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D7028178DB738E59D12C3711C1AB3C /* Pods-CQPopupKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 				B68E01E50C34224BC30B64A22DB6D616 /* CQPopupAnimation.swift */,
 				148695CCE884DDAF8B651141CF9FAB09 /* CQPopupAppearance.swift */,
 				F1F3C97DA6C0405D3870660BB5976A84 /* CQPopupContainer.swift */,
-				2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */,
+				2693793B81D0C789ACEB734CF52A9281 /* UIKit+CQPopup.swift */,
 				D2AAFE4E1D583FB70017A17D /* CQPopupPresentation.swift */,
 				D2AAFE501D58498E0017A17D /* CQActionSheet.swift */,
 			);
@@ -378,7 +378,7 @@
 				F88A4C7CAEFFC28CAE9F94FFAD9AE937 /* CQPopupAppearance.swift in Sources */,
 				E07F1F6789D35AF8A5C1148D9DD8A497 /* CQPopupContainer.swift in Sources */,
 				70A1CDA0BFD4C4A22DB5AF27EA6C902B /* CQPopupKit-dummy.m in Sources */,
-				D7FCD78A9500945459EE7C1C6B2E8DC0 /* UIView+CQPopup.swift in Sources */,
+				D7FCD78A9500945459EE7C1C6B2E8DC0 /* UIKit+CQPopup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

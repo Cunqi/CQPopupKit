@@ -163,6 +163,7 @@ public class CQPopupAlertController: CQPopup {
       content.addSubview(button)
       buttons.append(button)
     }
+    
     return buttons
   }
   
@@ -223,7 +224,9 @@ public class CQPopupAlertController: CQPopup {
    - parameter sender: Cancel button
    */
   func cancelButtonSelected(sender: AnyObject) {
-    CQPopup.sendPopupNegative(nil)
+    if let popup = content.popup {
+      popup.invokeNegativeAction(nil)
+    }
   }
   
   /**
@@ -232,10 +235,12 @@ public class CQPopupAlertController: CQPopup {
    - parameter sender: Selected alert button
    */
   func buttonSelected(sender: AnyObject) {
-    let button = sender as! UIButton
-    let title = button.titleForState(.Normal)!
-    let index = itemOptions.indexOf(title)!
-    CQPopup.sendPopupPositive([selectedIndex: index, selectedTitle:title])
+    if let popup = content.popup {
+      let button = sender as! UIButton
+      let title = button.titleForState(.Normal)!
+      let index = itemOptions.indexOf(title)!
+      popup.invokePostiveAction([selectedIndex: index, selectedTitle:title])
+    }
   }
   
   /**

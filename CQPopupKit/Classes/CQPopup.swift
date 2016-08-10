@@ -39,12 +39,6 @@ public class CQPopup: UIViewController {
   
   // MARK: Private / Internal
   
-  /// The negative action notification name used for notification posting
-  private static let negativeActionNotification = "CQPopupNegative"
-  
-  /// The positive action notification name
-  private static let positiveActionNotification = "CQPopupPositive"
-  
   /// The fake background view used for receiving touche events ONLY!
   lazy var touchReceiverView: UIView = {
     
@@ -142,7 +136,6 @@ public class CQPopup: UIViewController {
     super.viewDidLoad()
     
     bindConstraintsToContainer()
-    subscribeNotifications()
   }
   
   public override func viewWillAppear(animated: Bool) {
@@ -155,7 +148,6 @@ public class CQPopup: UIViewController {
   
   public override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
-    unsubscribeNotifications()
     positiveAction = nil
     negativeAction = nil
   }
@@ -242,41 +234,25 @@ public class CQPopup: UIViewController {
   }
   
   /**
-   Subscribe negative & positive action notifications
-   */
-  private func subscribeNotifications() {
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cancelActionInvoked), name: CQPopup.negativeActionNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(confirmActionInvoked), name: CQPopup.positiveActionNotification, object: nil)
-  }
-  
-  /**
-   Unsubscribe negative & positive action notifications
-   */
-  private func unsubscribeNotifications() {
-    NSNotificationCenter.defaultCenter().removeObserver(self, name: CQPopup.negativeActionNotification, object: nil)
-    NSNotificationCenter.defaultCenter().removeObserver(self, name: CQPopup.positiveActionNotification, object: nil)
-  }
-  
-  /**
-   Dismiss the popup when receive negative notification, negative action (if have) will be invoked first
+   Dismiss the popup when invoked, negative action (if have) will be invoked first
    
-   - parameter notification: Notification contains nothing
+   - parameter popupInfo: popup info passed to negative action
    */
-  @objc private func cancelActionInvoked(notification: NSNotification?) {
+  public func invokeNegativeAction(popupInfo: [NSObject: AnyObject]?) {
     if let action = negativeAction {
-      action(notification?.userInfo)
+      action(popupInfo)
     }
     delay(0.15) {self.dismiss()}
   }
   
   /**
-   Dismiss the popup when receive positive notification, positive action (if have) will be invoked first
+   Dismiss the popup wheninvoked, positive action (if have) will be invoked first
    
-   - parameter notification: Notification contains popUpInfo (if have)
+   - parameter popupInfo: popup info passed to positive action
    */
-  @objc private func confirmActionInvoked(notification: NSNotification) {
+  public func invokePostiveAction(popupInfo: [NSObject: AnyObject]?) {
     if let action = positiveAction {
-      action(notification.userInfo)
+      action(popupInfo)
     }
     delay(0.15) {self.dismiss()}
   }
@@ -285,7 +261,7 @@ public class CQPopup: UIViewController {
    Dismiss the popup when outside of the container is tapped, negative action (if have) will be invoked first
    */
   @objc private func tapToDismiss() {
-    cancelActionInvoked(nil)
+    invokeNegativeAction(nil)
   }
   
   /**
@@ -293,23 +269,5 @@ public class CQPopup: UIViewController {
    */
   public func dismiss() {
     dismissViewControllerAnimated(true, completion: nil)
-  }
-  
-  /**
-   Convenient method to send positive notification to popup
-   
-   - parameter popUpInfo: Info passing to positive action when popup returns
-   */
-  public static func sendPopupPositive(popUpInfo: [NSObject: AnyObject]?) {
-    NSNotificationCenter.defaultCenter().postNotificationName(positiveActionNotification, object: nil, userInfo: popUpInfo)
-  }
-  
-  /**
-   Convenient method to send negative notification to popup
-   
-   - parameter popUpInfo: Info passing to negative action when popup returns
-   */
-  public static func sendPopupNegative(popUpInfo: [NSObject: AnyObject]?) {
-    NSNotificationCenter.defaultCenter().postNotificationName(negativeActionNotification, object: nil, userInfo: popUpInfo)
   }
 }

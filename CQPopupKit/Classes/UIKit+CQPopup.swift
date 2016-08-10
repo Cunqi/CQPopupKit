@@ -9,6 +9,18 @@
 import UIKit
 
 extension UIView {
+  /// if the view is a subview in CQPopupContainer, use this property to get  the CQPopup
+  public var popup: CQPopup? {
+    var parentResponder: UIResponder? = self
+    while parentResponder != nil {
+      parentResponder = parentResponder!.nextResponder()
+      if let popup = parentResponder as? CQPopup {
+        return popup
+      }
+    }
+    return nil
+  }
+
   func bindWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 1.0) -> UIView {
     addConstraint(buildConstraintWith(item, attribute: attribute, relation: relation, multiplier: multiplier, constant: constant))
     return self
