@@ -70,8 +70,8 @@ class ViewController: UITableViewController {
         let popup = CQPopup()
         popup.appearance.widthMultiplier = 0.9
         popup.appearance.heightMultiplier = 0.9
-        popup.animationAppearance.transitionDirection = .TopToBottom
-        popup.animationAppearance.transitionStyle = .Bounce
+        popup.animationAppearance.transitionDirection = .topToBottom
+        popup.animationAppearance.transitionStyle = .bounce
         self.cq_present(popup)
     }
     

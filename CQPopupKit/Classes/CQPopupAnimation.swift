@@ -51,14 +51,14 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         switch self.status {
-        case .In:
+        case .transitIn:
             self.popup = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! CQPopup
             self.another = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
             
             if let container = transitionContext.containerView() {
                 container.addSubview(self.popup.view)
             }
-        case .Out:
+        case .transitOut:
             self.another = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
             self.popup = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)  as! CQPopup
         }
@@ -68,19 +68,19 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         // Set in initial frame & in final frame & out final frame
         self.inFinalFrame = transitionContext.finalFrameForViewController(self.popup)
         switch self.direction {
-        case .LeftToRight:
+        case .leftToRight:
             self.inStartFrame = CGRectOffset(self.inFinalFrame, -bounds.width, 0)
             self.outFinalFrame = CGRectOffset(self.inFinalFrame, bounds.width, 0)
-        case .RightToLeft:
+        case .rightToLeft:
             self.inStartFrame = CGRectOffset(self.inFinalFrame,  bounds.width, 0)
             self.outFinalFrame = CGRectOffset(self.inFinalFrame, -bounds.width, 0)
-        case .TopToBottom:
+        case .topToBottom:
             self.inStartFrame = CGRectOffset(self.inFinalFrame, 0, -bounds.height)
             self.outFinalFrame = CGRectOffset(self.inFinalFrame, 0, bounds.height)
-        case .BottomToTop:
+        case .bottomToTop:
             self.inStartFrame = CGRectOffset(self.inFinalFrame, 0, bounds.height)
             self.outFinalFrame = CGRectOffset(self.inFinalFrame, 0, +bounds.height)
-        case .Center:
+        case .center:
             self.inStartFrame = self.inFinalFrame
             self.outFinalFrame = self.inFinalFrame
         }
@@ -98,7 +98,7 @@ class CQPopupFadeAnimation: CQPopupAnimation {
     override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(transitionContext)
         switch self.status {
-        case .In:
+        case .transitIn:
             self.popup.view.frame = self.inStartFrame
             self.alpha = self.popup.view.alpha
             self.popup.view.alpha = 0
@@ -108,7 +108,7 @@ class CQPopupFadeAnimation: CQPopupAnimation {
             }, completion: {finished in
                 transitionContext.completeTransition(finished)
             })
-        case .Out:
+        case .transitOut:
             UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveLinear, animations: { 
                 self.popup.view.alpha = 0
                 self.popup.view.frame = self.outFinalFrame
@@ -123,14 +123,14 @@ class CQPopupBounceAniamtion: CQPopupAnimation {
     override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(transitionContext)
         switch self.status {
-        case .In:
+        case .transitIn:
             self.popup.view.frame = self.inStartFrame
             UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
                 self.popup.view.frame = self.inFinalFrame
                 }, completion: {finished in
                     transitionContext.completeTransition(finished)
             })
-        case .Out:
+        case .transitOut:
             UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveEaseIn, animations: {
                 self.popup.view.frame = self.outFinalFrame
                 }, completion: {finished in
@@ -145,14 +145,14 @@ class CQPopupZoomAnimation: CQPopupAnimation {
     override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(transitionContext)
         switch self.status {
-        case .In:
+        case .transitIn:
             self.popup.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
             UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .CurveEaseInOut, animations:  {
              self.popup.view.transform = CGAffineTransformIdentity
             }, completion: {finished in
                 transitionContext.completeTransition(finished)
             })
-        case .Out:
+        case .transitOut:
             UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveEaseIn, animations: {
                 self.popup.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
                 self.popup.view.alpha = 0

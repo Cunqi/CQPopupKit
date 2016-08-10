@@ -51,13 +51,13 @@ final public class CQAlertView: CQPopupAlertController {
      - returns: Alert view
      */
     public override init(title: String, message: String?, dismiss: String?, options: [String]) {
-        CQAppearance.appearance.popup.viewAttachedPosition = .Center
-        CQAppearance.appearance.animation.transitionDirection = .Center
-        CQAppearance.appearance.animation.transitionStyle = .Zoom
+        CQAppearance.appearance.popup.viewAttachedPosition = .center
+        CQAppearance.appearance.animation.transitionDirection = .center
+        CQAppearance.appearance.animation.transitionStyle = .zoom
         super.init(title: title, message: message, dismiss: dismiss, options: options)
     }
     
-    // Init with coder not implemented
+    // Init with codervart implemented
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

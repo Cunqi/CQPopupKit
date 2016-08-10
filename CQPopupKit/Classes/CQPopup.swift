@@ -177,15 +177,15 @@ public class CQPopup: UIViewController {
     private func bindHorizontalConstraint() -> CQPopup {
         let appearance = self.appearance
         switch appearance.viewAttachedPosition {
-        case .Center:
+        case .center:
             fallthrough
-        case .Top:
+        case .top:
             fallthrough
-        case .Bottom:
+        case .bottom:
             self.horizontalConst = self.view.buildConstraintWith(self.shadowContainer, attribute: .CenterX)
-        case .Left:
+        case .left:
             self.horizontalConst = self.view.buildConstraintWith(self.shadowContainer, attribute: .Leading, constant: appearance.containerPadding.left)
-        case .Right:
+        case .right:
             self.horizontalConst = self.view.buildConstraintWith(self.shadowContainer, attribute: .Trailing, constant: -appearance.containerPadding.right)
         }
         self.view.addConstraint(self.horizontalConst)
@@ -206,15 +206,15 @@ public class CQPopup: UIViewController {
         let defaultStatusBarHeight: CGFloat = 20
         let appearance = self.appearance
         switch appearance.viewAttachedPosition {
-        case .Center:
+        case .center:
             fallthrough
-        case .Left:
+        case .left:
             fallthrough
-        case .Right:
+        case .right:
             self.verticalConst = self.view.buildConstraintWith(self.shadowContainer, attribute: .CenterY)
-        case .Top:
+        case .top:
             self.verticalConst = self.view.buildConstraintWith(self.shadowContainer, attribute: .Top, constant: appearance.containerPadding.top + defaultStatusBarHeight)
-        case .Bottom:
+        case .bottom:
             self.verticalConst = self.view.buildConstraintWith(self.shadowContainer, attribute: .Bottom, constant: -appearance.containerPadding.bottom)
         }
         self.view.addConstraint(self.verticalConst)

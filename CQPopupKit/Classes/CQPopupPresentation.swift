@@ -41,11 +41,11 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
     }
     
     public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self.getAnimation(self.animationAppearance.transitionInDuration, status: .In, direction: self.animationAppearance.transitionDirection, style: self.animationAppearance.transitionStyle)
+        return self.getAnimation(self.animationAppearance.transitionInDuration, status: .transitIn, direction: self.animationAppearance.transitionDirection, style: self.animationAppearance.transitionStyle)
     }
     
     public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self.getAnimation(self.animationAppearance.transitionOutDuration, status: .Out, direction: self.animationAppearance.transitionDirection, style: self.animationAppearance.transitionStyle)
+        return self.getAnimation(self.animationAppearance.transitionOutDuration, status: .transitOut, direction: self.animationAppearance.transitionDirection, style: self.animationAppearance.transitionStyle)
     }
     
     /**
@@ -60,13 +60,13 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
      */
     func getAnimation(duration: NSTimeInterval, status: CQPopupAnimationStatus, direction: CQPopupTransitionDirection, style: CQPopupTransitionStyle) -> CQPopupAnimation {
         switch style {
-        case .Fade:
+        case .fade:
             return CQPopupFadeAnimation(duration: duration, status: status, direction: direction)
-        case .Bounce:
+        case .bounce:
             return CQPopupBounceAniamtion(duration: duration, status: status, direction: direction)
-        case .Zoom:
+        case .zoom:
             return CQPopupZoomAnimation(duration: duration, status: status, direction: direction)
-        case .Custom:
+        case .custom:
             return self.customPopupAnimation(duration, status: status, direction: direction)
         }
     }

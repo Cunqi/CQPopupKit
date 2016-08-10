@@ -11,79 +11,74 @@ import UIKit
 /**
  The position of containers
  
- - Center: The container has CenterX and CenterY equivalent with parent(aka. CQPopup.view)
- - Left:   The container has CenterY and Leading equivalent with parent(aka. CQPopup.view)
- - Right:  The container has CenterY and Trailing equivalent with parent(aka. CQPopup.view)
- - Top:    The container has CenterX and Top equivalent with parent(aka. CQPopup.view)
- - Bottom: The container has CenterX and Bottom1980 equivalent with parent(aka. CQPopup.view)
+ - center: The container has CenterX and CenterY equivalent with parent(aka. CQPopup.view)
+ - left:   The container has CenterY and Leading equivalent with parent(aka. CQPopup.view)
+ - right:  The container has CenterY and Trailing equivalent with parent(aka. CQPopup.view)
+ - top:    The container has CenterX and Top equivalent with parent(aka. CQPopup.view)
+ - bottom: The container has CenterX and Bottom1980 equivalent with parent(aka. CQPopup.view)
  */
 public enum AttachedPosition: Int {
-    case Center = 0
-    case Left = 1
-    case Right = 2
-    case Top = 3
-    case Bottom = 4
+    case center = 0
+    case left = 1
+    case right = 2
+    case top = 3
+    case bottom = 4
 }
 
 /**
  Popup transition animation style
  
- - Zoom:   Zoom in and zoom out (Center direction ONLY)
- - Fade:   Fade in and fade out
- - Bounce: Bounce in and bounce out
- - Custom: Custom implementation
+ - zoom:   Zoom in and zoom out (Center direction ONLY)
+ - fade:   Fade in and fade out
+ - bounce: Bounce in and bounce out
+ - custom: Custom implementation
  */
 public enum CQPopupTransitionStyle: Int {
-    case Zoom = 0
-    case Fade = 1
-    case Bounce = 2
-    case Custom = 3
+    case zoom = 0
+    case fade = 1
+    case bounce = 2
+    case custom = 3
 }
 
 /**
  Popup transition animation direction
  
- - LeftToRight: From left to right
- - RightToLeft: From right to left
- - TopToBottom: From top to bottom
- - BottomToTop: From bottom to top
- - Center:      Stay at center (For Zoom / Custom transition style ONLY!)
+ - leftToRight: From left to right
+ - rightToLeft: From right to left
+ - topToBottom: From top to bottom
+ - bottomToTop: From bottom to top
+ - center:      Stay at center (For Zoom / Custom transition style ONLY!)
  */
 public enum CQPopupTransitionDirection: Int {
-    case LeftToRight = 0
-    case RightToLeft = 1
-    case TopToBottom = 2
-    case BottomToTop = 3
-    case Center = 4
+    case leftToRight = 0
+    case rightToLeft = 1
+    case topToBottom = 2
+    case bottomToTop = 3
+    case center = 4
 }
 
 /**
  Current animation status of transition in / transition out
  
- - In:  Transition in
- - Out: Transition out
+ - transitIn:  Transition in
+ - transitOut: Transition out
  */
 public enum CQPopupAnimationStatus: Int {
-    case In = 0
-    case Out = 1
+    case transitIn = 0
+    case transitOut = 1
 }
 
 /// CQPopupKit global appearance
 public class CQAppearance: NSObject {
     static let appearance = CQAppearance()
     
-    public lazy var popup: CQPopupAppearance = {
-        return CQPopupAppearance()
-    }()
+    public var popup = CQPopupAppearance()
     
-    public lazy var animation: CQPopupAnimationAppearance = {
-        return CQPopupAnimationAppearance()
-    }()
+    public var animation = CQPopupAnimationAppearance()
     
     public lazy var alert: CQAlertControllerAppearance = {
-        return CQAlertControllerAppearance()
+       return CQAlertControllerAppearance()
     }()
-    
     private override init(){}
 }
 
@@ -97,19 +92,19 @@ public struct CQPopupAppearance {
     public var enableTouchOutsideToDismiss: Bool = true
     
     /// Position of container, default is `Center`
-    public var viewAttachedPosition: AttachedPosition = .Center
+    public var viewAttachedPosition: AttachedPosition = .center
     
     /// Padding space between container and popup's view, default is `UIEdgeInsetsZero`
     public var containerPadding: UIEdgeInsets = UIEdgeInsetsZero
     
     /// Control the width of container, maximum is 1.0, means container width equals to popup view width, default is `1.0`
-    public var widthMultiplier: CGFloat = 1.0
+    public var widthMultiplier: CGFloat = 0.8
     
     /// Control the height of container, maximum is 1.0, means container height equals to popup view height, default is `1.0`
-    public var heightMultiplier: CGFloat = 1.0
+    public var heightMultiplier: CGFloat = 0.8
     
     /// Corner radius of container, default is `10`
-    public var cornerRadius: CGFloat = 10
+    public var cornerRadius: CGFloat = 8
     
     /// Container's background color, default is `White`
     public var containerBackgroundColor: UIColor = UIColor.whiteColor()
@@ -139,10 +134,10 @@ public struct CQPopupAppearance {
 /// Popup animation appearance
 public struct CQPopupAnimationAppearance {
     /// Popup transition style
-    public var transitionStyle: CQPopupTransitionStyle = .Fade
+    public var transitionStyle: CQPopupTransitionStyle = .fade
     
     /// Popup transition direction
-    public var transitionDirection: CQPopupTransitionDirection = .LeftToRight
+    public var transitionDirection: CQPopupTransitionDirection = .leftToRight
     
     /// Popup transition in time duration
     public var transitionInDuration: NSTimeInterval = 0.4
