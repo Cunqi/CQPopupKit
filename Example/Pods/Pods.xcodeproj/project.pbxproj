@@ -41,7 +41,7 @@
 		0DCCBCC51129ED65EBB63133148C9AFC /* Pods-CQPopupKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CQPopupKit_Example.modulemap"; sourceTree = "<group>"; };
 		148695CCE884DDAF8B651141CF9FAB09 /* CQPopupAppearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopupAppearance.swift; sourceTree = "<group>"; };
 		20446D76E9BA7F8D377248C2086A5589 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		217388A9F66FA756DEF146C6E79870DF /* CQAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQAlertView.swift; sourceTree = "<group>"; };
+		217388A9F66FA756DEF146C6E79870DF /* CQAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CQAlertView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2693793B81D0C789ACEB734CF52A9281 /* UIView+CQPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+CQPopup.swift"; sourceTree = "<group>"; };
 		30C0A4039E0246CCDEC07CA5F1DC6B54 /* Pods-CQPopupKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CQPopupKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		35DB5C6501B808888308F84E8AB001B4 /* Pods_CQPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQPopupKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +60,7 @@
 		9C2D7F19D54EA4C7AC13F390C6744B4D /* Pods-CQPopupKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CQPopupKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		A9070AFBFF7268A410FBBE4A9F64ABDE /* CQPopupKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CQPopupKit-umbrella.h"; sourceTree = "<group>"; };
 		AD0AAD87E1BD14B54FDCFD7E01ED48E2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B31BA51281D43D556A2493E20C7E2EDA /* CQPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopup.swift; sourceTree = "<group>"; };
+		B31BA51281D43D556A2493E20C7E2EDA /* CQPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CQPopup.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B459BBFE97EAB3915B7B9D7D11A56E41 /* CQPopupKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CQPopupKit.xcconfig; sourceTree = "<group>"; };
 		B6053B925287ED6A3131769028C98816 /* Pods-CQPopupKit_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CQPopupKit_Example-resources.sh"; sourceTree = "<group>"; };
 		B68E01E50C34224BC30B64A22DB6D616 /* CQPopupAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CQPopupAnimation.swift; sourceTree = "<group>"; };
