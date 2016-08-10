@@ -171,7 +171,6 @@ public class CQPopupAlertController: CQPopup {
     
     public final override func viewDidLoad() {
         self.layoutAlertButtons(at: self.content, buttons: self.alertButtons)
-        self.appearance.widthMultiplier = self.calcWidthMultiplier()
         self.appearance.heightMultiplier = self.calcNecessaryHeightMultiplier()
         super.viewDidLoad()
     }
@@ -271,13 +270,6 @@ public class CQPopupAlertController: CQPopup {
      - returns: Maximum height of alert buttons
      */
     func calcHeightOfAlertButtons() -> CGFloat {return 0}
-    
-    /**
-     Subclass should implement this method to calculate the width multiplier of alert controller
-     
-     - returns: Width multiplier of alert controller
-     */
-    func calcWidthMultiplier() -> CGFloat {return 0}
 }
 
 /**

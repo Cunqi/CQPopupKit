@@ -51,10 +51,11 @@ final public class CQAlertView: CQPopupAlertController {
      - returns: Alert view
      */
     public override init(title: String, message: String?, dismiss: String?, options: [String]) {
-        CQAppearance.appearance.popup.viewAttachedPosition = .center
-        CQAppearance.appearance.animation.transitionDirection = .center
-        CQAppearance.appearance.animation.transitionStyle = .zoom
         super.init(title: title, message: message, dismiss: dismiss, options: options)
+        appearance.viewAttachedPosition = .center
+        appearance.popupWidth = 275
+        animationAppearance.transitionDirection = .center
+        animationAppearance.transitionStyle = .zoom
     }
     
     // Init with codervart implemented
@@ -98,15 +99,6 @@ final public class CQAlertView: CQPopupAlertController {
                 prevButton = currButton
             }
         }
-    }
-    
-    /**
-     Tell the width multiplier of alert controller
-     
-     - returns: Width multiplier of alert controller
-     */
-    override func calcWidthMultiplier() -> CGFloat {
-        return 275 / UIScreen.mainScreen().bounds.width
     }
     
     /**

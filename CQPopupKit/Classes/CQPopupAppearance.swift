@@ -100,8 +100,28 @@ public struct CQPopupAppearance {
     /// Control the width of container, maximum is 1.0, means container width equals to popup view width, default is `1.0`
     public var widthMultiplier: CGFloat = 0.8
     
+    /// Control the width of container with fixed width value
+    public var popupWidth: CGFloat {
+        get {
+            return widthMultiplier * UIScreen.mainScreen().bounds.width
+        }
+        set {
+            widthMultiplier = newValue / UIScreen.mainScreen().bounds.width
+        }
+    }
+    
     /// Control the height of container, maximum is 1.0, means container height equals to popup view height, default is `1.0`
     public var heightMultiplier: CGFloat = 0.8
+    
+    /// Control the height of container with fixed height value
+    public var popupHeight: CGFloat {
+        get {
+            return heightMultiplier * UIScreen.mainScreen().bounds.height
+        }
+        set {
+            heightMultiplier = newValue / UIScreen.mainScreen().bounds.height
+        }
+    }
     
     /// Corner radius of container, default is `10`
     public var cornerRadius: CGFloat = 8

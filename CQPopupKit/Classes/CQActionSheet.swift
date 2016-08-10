@@ -24,14 +24,14 @@ public class CQActionSheet: CQPopupAlertController {
      */
     public override init(title: String, message: String?, dismiss: String?, options: [String]) {
         super.init(title: title, message: message, dismiss: dismiss, options: options)
-
-        self.appearance.viewAttachedPosition = .bottom
-        self.appearance.containerPadding = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
-        self.alertAppearance.messageFont = UIFont.systemFontOfSize(12)
-        self.animationAppearance.transitionDirection = .bottomToTop
-        self.animationAppearance.transitionStyle = .fade
-        self.animationAppearance.transitionInDuration = 0.3
-        self.animationAppearance.transitionInDuration = 0.15
+        appearance.viewAttachedPosition = .bottom
+        appearance.containerPadding = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+        appearance.widthMultiplier = 0.95
+        alertAppearance.messageFont = UIFont.systemFontOfSize(12)
+        animationAppearance.transitionDirection = .bottomToTop
+        animationAppearance.transitionStyle = .fade
+        animationAppearance.transitionInDuration = 0.3
+        animationAppearance.transitionInDuration = 0.15
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -53,11 +53,7 @@ public class CQActionSheet: CQPopupAlertController {
             prevButton = currButton
         }
     }
-
-    override func calcWidthMultiplier() -> CGFloat {
-        return 0.95
-    }
-
+    
     override func calcHeightOfAlertButtons() -> CGFloat {
         return self.alertAppearance.alertButtonHeight * CGFloat(self.alertButtons.count)
     }
