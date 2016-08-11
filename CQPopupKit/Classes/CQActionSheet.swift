@@ -26,7 +26,7 @@ public class CQActionSheet: CQPopupAlertController {
     super.init(title: title, message: message, dismiss: dismiss, options: options)
     appearance.viewAttachedPosition = .bottom
     appearance.containerPadding = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
-    appearance.widthMultiplier = 0.95
+    appearance.fixedWidth = 0.95 * min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
     alertAppearance.messageFont = UIFont.systemFontOfSize(12)
     animationAppearance.transitionDirection = .bottomToTop
     animationAppearance.transitionStyle = .plain
@@ -40,16 +40,16 @@ public class CQActionSheet: CQPopupAlertController {
   
   override func layoutAlertButtons(at parent: UIView, buttons: [CQPopupAlertButton]) {
     let anchorButton = buttons[0]
-    parent.bindWith(anchorButton, attribute: .Leading).bindWith(anchorButton, attribute: .Bottom).bindBetween((view: anchorButton, attribute: .Height), and: (view: nil, attribute: .NotAnAttribute), constant: alertAppearance.alertButtonHeight)
+    parent.bindWith(anchorButton, attribute: .Leading).bindWith(anchorButton, attribute: .Bottom).bind(anchorButton, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: alertAppearance.alertButtonHeight)
     parent.bindWith(anchorButton, attribute: .Width)
     var prevButton = anchorButton
     for i in 1 ..< buttons.count {
       let currButton = buttons[i]
       parent.addSubview(currButton)
-      parent.bindBetween((view: currButton, attribute: .Height), and: (view: anchorButton, attribute: .Height))
-        .bindBetween((view: currButton, attribute: .Width), and: (view: anchorButton, attribute: .Width))
-        .bindBetween((view: currButton, attribute: .Leading), and: (view: prevButton, attribute: .Leading))
-        .bindBetween((view: currButton, attribute: .Bottom), and: (view: prevButton, attribute: .Top))
+      parent.bind(currButton, attribute: .Width, to: anchorButton)
+        .bind(currButton, attribute: .Height, to: anchorButton)
+        .bind(currButton, attribute: .Leading, to: anchorButton)
+        .bind(currButton, attribute: .Bottom, to: prevButton, toAttribute: .Top)
       prevButton = currButton
     }
   }

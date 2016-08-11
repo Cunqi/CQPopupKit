@@ -113,7 +113,7 @@ public class CQPopup: UIViewController {
     
     // Transition delegate
     presentationManager = PresentationManager(animationAppearance: CQAppearance.appearance.animation)
-    presentationManager.canvasLayer.backgroundColor = appearance.popUpBackgroundColor
+    presentationManager.coverLayerView.backgroundColor = appearance.popUpBackgroundColor
     transitioningDelegate = presentationManager
   }
   
@@ -135,7 +135,6 @@ public class CQPopup: UIViewController {
   
   public override func viewDidLoad() {
     super.viewDidLoad()
-    
     bindConstraintsToContainer()
   }
   
@@ -153,12 +152,32 @@ public class CQPopup: UIViewController {
     negativeAction = nil
   }
   
+  /// Support orientation changed
+  public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
+    let height = appearance.fixedHeight == 0 ? appearance.popupHeight : appearance.fixedHeight
+    let newWidthMultiplier = width / size.width
+    let newHeightMultiplier = height / size.height
+    
+    if newWidthMultiplier <= 1.0 {
+      appearance.widthMultiplier = newWidthMultiplier
+    }
+
+    if newHeightMultiplier <= 1.0 {
+      appearance.heightMultiplier = newHeightMultiplier
+    }
+    
+    //update width & height constraints
+    view.removeConstraints([widthConst, heightConst])
+    self.bindHeightConstraint().bindWidthConstraint()
+  }
+  
   /**
    Bind constraints to shadow container
    */
   private func bindConstraintsToContainer() {
     view.addSubview(shadowContainer)
-    bindHorizontalConstraint().bindVerticalConstraint().bindHeightConstraint().bindWidthConstraint()
+    self.bindHorizontalConstraint().bindVerticalConstraint().bindHeightConstraint().bindWidthConstraint()
     view.layoutIfNeeded()
   }
   

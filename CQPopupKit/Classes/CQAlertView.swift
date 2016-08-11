@@ -53,7 +53,7 @@ final public class CQAlertView: CQPopupAlertController {
   public override init(title: String, message: String?, dismiss: String?, options: [String]) {
     super.init(title: title, message: message, dismiss: dismiss, options: options)
     appearance.viewAttachedPosition = .center
-    appearance.popupWidth = 275
+    appearance.fixedWidth = 275
     animationAppearance.transitionDirection = .center
     animationAppearance.transitionStyle = .zoom
   }
@@ -76,14 +76,16 @@ final public class CQAlertView: CQPopupAlertController {
     }
     
     let anchorButton = buttons[0]
-    parent.bindWith(anchorButton, attribute: .Leading).bindWith(anchorButton, attribute: .Bottom).bindBetween((view: anchorButton, attribute: .Height), and: (view: nil, attribute: .NotAnAttribute), constant: alertAppearance.alertButtonHeight)
+    parent.bindWith(anchorButton, attribute: .Leading)
+      .bindWith(anchorButton, attribute: .Bottom)
+      .bind(anchorButton, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: alertAppearance.alertButtonHeight)
     
     if hasCancelButton && buttons.count == 2 {
       let confirmButton = buttons[1]
       parent.bindWith(anchorButton, attribute: .Width, multiplier: 0.5)
-      parent.bindBetween((view: confirmButton, attribute: .Width), and: (view: anchorButton, attribute: .Width))
-        .bindBetween((view: confirmButton, attribute: .Height), and: (view: anchorButton, attribute: .Height))
-        .bindBetween((view: anchorButton, attribute: .Trailing), and: (view: confirmButton, attribute: .Leading))
+        .bind(confirmButton, attribute: .Width, to: anchorButton)
+        .bind(confirmButton, attribute: .Height, to: anchorButton)
+        .bind(anchorButton, attribute: .Trailing, to: confirmButton, toAttribute: .Leading)
         .bindWith(confirmButton, attribute: .Bottom)
       anchorButton.enableRightSeparator = true    //Two buttons on a row, shold render the right separator
     } else {
@@ -92,10 +94,10 @@ final public class CQAlertView: CQPopupAlertController {
       for i in 1 ..< buttons.count {
         let currButton = buttons[i]
         parent.addSubview(currButton)
-        parent.bindBetween((view: currButton, attribute: .Height), and: (view: anchorButton, attribute: .Height))
-          .bindBetween((view: currButton, attribute: .Width), and: (view: anchorButton, attribute: .Width))
-          .bindBetween((view: currButton, attribute: .Leading), and: (view: prevButton, attribute: .Leading))
-          .bindBetween((view: currButton, attribute: .Bottom), and: (view: prevButton, attribute: .Top))
+        parent.bind(currButton, attribute: .Width, to: anchorButton)
+          .bind(currButton, attribute: .Height, to: anchorButton)
+          .bind(currButton, attribute: .Leading, to: prevButton)
+          .bind(currButton, attribute: .Bottom, to: prevButton, toAttribute: .Top)
         prevButton = currButton
       }
     }

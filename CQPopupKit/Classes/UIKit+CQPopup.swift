@@ -21,31 +21,32 @@ extension UIView {
     return nil
   }
 
-  func bindWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 1.0) -> UIView {
+  func bindWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
     addConstraint(buildConstraintWith(item, attribute: attribute, relation: relation, multiplier: multiplier, constant: constant))
     return self
   }
   
-  func buildConstraintWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 1.0) -> NSLayoutConstraint {
-    return buildConstraintBetween((view: item, attribute: attribute), and: (view: self, attribute: attribute), relation: relation, multiplier: multiplier, constant: constant)
+  func buildConstraintWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+    return bindConstraint(item, attribute: attribute, to: self, toAttribute: attribute, withRelation: relation, multiplier: multiplier, constant: constant)
   }
   
-  
-  func bindBetween(item: (view: UIView, attribute: NSLayoutAttribute), and another: (view: UIView?, attribute: NSLayoutAttribute), relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
-    addConstraint(buildConstraintBetween(item, and: another, relation: relation, multiplier: multiplier, constant: constant))
+  func bind(item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
+    addConstraint(bindConstraint(item, attribute: attribute, to: toView, toAttribute: toAttribute, withRelation: relation, multiplier: multiplier, constant: constant))
     return self
   }
   
-  func buildConstraintBetween(item: (view: UIView, attribute: NSLayoutAttribute), and another: (view: UIView?, attribute: NSLayoutAttribute), relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
-    return NSLayoutConstraint.init(item: item.view, attribute: item.attribute, relatedBy: relation, toItem: another.view, attribute: another.attribute, multiplier: multiplier, constant: constant)
+  func bindConstraint(item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+    let toAttr = toAttribute == nil ? attribute : toAttribute!
+    return NSLayoutConstraint.init(item: item, attribute: attribute, relatedBy: .Equal, toItem: toView, attribute: toAttr, multiplier: multiplier, constant: constant)
   }
+  
   
   func bindFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> UIView {
-    addConstraints(buildConstraintsFrom(format, views: views, options: options, metrics: metrics))
+    addConstraints(buildConstraintFrom(format, views: views, options: options, metrics: metrics))
     return self
   }
   
-  func buildConstraintsFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> [NSLayoutConstraint] {
+  func buildConstraintFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> [NSLayoutConstraint] {
     return NSLayoutConstraint.constraintsWithVisualFormat(format, options: options, metrics: metrics, views: views)
   }
   

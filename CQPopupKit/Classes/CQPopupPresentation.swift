@@ -17,7 +17,7 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
   
   // MARK: Private & Internal
   
-  let canvasLayer: UIView
+  let coverLayerView: UIView
   
   // MARK: Initializer
   
@@ -25,19 +25,18 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
    Creates presentation manager
    
    - parameter animationAppearance: Animation appearance
-   - parameter coverLayer:     background cover layer during transition
+   - parameter coverLayerView:     background cover layer view during transition
    
    - returns: presentation manager
    */
-  public init(animationAppearance: CQPopupAnimationAppearance, canvasLayer: UIView = UIView()) {
+  public init(animationAppearance: CQPopupAnimationAppearance, coverLayerView: UIView = UIView()) {
     self.animationAppearance = animationAppearance
-    self.canvasLayer = canvasLayer
+    self.coverLayerView = coverLayerView
   }
   
   public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
     let controller = PresentationController(presentedViewController: presented, presentingViewController: presenting)
-    controller.coverLayer = canvasLayer
-    controller.shouldFade = animationAppearance.transitionStyle == .fade
+    controller.coverLayerView = coverLayerView
     return controller
   }
   
@@ -96,26 +95,24 @@ public class PresentationController: UIPresentationController {
   // MARK: Private & Internal
   
   /// A background cover layer rendering an obvious background during transiting
-  public var coverLayer: UIView!
-
-  public var shouldFade: Bool = false
+  public var coverLayerView: UIView!
   
   public override func presentationTransitionWillBegin() {
-    coverLayer.translatesAutoresizingMaskIntoConstraints = false
-    coverLayer.frame = containerView!.bounds
-    containerView!.insertSubview(coverLayer, atIndex: 0)
+    coverLayerView.translatesAutoresizingMaskIntoConstraints = false
+    containerView!.insertSubview(coverLayerView, atIndex: 0)
+    containerView!.bindFrom("H:|[cover]|", views: ["cover": coverLayerView]).bindFrom("V:|[cover]|", views: ["cover": coverLayerView])
     
-    let alpha = coverLayer.alpha
-    if shouldFade {coverLayer.alpha = 0}
+    let alpha = coverLayerView.alpha
+    coverLayerView.alpha = 0
     
     presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
-      self.coverLayer.alpha = alpha
+      self.coverLayerView.alpha = alpha
       }, completion: nil)
   }
   
   public override func dismissalTransitionWillBegin() {
     presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
-      if self.shouldFade {self.coverLayer.alpha = 0.0}
+      self.coverLayerView.alpha = 0.0
       }, completion: nil)
   }
 }

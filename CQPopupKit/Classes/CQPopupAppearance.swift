@@ -112,6 +112,12 @@ public struct CQPopupAppearance {
     }
   }
   
+  /// Control the width of container, if this property is not 0, the width will always be fixed width in all orientation
+  public var fixedWidth: CGFloat = 0
+  
+  /// Control the height of container, if this property is not 0, the height will always be fixed width in all orientation
+  public var fixedHeight: CGFloat = 0
+  
   /// Control the height of container, maximum is 1.0, means container height equals to popup view height, default is `1.0`
   public var heightMultiplier: CGFloat = 0.8
   

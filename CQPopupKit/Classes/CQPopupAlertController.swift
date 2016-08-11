@@ -138,7 +138,9 @@ public class CQPopupAlertController: CQPopup {
     
     let hs = alertAppearance.horizontalSpace
     let constant = alertAppearance.verticalSpaceBetweenTitleAndMessage
-    content.bindBetween((view: message, attribute: .Top), and: (view: alertTitle, attribute: .Bottom), constant: constant).bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
+    content.bind(message, attribute: .Top, to: alertTitle, toAttribute: .Bottom, constant: constant)
+      .bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
+
     return message
   }
   
@@ -167,12 +169,12 @@ public class CQPopupAlertController: CQPopup {
     return buttons
   }
   
-  
   // MARK: View Controller life cycle
   
   public final override func viewDidLoad() {
     layoutAlertButtons(at: content, buttons: alertButtons)
-    appearance.heightMultiplier = calcNecessaryHeightMultiplier()
+    appearance.popupHeight = appearance.fixedHeight == 0 ? calcNecessaryHeight() : appearance.fixedHeight
+    appearance.popupWidth = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
     super.viewDidLoad()
   }
   
@@ -187,11 +189,11 @@ public class CQPopupAlertController: CQPopup {
    
    - returns: Minimum necessary height of alert controller
    */
-  private func calcNecessaryHeightMultiplier() -> CGFloat {
+  private func calcNecessaryHeight() -> CGFloat {
     let titleHeight = calcHeightOfAlertTitle() + alertAppearance.verticalSpaceBetweenTitleAndTop
     let messageHeight = calcHeightOfAlertMessage() + alertAppearance.verticalSpaceBetweenTitleAndMessage
     let buttonsHeight = alertAppearance.verticalSpaceBetweenMessageAndButtons + calcHeightOfAlertButtons()
-    return (titleHeight + messageHeight + buttonsHeight) / UIScreen.mainScreen().bounds.height
+    return (titleHeight + messageHeight + buttonsHeight)
   }
   
   
@@ -201,7 +203,7 @@ public class CQPopupAlertController: CQPopup {
    - returns: Height of alert title
    */
   private func calcHeightOfAlertTitle() -> CGFloat {
-    let width = appearance.widthMultiplier * UIScreen.mainScreen().bounds.width
+    let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
     return alertTitle.font.sizeOfString(titleText, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
   }
   
@@ -214,7 +216,7 @@ public class CQPopupAlertController: CQPopup {
     guard let text = messageText else {
       return 0
     }
-    let width = appearance.widthMultiplier * UIScreen.mainScreen().bounds.width
+    let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
     return alertMessage.font.sizeOfString(text, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
   }
   
