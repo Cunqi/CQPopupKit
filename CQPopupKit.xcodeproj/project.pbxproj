@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D27C10751D5CD6CC001C365B /* CQPopupKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */; };
 		D2E929A31D5CCC2500A1B34F /* CQPopupKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2E929B31D5CCC4200A1B34F /* CQActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AA1D5CCC4200A1B34F /* CQActionSheet.swift */; };
 		D2E929B41D5CCC4200A1B34F /* CQAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AB1D5CCC4200A1B34F /* CQAlertView.swift */; };
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D27C10751D5CD6CC001C365B /* CQPopupKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

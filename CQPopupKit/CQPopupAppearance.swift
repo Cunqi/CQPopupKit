@@ -72,7 +72,7 @@ public enum CQPopupAnimationStatus: Int {
 
 /// CQPopupKit global appearance
 public class CQAppearance: NSObject {
-  static let appearance = CQAppearance()
+  public static let appearance = CQAppearance()
   
   public var popup = CQPopupAppearance()
   
