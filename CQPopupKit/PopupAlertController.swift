@@ -1,5 +1,5 @@
 //
-//  CQPopupAlertController.swift
+//  PopupAlertController.swift
 //  CQPopupViewController
 //
 //  Created by Cunqi.X on 8/4/16.
@@ -9,7 +9,7 @@
 import UIKit
 
 /// Root class of AlertView and ActionSheet
-public class CQPopupAlertController: CQPopup {
+public class PopupAlertController: Popup {
   
   // MARK: Public
   
@@ -27,13 +27,7 @@ public class CQPopupAlertController: CQPopup {
   
   /// Titles of each option
   public var itemOptions: [String]!
-  
-  /// Invoke alert canceled action when alert controller receives negative notification
-  public var alertCanceledAction: (() -> Void)?
-  
-  /// Invoke alert selected action when alert controller receives positive notification
-  public var alertSelectedAction: ((Int, String) -> Void)?
-  
+
   /// Get the alert title label
   public private(set) var alertTitle: UILabel!
   
@@ -41,7 +35,13 @@ public class CQPopupAlertController: CQPopup {
   public private(set) var alertMessage: UILabel!
   
   /// Get the alert buttons
-  public private(set) var alertButtons: [CQPopupAlertButton]!
+  public private(set) var alertButtons: [PopupAlertButton]!
+
+  /// Invoke alert canceled action when alert controller receives negative notification
+  public var alertCanceledAction: (() -> Void)?
+
+  /// Invoke alert selected action when alert controller receives positive notification
+  public var alertSelectedAction: ((Int, String) -> Void)?
   
   // MARK: Private & Internal
   
@@ -118,8 +118,8 @@ public class CQPopupAlertController: CQPopup {
   private func configureAlertTitle() -> UILabel {
     let title = createLabel(alertAppearance.titleFont)
     title.text = titleText
+
     content.addSubview(title)
-    
     let hs = alertAppearance.horizontalSpace
     let constant = alertAppearance.verticalSpaceBetweenTitleAndTop
     content.bindWith(title, attribute: .Top, constant: constant).bindFrom("H:|-(\(hs))-[title]-(\(hs))-|", views: ["title" : title])
@@ -134,13 +134,12 @@ public class CQPopupAlertController: CQPopup {
   private func configureAlertMessage() -> UILabel {
     let message = createLabel(alertAppearance.messageFont)
     message.text = messageText
+
     content.addSubview(message)
-    
     let hs = alertAppearance.horizontalSpace
     let constant = alertAppearance.verticalSpaceBetweenTitleAndMessage
     content.bind(message, attribute: .Top, to: alertTitle, toAttribute: .Bottom, constant: constant)
       .bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
-
     return message
   }
   
@@ -149,18 +148,18 @@ public class CQPopupAlertController: CQPopup {
    
    - returns: Alert buttons
    */
-  private func configureAlertButtons() -> [CQPopupAlertButton] {
+  private func configureAlertButtons() -> [PopupAlertButton] {
     //let subclass implement
-    var buttons = [CQPopupAlertButton]()
-    if hasCancelButton {   //if cancel button was set, set it with Cancel style
-      let cancelButton = CQPopupAlertButton(style: .cancel, title: cancelTitle!, appearance: alertAppearance)
+    var buttons = [PopupAlertButton]()
+    if hasCancelButton {   //if cancel button was set, set it with cancel style
+      let cancelButton = PopupAlertButton(style: .cancel, title: cancelTitle!, appearance: alertAppearance)
       cancelButton.addTarget(self, action: #selector(cancelButtonSelected), forControlEvents: .TouchUpInside)
       content.addSubview(cancelButton)
       buttons.append(cancelButton)
     }
     
-    for option in itemOptions {    //set other buttons with Plain style
-      let button = CQPopupAlertButton(style: .plain, title: option, appearance: alertAppearance)
+    for option in itemOptions {    //set other buttons with plain style
+      let button = PopupAlertButton(style: .plain, title: option, appearance: alertAppearance)
       button.addTarget(self, action: #selector(buttonSelected), forControlEvents: .TouchUpInside)
       content.addSubview(button)
       buttons.append(button)
@@ -195,8 +194,7 @@ public class CQPopupAlertController: CQPopup {
     let buttonsHeight = alertAppearance.verticalSpaceBetweenMessageAndButtons + calcHeightOfAlertButtons()
     return (titleHeight + messageHeight + buttonsHeight)
   }
-  
-  
+
   /**
    Calculate height of alert title
    
@@ -241,7 +239,7 @@ public class CQPopupAlertController: CQPopup {
       let button = sender as! UIButton
       let title = button.titleForState(.Normal)!
       let index = itemOptions.indexOf(title)!
-      popup.invokePostiveAction([selectedIndex: index, selectedTitle:title])
+      popup.invokePositiveAction([selectedIndex: index, selectedTitle:title])
     }
   }
   
@@ -269,7 +267,7 @@ public class CQPopupAlertController: CQPopup {
    - parameter parent:  The container view contains all alert buttons
    - parameter buttons: Alert buttons
    */
-  func layoutAlertButtons(at parent: UIView, buttons: [CQPopupAlertButton]) {}
+  func layoutAlertButtons(at parent: UIView, buttons: [PopupAlertButton]) {}
   
   /**
    Subclass should implement this method to calculate the height of alert buttons based on the layout of alert buttons
@@ -286,28 +284,28 @@ public class CQPopupAlertController: CQPopup {
  - Cancel:      Cancel style
  - Destructive: Destructive style
  */
-public enum CQPopupAlertButtonStype: Int {
+public enum PopupAlertButtonStype: Int {
   case plain = 0
   case cancel = 1
 }
 
 /// Popup Alert Button
-public class CQPopupAlertButton: UIButton {
+public final class PopupAlertButton: UIButton {
   
   // MARK: Private & Internal
   
   /// Button style
-  let style: CQPopupAlertButtonStype
+  let style: PopupAlertButtonStype
   
   /// Top separator
-  private lazy var topSeparator: UIView = {
+  lazy var topSeparator: UIView = {
     let separator = UIView()
     separator.translatesAutoresizingMaskIntoConstraints = false
     return separator
   }()
   
   /// Right separator (Cancel Button only)
-  private lazy var rightSeparator: UIView = {
+  lazy var rightSeparator: UIView = {
     let separator = UIView()
     separator.translatesAutoresizingMaskIntoConstraints = false
     return separator
@@ -321,16 +319,17 @@ public class CQPopupAlertButton: UIButton {
   }
   
   // MARK: Initializer
-  
+
   /**
    Creates popup alert button with style and title
    
-   - parameter style: CQPopupAlertButtonStyle
-   - parameter title: Button title
+   - parameter style:      Button style
+   - parameter title:      Button title
+   - parameter appearance: Button appearance
    
-   - returns: Popup alert button
+   - returns: Alert button
    */
-  init(style: CQPopupAlertButtonStype, title: String, appearance: CQAlertControllerAppearance?) {
+  init(style: PopupAlertButtonStype, title: String, appearance: PopupAlertControllerAppearance?) {
     self.style = style
     super.init(frame: .zero)
     setTitle(title, forState: .Normal)
@@ -347,7 +346,6 @@ public class CQPopupAlertButton: UIButton {
       if style == .cancel {
         rightSeparator.backgroundColor = appearance!.buttonSeparatorColor
         addSubview(rightSeparator)
-        
         bindFrom("H:[separator(1)]|", views: ["separator": rightSeparator]).bindFrom("V:|[separator]|", views: ["separator": rightSeparator])
       }
     }

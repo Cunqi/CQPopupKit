@@ -17,14 +17,14 @@ enum ContainerType: Int {
 }
 
 /// Popup container
-final class CQPopupContainer: UIView {
+final class PopupContainer: UIView {
   // MARK: Private & Internal
   
   /// Container type
   let type: ContainerType
   
   /// Container appearance
-  let appearance: CQPopupAppearance
+  let appearance: PopupAppearance
   
   // MARK: Initializer
   
@@ -36,7 +36,7 @@ final class CQPopupContainer: UIView {
    
    - returns: Popup container
    */
-  init(containerType type: ContainerType, appearance: CQPopupAppearance) {
+  init(containerType type: ContainerType, appearance: PopupAppearance) {
     self.type = type
     self.appearance = appearance
     
