@@ -1,5 +1,5 @@
 //
-//  CQPopupPresentation.swift
+//  PopupPresentation.swift
 //  Pods
 //
 //  Created by Cunqi.X on 8/8/16.
@@ -9,11 +9,11 @@
 import UIKit
 
 /// Popup presentation manager
-public final class PresentationManager: NSObject, UIViewControllerTransitioningDelegate {
+public final class PopupPresentationManager: NSObject, UIViewControllerTransitioningDelegate {
   
   // MARK: Public
   
-  public var animationAppearance: CQPopupAnimationAppearance
+  public var animationAppearance: PopupAnimationAppearance
   
   // MARK: Private & Internal
   
@@ -29,7 +29,7 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
    
    - returns: presentation manager
    */
-  public init(animationAppearance: CQPopupAnimationAppearance, coverLayerView: UIView = UIView()) {
+  public init(animationAppearance: PopupAnimationAppearance, coverLayerView: UIView = UIView()) {
     self.animationAppearance = animationAppearance
     self.coverLayerView = coverLayerView
   }
@@ -58,16 +58,16 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
    
    - returns: Transition animation
    */
-  func getAnimation(duration: NSTimeInterval, status: CQPopupAnimationStatus, direction: CQPopupTransitionDirection, style: CQPopupTransitionStyle) -> CQPopupAnimation {
+  func getAnimation(duration: NSTimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection, style: PopupTransitionStyle) -> PopupAnimation {
     switch style {
     case .plain:
-      return CQPopupPlainAnimation(duration: duration, status: status, direction: direction)
+      return PopupPlainAnimation(duration: duration, status: status, direction: direction)
     case .fade:
-      return CQPopupFadeAnimation(duration: duration, status: status, direction: direction)
+      return PopupFadeAnimation(duration: duration, status: status, direction: direction)
     case .bounce:
-      return CQPopupBounceAniamtion(duration: duration, status: status, direction: direction)
+      return PopupBounceAnimation(duration: duration, status: status, direction: direction)
     case .zoom:
-      return CQPopupZoomAnimation(duration: duration, status: status, direction: direction)
+      return PopupZoomAnimation(duration: duration, status: status, direction: direction)
     case .custom:
       return customPopupAnimation(duration, status: status, direction: direction)
     }
@@ -76,7 +76,7 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
   /**
    Create custom transition
    
-   - Todo: Should open an API for custom
+   - Todo: Should open an API for custom animation
    
    - parameter duration:  Transition animation
    - parameter status:    Transition status
@@ -84,13 +84,13 @@ public final class PresentationManager: NSObject, UIViewControllerTransitioningD
    
    - returns: Custom transition animation
    */
-  func customPopupAnimation(duration: NSTimeInterval, status: CQPopupAnimationStatus, direction: CQPopupTransitionDirection) -> CQPopupAnimation {
-    return CQPopupFadeAnimation(duration: duration, status: status, direction: direction)
+  func customPopupAnimation(duration: NSTimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection) -> PopupAnimation {
+    return PopupFadeAnimation(duration: duration, status: status, direction: direction)
   }
 }
 
 /// Presentation controller
-public class PresentationController: UIPresentationController {
+public final class PresentationController: UIPresentationController {
   
   // MARK: Private & Internal
   

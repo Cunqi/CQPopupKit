@@ -9,18 +9,20 @@
 import UIKit
 
 extension UIView {
-  /// if the view is a subview in CQPopupContainer, use this property to get  the CQPopup
-  public var popup: CQPopup? {
+  /// if the view is a subview in PopupContainer, use this property to get  the CQPopup, otherwise, nil
+  public var popup: Popup? {
     var parentResponder: UIResponder? = self
     while parentResponder != nil {
       parentResponder = parentResponder!.nextResponder()
-      if let popup = parentResponder as? CQPopup {
+      if let popup = parentResponder as? Popup {
         return popup
       }
     }
     return nil
   }
-
+  
+  // MARK: convenience method for constraints binding
+  
   func bindWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
     addConstraint(buildConstraintWith(item, attribute: attribute, relation: relation, multiplier: multiplier, constant: constant))
     return self
@@ -50,7 +52,7 @@ extension UIView {
     return NSLayoutConstraint.constraintsWithVisualFormat(format, options: options, metrics: metrics, views: views)
   }
   
-  func fillSubview(subView: UIView) {
+  func fillWithSubview(subView: UIView) {
     subView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(subView)
     let views = ["subView": subView]
@@ -59,10 +61,16 @@ extension UIView {
 }
 
 extension UIViewController {
-  public func cq_present(viewControllerToPresent: CQPopup, completion: (() -> Void)? = nil) {
-    viewControllerToPresent.view.backgroundColor = UIColor.clearColor()
+  /**
+   Ask current view controller to pop up the popup view
+   
+   - parameter popup:      popup with custom view
+   - parameter completion: completion handler
+   */
+  public func popUp(popup: Popup, completion: (() -> Void)? = nil) {
+    popup.view.backgroundColor = UIColor.clearColor()
     definesPresentationContext = true
-    presentViewController(viewControllerToPresent, animated: true, completion: completion)
+    presentViewController(popup, animated: true, completion: completion)
   }
   
   func delay(delay:Double, closure:()->()) {

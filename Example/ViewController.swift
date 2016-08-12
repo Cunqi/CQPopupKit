@@ -67,12 +67,12 @@ class ViewController: UITableViewController {
   }
   
   @IBAction func optionButtonTapped(sender: AnyObject) {
-    let popup = CQPopup()
+    let popup = Popup()
     popup.appearance.widthMultiplier = 0.9
     popup.appearance.heightMultiplier = 0.9
     popup.animationAppearance.transitionDirection = .topToBottom
     popup.animationAppearance.transitionStyle = .bounce
-    self.cq_present(popup)
+    self.popUp(popup)
   }
   
 }
@@ -82,17 +82,17 @@ extension ViewController {
     if indexPath.section == 0 {
       if indexPath.row == 0 {
         let alertView = CQAlertView(title: "Overwatch", message: nil, dismiss: nil)
-        self.cq_present(alertView)
+        self.popUp(alertView)
       } else if indexPath.row == 1 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: nil)
-        self.cq_present(alertView)
+        self.popUp(alertView)
       } else if indexPath.row == 2 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: "Ok")
-        self.cq_present(alertView)
+        self.popUp(alertView)
       } else if indexPath.row == 3 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", cancel: "Exit", confirm: "I'm ready!")
         alertView.appearance.enableTouchOutsideToDismiss = false
-        self.cq_present(alertView)
+        self.popUp(alertView)
       } else if indexPath.row == 4 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
         
@@ -104,7 +104,7 @@ extension ViewController {
           print("You picked \(title) @ \(index)")
         }
         
-        self.cq_present(alertView)
+        self.popUp(alertView)
       }
     } else if indexPath.section == 1 {
       if indexPath.row == 0 {
@@ -118,7 +118,7 @@ extension ViewController {
           print("You picked \(title) @ \(index)")
         }
         
-        self.cq_present(actionSheet)
+        self.popUp(actionSheet)
       }
     }
   }
