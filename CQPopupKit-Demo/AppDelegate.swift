@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Example
+//  CQPopupKit-Demo
 //
-//  Created by Cunqi.X on 8/11/16.
+//  Created by Cunqi Xiao on 8/12/16.
 //  Copyright © 2016 Cunqi Xiao. All rights reserved.
 //
 
