@@ -6,13 +6,13 @@
 import UIKit
 
 /// Root of all popup animation
-class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+class PopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
   
   // MARK: Private & Internal
   
   let transitionDuration: NSTimeInterval
-  let status: CQPopupAnimationStatus
-  let direction: CQPopupTransitionDirection
+  let status: PopupAnimationStatus
+  let direction: PopupTransitionDirection
   
   /// initial frame of popup view before transition in animation
   var inStartFrame: CGRect!
@@ -24,7 +24,7 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
   var outFinalFrame: CGRect!
   
   /// two views which participates in the transition
-  var popup: CQPopup!
+  var popup: Popup!
   var another: UIViewController!
   
   // MARK: Initializer
@@ -38,7 +38,7 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
    
    - returns: Popup animation
    */
-  init(duration: NSTimeInterval, status: CQPopupAnimationStatus, direction: CQPopupTransitionDirection) {
+  init(duration: NSTimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection) {
     transitionDuration = duration
     self.status = status
     self.direction = direction
@@ -52,17 +52,17 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
   func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
     switch status {
     case .transitIn:
-      popup = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! CQPopup
+      popup = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! Popup
       another = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-      
+
       if let container = transitionContext.containerView() {
         container.addSubview(popup.view)
       }
     case .transitOut:
       another = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-      popup = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)  as! CQPopup
+      popup = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)  as! Popup
     }
-    
+
     let bounds = UIScreen.mainScreen().bounds
     
     // Set in initial frame & in final frame & out final frame
@@ -87,8 +87,8 @@ class CQPopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
   }
 }
 
-/// CQPopup plain animation
-class CQPopupPlainAnimation: CQPopupAnimation {
+/// Popup plain animation
+class PopupPlainAnimation: PopupAnimation {
   override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
     super.animateTransition(transitionContext)
     switch status {
@@ -109,8 +109,8 @@ class CQPopupPlainAnimation: CQPopupAnimation {
   }
 }
 
-/// CQPopup fade animation
-class CQPopupFadeAnimation: CQPopupAnimation {
+/// Popup fade animation
+class PopupFadeAnimation: PopupAnimation {
   var alpha: CGFloat = 0
   
   override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -137,7 +137,8 @@ class CQPopupFadeAnimation: CQPopupAnimation {
   }
 }
 
-class CQPopupBounceAniamtion: CQPopupAnimation {
+/// Popup bounce animation
+class PopupBounceAnimation: PopupAnimation {
   override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
     super.animateTransition(transitionContext)
     switch status {
@@ -159,7 +160,8 @@ class CQPopupBounceAniamtion: CQPopupAnimation {
   
 }
 
-class CQPopupZoomAnimation: CQPopupAnimation {
+/// Popup zoom animation
+class PopupZoomAnimation: PopupAnimation {
   override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
     super.animateTransition(transitionContext)
     switch status {

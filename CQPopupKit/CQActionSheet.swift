@@ -9,7 +9,7 @@
 import UIKit
 
 /// Creates an alert view similar to UIAlertController .actionSheet style
-public class CQActionSheet: CQPopupAlertController {
+public class CQActionSheet: PopupAlertController {
   // MARK: Initializer
   
   /**
@@ -38,7 +38,7 @@ public class CQActionSheet: CQPopupAlertController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func layoutAlertButtons(at parent: UIView, buttons: [CQPopupAlertButton]) {
+  override func layoutAlertButtons(at parent: UIView, buttons: [PopupAlertButton]) {
     let anchorButton = buttons[0]
     parent.bindWith(anchorButton, attribute: .Leading).bindWith(anchorButton, attribute: .Bottom).bind(anchorButton, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: alertAppearance.alertButtonHeight)
     parent.bindWith(anchorButton, attribute: .Width)

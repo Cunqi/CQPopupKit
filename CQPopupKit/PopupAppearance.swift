@@ -1,5 +1,5 @@
 //
-//  CQPopupAppearance.swift
+//  PopupAppearance.swift
 //  CQPopupViewController
 //
 //  Created by Cunqi.X on 8/5/16.
@@ -34,7 +34,7 @@ public enum AttachedPosition: Int {
  - bounce: Bounce in and bounce out
  - custom: Custom implementation
  */
-public enum CQPopupTransitionStyle: Int {
+public enum PopupTransitionStyle: Int {
   case plain = 0
   case zoom = 1
   case fade = 2
@@ -51,7 +51,7 @@ public enum CQPopupTransitionStyle: Int {
  - bottomToTop: From bottom to top
  - center:      Stay at center (For Zoom / Custom transition style ONLY!)
  */
-public enum CQPopupTransitionDirection: Int {
+public enum PopupTransitionDirection: Int {
   case leftToRight = 0
   case rightToLeft = 1
   case topToBottom = 2
@@ -65,7 +65,7 @@ public enum CQPopupTransitionDirection: Int {
  - transitIn:  Transition in
  - transitOut: Transition out
  */
-public enum CQPopupAnimationStatus: Int {
+public enum PopupAnimationStatus: Int {
   case transitIn = 0
   case transitOut = 1
 }
@@ -73,19 +73,26 @@ public enum CQPopupAnimationStatus: Int {
 /// CQPopupKit global appearance
 public class CQAppearance: NSObject {
   public static let appearance = CQAppearance()
-  
-  public var popup = CQPopupAppearance()
-  
-  public var animation = CQPopupAnimationAppearance()
-  
-  public lazy var alert: CQAlertControllerAppearance = {
-    return CQAlertControllerAppearance()
+
+  /// Popup basic appearance
+  public var popup = PopupAppearance()
+
+  /// Popup animation appearance
+  public var animation = PopupAnimationAppearance()
+
+  /// Popup alert controller (alertView & actionSheet) appearance
+  public lazy var alert: PopupAlertControllerAppearance = {
+    return PopupAlertControllerAppearance()
   }()
+
+  // MARK: Initializer
+
+  /// For global appearance only
   private override init(){}
 }
 
 /// Popup basic appearance
-public struct CQPopupAppearance {
+public struct PopupAppearance {
   
   /// Background color of pop up
   public var popUpBackgroundColor: UIColor = UIColor(white: 0, alpha: 0.5)
@@ -160,12 +167,12 @@ public struct CQPopupAppearance {
 }
 
 /// Popup animation appearance
-public struct CQPopupAnimationAppearance {
+public struct PopupAnimationAppearance {
   /// Popup transition style
-  public var transitionStyle: CQPopupTransitionStyle = .fade
+  public var transitionStyle: PopupTransitionStyle = .fade
   
   /// Popup transition direction
-  public var transitionDirection: CQPopupTransitionDirection = .leftToRight
+  public var transitionDirection: PopupTransitionDirection = .leftToRight
   
   /// Popup transition in time duration
   public var transitionInDuration: NSTimeInterval = 0.4
@@ -175,7 +182,7 @@ public struct CQPopupAnimationAppearance {
 }
 
 /// Popup alert controller appearance
-public struct CQAlertControllerAppearance {
+public struct PopupAlertControllerAppearance {
   /// Font of title
   public var titleFont: UIFont = UIFont.systemFontOfSize(18)
   

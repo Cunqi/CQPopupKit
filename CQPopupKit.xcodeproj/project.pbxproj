@@ -11,12 +11,12 @@
 		D2E929A31D5CCC2500A1B34F /* CQPopupKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2E929B31D5CCC4200A1B34F /* CQActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AA1D5CCC4200A1B34F /* CQActionSheet.swift */; };
 		D2E929B41D5CCC4200A1B34F /* CQAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AB1D5CCC4200A1B34F /* CQAlertView.swift */; };
-		D2E929B51D5CCC4200A1B34F /* CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AC1D5CCC4200A1B34F /* CQPopup.swift */; };
-		D2E929B61D5CCC4200A1B34F /* CQPopupAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AD1D5CCC4200A1B34F /* CQPopupAlertController.swift */; };
-		D2E929B71D5CCC4200A1B34F /* CQPopupAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AE1D5CCC4200A1B34F /* CQPopupAnimation.swift */; };
-		D2E929B81D5CCC4200A1B34F /* CQPopupAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AF1D5CCC4200A1B34F /* CQPopupAppearance.swift */; };
-		D2E929B91D5CCC4200A1B34F /* CQPopupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B01D5CCC4200A1B34F /* CQPopupContainer.swift */; };
-		D2E929BA1D5CCC4200A1B34F /* CQPopupPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B11D5CCC4200A1B34F /* CQPopupPresentation.swift */; };
+		D2E929B51D5CCC4200A1B34F /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AC1D5CCC4200A1B34F /* Popup.swift */; };
+		D2E929B61D5CCC4200A1B34F /* PopupAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AD1D5CCC4200A1B34F /* PopupAlertController.swift */; };
+		D2E929B71D5CCC4200A1B34F /* PopupAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AE1D5CCC4200A1B34F /* PopupAnimation.swift */; };
+		D2E929B81D5CCC4200A1B34F /* PopupAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AF1D5CCC4200A1B34F /* PopupAppearance.swift */; };
+		D2E929B91D5CCC4200A1B34F /* PopupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B01D5CCC4200A1B34F /* PopupContainer.swift */; };
+		D2E929BA1D5CCC4200A1B34F /* PopupPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B11D5CCC4200A1B34F /* PopupPresentation.swift */; };
 		D2E929BB1D5CCC4200A1B34F /* UIKit+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B21D5CCC4200A1B34F /* UIKit+CQPopup.swift */; };
 		D2E929C31D5CCC5800A1B34F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929C21D5CCC5800A1B34F /* AppDelegate.swift */; };
 		D2E929C51D5CCC5800A1B34F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929C41D5CCC5800A1B34F /* ViewController.swift */; };
@@ -31,12 +31,12 @@
 		D2E929A41D5CCC2500A1B34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2E929AA1D5CCC4200A1B34F /* CQActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQActionSheet.swift; sourceTree = "<group>"; };
 		D2E929AB1D5CCC4200A1B34F /* CQAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQAlertView.swift; sourceTree = "<group>"; };
-		D2E929AC1D5CCC4200A1B34F /* CQPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopup.swift; sourceTree = "<group>"; };
-		D2E929AD1D5CCC4200A1B34F /* CQPopupAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupAlertController.swift; sourceTree = "<group>"; };
-		D2E929AE1D5CCC4200A1B34F /* CQPopupAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupAnimation.swift; sourceTree = "<group>"; };
-		D2E929AF1D5CCC4200A1B34F /* CQPopupAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupAppearance.swift; sourceTree = "<group>"; };
-		D2E929B01D5CCC4200A1B34F /* CQPopupContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupContainer.swift; sourceTree = "<group>"; };
-		D2E929B11D5CCC4200A1B34F /* CQPopupPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPopupPresentation.swift; sourceTree = "<group>"; };
+		D2E929AC1D5CCC4200A1B34F /* Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		D2E929AD1D5CCC4200A1B34F /* PopupAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupAlertController.swift; sourceTree = "<group>"; };
+		D2E929AE1D5CCC4200A1B34F /* PopupAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupAnimation.swift; sourceTree = "<group>"; };
+		D2E929AF1D5CCC4200A1B34F /* PopupAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupAppearance.swift; sourceTree = "<group>"; };
+		D2E929B01D5CCC4200A1B34F /* PopupContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupContainer.swift; sourceTree = "<group>"; };
+		D2E929B11D5CCC4200A1B34F /* PopupPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupPresentation.swift; sourceTree = "<group>"; };
 		D2E929B21D5CCC4200A1B34F /* UIKit+CQPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+CQPopup.swift"; sourceTree = "<group>"; };
 		D2E929C01D5CCC5800A1B34F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E929C21D5CCC5800A1B34F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,12 +89,12 @@
 			children = (
 				D2E929AA1D5CCC4200A1B34F /* CQActionSheet.swift */,
 				D2E929AB1D5CCC4200A1B34F /* CQAlertView.swift */,
-				D2E929AC1D5CCC4200A1B34F /* CQPopup.swift */,
-				D2E929AD1D5CCC4200A1B34F /* CQPopupAlertController.swift */,
-				D2E929AE1D5CCC4200A1B34F /* CQPopupAnimation.swift */,
-				D2E929AF1D5CCC4200A1B34F /* CQPopupAppearance.swift */,
-				D2E929B01D5CCC4200A1B34F /* CQPopupContainer.swift */,
-				D2E929B11D5CCC4200A1B34F /* CQPopupPresentation.swift */,
+				D2E929AC1D5CCC4200A1B34F /* Popup.swift */,
+				D2E929AD1D5CCC4200A1B34F /* PopupAlertController.swift */,
+				D2E929AE1D5CCC4200A1B34F /* PopupAnimation.swift */,
+				D2E929AF1D5CCC4200A1B34F /* PopupAppearance.swift */,
+				D2E929B01D5CCC4200A1B34F /* PopupContainer.swift */,
+				D2E929B11D5CCC4200A1B34F /* PopupPresentation.swift */,
 				D2E929B21D5CCC4200A1B34F /* UIKit+CQPopup.swift */,
 				D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */,
 				D2E929A41D5CCC2500A1B34F /* Info.plist */,
@@ -226,15 +226,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2E929BA1D5CCC4200A1B34F /* CQPopupPresentation.swift in Sources */,
-				D2E929B71D5CCC4200A1B34F /* CQPopupAnimation.swift in Sources */,
-				D2E929B91D5CCC4200A1B34F /* CQPopupContainer.swift in Sources */,
+				D2E929BA1D5CCC4200A1B34F /* PopupPresentation.swift in Sources */,
+				D2E929B71D5CCC4200A1B34F /* PopupAnimation.swift in Sources */,
+				D2E929B91D5CCC4200A1B34F /* PopupContainer.swift in Sources */,
 				D2E929B31D5CCC4200A1B34F /* CQActionSheet.swift in Sources */,
-				D2E929B81D5CCC4200A1B34F /* CQPopupAppearance.swift in Sources */,
+				D2E929B81D5CCC4200A1B34F /* PopupAppearance.swift in Sources */,
 				D2E929BB1D5CCC4200A1B34F /* UIKit+CQPopup.swift in Sources */,
 				D2E929B41D5CCC4200A1B34F /* CQAlertView.swift in Sources */,
-				D2E929B51D5CCC4200A1B34F /* CQPopup.swift in Sources */,
-				D2E929B61D5CCC4200A1B34F /* CQPopupAlertController.swift in Sources */,
+				D2E929B51D5CCC4200A1B34F /* Popup.swift in Sources */,
+				D2E929B61D5CCC4200A1B34F /* PopupAlertController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +364,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -383,6 +384,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

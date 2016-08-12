@@ -9,7 +9,7 @@
 import UIKit
 
 /// Creates an alert view similar to UIAlertController .alertView style
-final public class CQAlertView: CQPopupAlertController {
+final public class CQAlertView: PopupAlertController {
   
   // MARK: Initializer
   
@@ -70,7 +70,7 @@ final public class CQAlertView: CQPopupAlertController {
    - parameter parent:  The container view contains all alert buttons
    - parameter buttons: Alert buttons
    */
-  override func layoutAlertButtons(at parent: UIView, buttons: [CQPopupAlertButton]) {
+  override func layoutAlertButtons(at parent: UIView, buttons: [PopupAlertButton]) {
     guard buttons.count > 0 else {
       return
     }

@@ -9,7 +9,7 @@ import UIKit
 public typealias PopupAction = ([NSObject: AnyObject]?) -> Void
 
 /// Creates a custom popup container
-public class CQPopup: UIViewController {
+public class Popup: UIViewController {
   
   // MARK: Public
   
@@ -17,7 +17,7 @@ public class CQPopup: UIViewController {
   public var appearance = CQAppearance.appearance.popup
   
   /// Custom popup animation appearance
-  public var animationAppearance: CQPopupAnimationAppearance {
+  public var animationAppearance: PopupAnimationAppearance {
     get {
       return presentationManager.animationAppearance
     }
@@ -35,10 +35,10 @@ public class CQPopup: UIViewController {
   /// The view displayed on the container
   public private(set) var contentView: UIView?
   
-  private var presentationManager: PresentationManager!
-  
   // MARK: Private / Internal
-  
+
+  private var presentationManager: PopupPresentationManager!
+
   /// The fake background view used for receiving touche events ONLY!
   lazy var touchReceiverView: UIView = {
     
@@ -52,21 +52,23 @@ public class CQPopup: UIViewController {
   }()
   
   /// The view for rendering container shadow ONLY!, it holds container as a subview
-  lazy var shadowContainer: CQPopupContainer = {
-    let shadowContainer = CQPopupContainer(containerType: .Shadow, appearance: self.appearance)
-    shadowContainer.fillSubview(self.container)
+  lazy var shadowContainer: PopupContainer = {
+    let shadowContainer = PopupContainer(containerType: .Shadow, appearance: self.appearance)
+    shadowContainer.fillWithSubview(self.container)
     return shadowContainer
   }()
   
   /// The view contains content view
-  lazy var container: CQPopupContainer = {
-    let container = CQPopupContainer(containerType: .Plain, appearance: self.appearance)
+  lazy var container: PopupContainer = {
+    let container = PopupContainer(containerType: .Plain, appearance: self.appearance)
     if let content = self.contentView {
       content.translatesAutoresizingMaskIntoConstraints = false
-      container.fillSubview(content)
+      container.fillWithSubview(content)
     }
     return container
   }()
+
+  // Todo: Will expose those constraints for dynamic changes, like updating a custom view with textField's position
   
   /// The horizontal position constraint of shadow container (aka. container, same below)
   var horizontalConst: NSLayoutConstraint!
@@ -112,7 +114,7 @@ public class CQPopup: UIViewController {
     modalPresentationStyle = .Custom
     
     // Transition delegate
-    presentationManager = PresentationManager(animationAppearance: CQAppearance.appearance.animation)
+    presentationManager = PopupPresentationManager(animationAppearance: CQAppearance.appearance.animation)
     presentationManager.coverLayerView.backgroundColor = appearance.popUpBackgroundColor
     transitioningDelegate = presentationManager
   }
@@ -126,11 +128,7 @@ public class CQPopup: UIViewController {
   required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  deinit {
-    print("All cleared")
-  }
-  
+
   // MARK: View Controller life cycle
   
   public override func viewDidLoad() {
@@ -141,7 +139,7 @@ public class CQPopup: UIViewController {
   public override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    //fix the issue of background view from PresentationManager will block the gesture
+    //fix the issue of background view from PopupPresentationManager will block the gesture
     view.insertSubview(touchReceiverView, belowSubview: shadowContainer)
     view.bindFrom("H:|[view]|", views: ["view": touchReceiverView]).bindFrom("V:|[view]|", views: ["view": touchReceiverView])
   }
@@ -153,19 +151,15 @@ public class CQPopup: UIViewController {
   }
   
   /// Support orientation changed
+  /// if fixed width / height is set, ignore popupWidth / popupHeight
   public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
     let height = appearance.fixedHeight == 0 ? appearance.popupHeight : appearance.fixedHeight
     let newWidthMultiplier = width / size.width
     let newHeightMultiplier = height / size.height
     
-    if newWidthMultiplier <= 1.0 {
-      appearance.widthMultiplier = newWidthMultiplier
-    }
-
-    if newHeightMultiplier <= 1.0 {
-      appearance.heightMultiplier = newHeightMultiplier
-    }
+    if newWidthMultiplier <= 1.0 {appearance.widthMultiplier = newWidthMultiplier}
+    if newHeightMultiplier <= 1.0 {appearance.heightMultiplier = newHeightMultiplier}
     
     //update width & height constraints
     view.removeConstraints([widthConst, heightConst])
@@ -182,11 +176,11 @@ public class CQPopup: UIViewController {
   }
   
   /**
-   Bind horizontal constraints to shadow container, based on **ViewAttachedPosition** value and **CQPopupAppearance.containerPadding**
+   Bind horizontal constraints to shadow container, based on **ViewAttachedPosition** value and **PopupAppearance.containerPadding**
    
    - returns: Popup view controller
    */
-  private func bindHorizontalConstraint() -> CQPopup {
+  private func bindHorizontalConstraint() -> Popup {
     switch appearance.viewAttachedPosition {
     case .center:
       fallthrough
@@ -204,7 +198,7 @@ public class CQPopup: UIViewController {
   }
   
   /**
-   Bind vertical constraints to shadow container, based on **ViewAttachedPosition** value and **CQPopupAppearance.containerPadding**
+   Bind vertical constraints to shadow container, based on **ViewAttachedPosition** value and **PopupAppearance.containerPadding**
    
    - Remark: If your application is not in `full screen` mode, there will be a status bar on the top of the screen, the default height (20) will be added
    into the calculation of vertical position as the `constant` if you choose **ViewAttachedPosition.Top**.
@@ -213,7 +207,7 @@ public class CQPopup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindVerticalConstraint() -> CQPopup {
+  private func bindVerticalConstraint() -> Popup {
     let defaultStatusBarHeight: CGFloat = 20
     switch appearance.viewAttachedPosition {
     case .center:
@@ -232,22 +226,22 @@ public class CQPopup: UIViewController {
   }
   
   /**
-   Bind width constraints to shadow container, based on **CQPopupAppearance.widthMultiplier**
+   Bind width constraints to shadow container, based on **PopupAppearance.widthMultiplier**
    
    - returns: Popup view controller
    */
-  private func bindWidthConstraint() -> CQPopup {
+  private func bindWidthConstraint() -> Popup {
     widthConst = view.buildConstraintWith(shadowContainer, attribute: .Width, multiplier: appearance.widthMultiplier)
     view.addConstraint(widthConst)
     return self
   }
   
   /**
-   Bind height constraints to shadow container, based on **CQPopupAppearance.heightMultiplier**
+   Bind height constraints to shadow container, based on **PopupAppearance.heightMultiplier**
    
    - returns: Popup view controller
    */
-  private func bindHeightConstraint() -> CQPopup {
+  private func bindHeightConstraint() -> Popup {
     heightConst = view.buildConstraintWith(shadowContainer, attribute: .Height, multiplier: appearance.heightMultiplier)
     view.addConstraint(heightConst)
     return self
@@ -266,11 +260,11 @@ public class CQPopup: UIViewController {
   }
   
   /**
-   Dismiss the popup wheninvoked, positive action (if have) will be invoked first
+   Dismiss the popup when invoked, positive action (if have) will be invoked first
    
    - parameter popupInfo: popup info passed to positive action
    */
-  public func invokePostiveAction(popupInfo: [NSObject: AnyObject]?) {
+  public func invokePositiveAction(popupInfo: [NSObject: AnyObject]?) {
     if let action = positiveAction {
       action(popupInfo)
     }
