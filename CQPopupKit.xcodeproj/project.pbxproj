@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D27C10751D5CD6CC001C365B /* CQPopupKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */; };
+		11A2D8741D5E400E00B25C8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2D8731D5E400E00B25C8F /* AppDelegate.swift */; };
+		11A2D87B1D5E400E00B25C8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A2D87A1D5E400E00B25C8F /* Assets.xcassets */; };
+		11A2D87E1D5E400E00B25C8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A2D87C1D5E400E00B25C8F /* LaunchScreen.storyboard */; };
+		11A2D8841D5E408100B25C8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2D8831D5E408100B25C8F /* ViewController.swift */; };
+		11A2D8871D5E409000B25C8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A2D8851D5E409000B25C8F /* Main.storyboard */; };
 		D2E929A31D5CCC2500A1B34F /* CQPopupKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2E929B31D5CCC4200A1B34F /* CQActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AA1D5CCC4200A1B34F /* CQActionSheet.swift */; };
 		D2E929B41D5CCC4200A1B34F /* CQAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AB1D5CCC4200A1B34F /* CQAlertView.swift */; };
@@ -18,14 +22,16 @@
 		D2E929B91D5CCC4200A1B34F /* PopupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B01D5CCC4200A1B34F /* PopupContainer.swift */; };
 		D2E929BA1D5CCC4200A1B34F /* PopupPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B11D5CCC4200A1B34F /* PopupPresentation.swift */; };
 		D2E929BB1D5CCC4200A1B34F /* UIKit+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B21D5CCC4200A1B34F /* UIKit+CQPopup.swift */; };
-		D2E929C31D5CCC5800A1B34F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929C21D5CCC5800A1B34F /* AppDelegate.swift */; };
-		D2E929C51D5CCC5800A1B34F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929C41D5CCC5800A1B34F /* ViewController.swift */; };
-		D2E929C81D5CCC5800A1B34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E929C61D5CCC5800A1B34F /* Main.storyboard */; };
-		D2E929CA1D5CCC5800A1B34F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E929C91D5CCC5800A1B34F /* Assets.xcassets */; };
-		D2E929CD1D5CCC5800A1B34F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E929CB1D5CCC5800A1B34F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11A2D8711D5E400E00B25C8F /* CQPopupKit-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CQPopupKit-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11A2D8731D5E400E00B25C8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		11A2D87A1D5E400E00B25C8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11A2D87D1D5E400E00B25C8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		11A2D87F1D5E400E00B25C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11A2D8831D5E408100B25C8F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		11A2D8861D5E409000B25C8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CQPopupKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQPopupKit.h; sourceTree = "<group>"; };
 		D2E929A41D5CCC2500A1B34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,16 +44,16 @@
 		D2E929B01D5CCC4200A1B34F /* PopupContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupContainer.swift; sourceTree = "<group>"; };
 		D2E929B11D5CCC4200A1B34F /* PopupPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupPresentation.swift; sourceTree = "<group>"; };
 		D2E929B21D5CCC4200A1B34F /* UIKit+CQPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+CQPopup.swift"; sourceTree = "<group>"; };
-		D2E929C01D5CCC5800A1B34F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2E929C21D5CCC5800A1B34F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2E929C41D5CCC5800A1B34F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D2E929C71D5CCC5800A1B34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D2E929C91D5CCC5800A1B34F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D2E929CC1D5CCC5800A1B34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D2E929CE1D5CCC5800A1B34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		11A2D86E1D5E400E00B25C8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2E9299B1D5CCC2500A1B34F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,22 +61,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2E929BD1D5CCC5800A1B34F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D27C10751D5CD6CC001C365B /* CQPopupKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11A2D8721D5E400E00B25C8F /* CQPopupKit-Demo */ = {
+			isa = PBXGroup;
+			children = (
+				11A2D8851D5E409000B25C8F /* Main.storyboard */,
+				11A2D8731D5E400E00B25C8F /* AppDelegate.swift */,
+				11A2D8831D5E408100B25C8F /* ViewController.swift */,
+				11A2D87A1D5E400E00B25C8F /* Assets.xcassets */,
+				11A2D87C1D5E400E00B25C8F /* LaunchScreen.storyboard */,
+				11A2D87F1D5E400E00B25C8F /* Info.plist */,
+			);
+			path = "CQPopupKit-Demo";
+			sourceTree = "<group>";
+		};
 		D2E929951D5CCC2500A1B34F = {
 			isa = PBXGroup;
 			children = (
 				D2E929A11D5CCC2500A1B34F /* CQPopupKit */,
-				D2E929C11D5CCC5800A1B34F /* Example */,
+				11A2D8721D5E400E00B25C8F /* CQPopupKit-Demo */,
 				D2E929A01D5CCC2500A1B34F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */,
-				D2E929C01D5CCC5800A1B34F /* Example.app */,
+				11A2D8711D5E400E00B25C8F /* CQPopupKit-Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,19 +113,6 @@
 			path = CQPopupKit;
 			sourceTree = "<group>";
 		};
-		D2E929C11D5CCC5800A1B34F /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				D2E929C21D5CCC5800A1B34F /* AppDelegate.swift */,
-				D2E929C41D5CCC5800A1B34F /* ViewController.swift */,
-				D2E929C61D5CCC5800A1B34F /* Main.storyboard */,
-				D2E929C91D5CCC5800A1B34F /* Assets.xcassets */,
-				D2E929CB1D5CCC5800A1B34F /* LaunchScreen.storyboard */,
-				D2E929CE1D5CCC5800A1B34F /* Info.plist */,
-			);
-			path = Example;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -129,6 +127,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		11A2D8701D5E400E00B25C8F /* CQPopupKit-Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11A2D8821D5E400E00B25C8F /* Build configuration list for PBXNativeTarget "CQPopupKit-Demo" */;
+			buildPhases = (
+				11A2D86D1D5E400E00B25C8F /* Sources */,
+				11A2D86E1D5E400E00B25C8F /* Frameworks */,
+				11A2D86F1D5E400E00B25C8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CQPopupKit-Demo";
+			productName = "CQPopupKit-Demo";
+			productReference = 11A2D8711D5E400E00B25C8F /* CQPopupKit-Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D2E9299E1D5CCC2500A1B34F /* CQPopupKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2E929A71D5CCC2500A1B34F /* Build configuration list for PBXNativeTarget "CQPopupKit" */;
@@ -147,23 +162,6 @@
 			productReference = D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D2E929BF1D5CCC5800A1B34F /* Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D2E929CF1D5CCC5800A1B34F /* Build configuration list for PBXNativeTarget "Example" */;
-			buildPhases = (
-				D2E929BC1D5CCC5800A1B34F /* Sources */,
-				D2E929BD1D5CCC5800A1B34F /* Frameworks */,
-				D2E929BE1D5CCC5800A1B34F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Example;
-			productName = Example;
-			productReference = D2E929C01D5CCC5800A1B34F /* Example.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -174,10 +172,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Cunqi Xiao";
 				TargetAttributes = {
-					D2E9299E1D5CCC2500A1B34F = {
+					11A2D8701D5E400E00B25C8F = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
-					D2E929BF1D5CCC5800A1B34F = {
+					D2E9299E1D5CCC2500A1B34F = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
@@ -196,12 +194,22 @@
 			projectRoot = "";
 			targets = (
 				D2E9299E1D5CCC2500A1B34F /* CQPopupKit */,
-				D2E929BF1D5CCC5800A1B34F /* Example */,
+				11A2D8701D5E400E00B25C8F /* CQPopupKit-Demo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		11A2D86F1D5E400E00B25C8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A2D8871D5E409000B25C8F /* Main.storyboard in Resources */,
+				11A2D87E1D5E400E00B25C8F /* LaunchScreen.storyboard in Resources */,
+				11A2D87B1D5E400E00B25C8F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2E9299D1D5CCC2500A1B34F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -209,19 +217,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2E929BE1D5CCC5800A1B34F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2E929CD1D5CCC5800A1B34F /* LaunchScreen.storyboard in Resources */,
-				D2E929CA1D5CCC5800A1B34F /* Assets.xcassets in Resources */,
-				D2E929C81D5CCC5800A1B34F /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		11A2D86D1D5E400E00B25C8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A2D8841D5E408100B25C8F /* ViewController.swift in Sources */,
+				11A2D8741D5E400E00B25C8F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2E9299A1D5CCC2500A1B34F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,37 +245,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2E929BC1D5CCC5800A1B34F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2E929C51D5CCC5800A1B34F /* ViewController.swift in Sources */,
-				D2E929C31D5CCC5800A1B34F /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D2E929C61D5CCC5800A1B34F /* Main.storyboard */ = {
+		11A2D87C1D5E400E00B25C8F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D2E929C71D5CCC5800A1B34F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D2E929CB1D5CCC5800A1B34F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2E929CC1D5CCC5800A1B34F /* Base */,
+				11A2D87D1D5E400E00B25C8F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		11A2D8851D5E409000B25C8F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11A2D8861D5E409000B25C8F /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		11A2D8801D5E400E00B25C8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "CQPopupKit-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xiaocq203.CQPopupKit-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		11A2D8811D5E400E00B25C8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "CQPopupKit-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xiaocq203.CQPopupKit-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D2E929A51D5CCC2500A1B34F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -399,33 +421,18 @@
 			};
 			name = Release;
 		};
-		D2E929D01D5CCC5800A1B34F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiaocq203.Example;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		D2E929D11D5CCC5800A1B34F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiaocq203.Example;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		11A2D8821D5E400E00B25C8F /* Build configuration list for PBXNativeTarget "CQPopupKit-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11A2D8801D5E400E00B25C8F /* Debug */,
+				11A2D8811D5E400E00B25C8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D2E929991D5CCC2500A1B34F /* Build configuration list for PBXProject "CQPopupKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -440,15 +447,6 @@
 			buildConfigurations = (
 				D2E929A81D5CCC2500A1B34F /* Debug */,
 				D2E929A91D5CCC2500A1B34F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D2E929CF1D5CCC5800A1B34F /* Build configuration list for PBXNativeTarget "Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2E929D01D5CCC5800A1B34F /* Debug */,
-				D2E929D11D5CCC5800A1B34F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
