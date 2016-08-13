@@ -40,16 +40,18 @@ public class CQActionSheet: PopupAlertController {
   
   override func layoutAlertButtons(at parent: UIView, buttons: [PopupAlertButton]) {
     let anchorButton = buttons[0]
-    parent.bindWith(anchorButton, attribute: .Leading).bindWith(anchorButton, attribute: .Bottom).bind(anchorButton, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: alertAppearance.alertButtonHeight)
+    parent.bindWith(anchorButton, attribute: .Leading)
+    parent.bindWith(anchorButton, attribute: .Bottom)
+    parent.bind(anchorButton, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: alertAppearance.alertButtonHeight)
     parent.bindWith(anchorButton, attribute: .Width)
     var prevButton = anchorButton
     for i in 1 ..< buttons.count {
       let currButton = buttons[i]
       parent.addSubview(currButton)
       parent.bind(currButton, attribute: .Width, to: anchorButton)
-        .bind(currButton, attribute: .Height, to: anchorButton)
-        .bind(currButton, attribute: .Leading, to: anchorButton)
-        .bind(currButton, attribute: .Bottom, to: prevButton, toAttribute: .Top)
+      parent.bind(currButton, attribute: .Height, to: anchorButton)
+      parent.bind(currButton, attribute: .Leading, to: anchorButton)
+      parent.bind(currButton, attribute: .Bottom, to: prevButton, toAttribute: .Top)
       prevButton = currButton
     }
   }

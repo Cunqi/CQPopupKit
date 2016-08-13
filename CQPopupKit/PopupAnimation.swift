@@ -55,9 +55,7 @@ class PopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
       popup = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! Popup
       another = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
 
-      if let container = transitionContext.containerView() {
-        container.addSubview(popup.view)
-      }
+      transitionContext.containerView()?.addSubview(popup.view)
     case .transitOut:
       another = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
       popup = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)  as! Popup

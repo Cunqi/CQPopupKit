@@ -122,7 +122,8 @@ public class PopupAlertController: Popup {
     content.addSubview(title)
     let hs = alertAppearance.horizontalSpace
     let constant = alertAppearance.verticalSpaceBetweenTitleAndTop
-    content.bindWith(title, attribute: .Top, constant: constant).bindFrom("H:|-(\(hs))-[title]-(\(hs))-|", views: ["title" : title])
+    content.bindWith(title, attribute: .Top, constant: constant)
+    content.bindFrom("H:|-(\(hs))-[title]-(\(hs))-|", views: ["title" : title])
     return title
   }
   
@@ -139,7 +140,7 @@ public class PopupAlertController: Popup {
     let hs = alertAppearance.horizontalSpace
     let constant = alertAppearance.verticalSpaceBetweenTitleAndMessage
     content.bind(message, attribute: .Top, to: alertTitle, toAttribute: .Bottom, constant: constant)
-      .bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
+    content.bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
     return message
   }
   
@@ -341,12 +342,14 @@ public final class PopupAlertButton: UIButton {
     if appearance!.enableButtonSeparator {
       topSeparator.backgroundColor = appearance!.buttonSeparatorColor
       addSubview(topSeparator)
-      bindFrom("V:|[separator(1)]", views: ["separator": topSeparator]).bindFrom("H:|[separator]|", views: ["separator": topSeparator])
+      bindFrom("V:|[separator(1)]", views: ["separator": topSeparator])
+      bindFrom("H:|[separator]|", views: ["separator": topSeparator])
       
       if style == .cancel {
         rightSeparator.backgroundColor = appearance!.buttonSeparatorColor
         addSubview(rightSeparator)
-        bindFrom("H:[separator(1)]|", views: ["separator": rightSeparator]).bindFrom("V:|[separator]|", views: ["separator": rightSeparator])
+        bindFrom("H:[separator(1)]|", views: ["separator": rightSeparator])
+        bindFrom("V:|[separator]|", views: ["separator": rightSeparator])
       }
     }
     

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2E929BF1D5CCC5800A1B34F"
-               BuildableName = "Example.app"
-               BlueprintName = "Example"
+               BlueprintIdentifier = "11A2D8701D5E400E00B25C8F"
+               BuildableName = "CQPopupKit-Demo.app"
+               BlueprintName = "CQPopupKit-Demo"
                ReferencedContainer = "container:CQPopupKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2E929BF1D5CCC5800A1B34F"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BlueprintIdentifier = "11A2D8701D5E400E00B25C8F"
+            BuildableName = "CQPopupKit-Demo.app"
+            BlueprintName = "CQPopupKit-Demo"
             ReferencedContainer = "container:CQPopupKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2E929BF1D5CCC5800A1B34F"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BlueprintIdentifier = "11A2D8701D5E400E00B25C8F"
+            BuildableName = "CQPopupKit-Demo.app"
+            BlueprintName = "CQPopupKit-Demo"
             ReferencedContainer = "container:CQPopupKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2E929BF1D5CCC5800A1B34F"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BlueprintIdentifier = "11A2D8701D5E400E00B25C8F"
+            BuildableName = "CQPopupKit-Demo.app"
+            BlueprintName = "CQPopupKit-Demo"
             ReferencedContainer = "container:CQPopupKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

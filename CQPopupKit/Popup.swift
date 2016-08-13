@@ -36,9 +36,9 @@ public class Popup: UIViewController {
   public private(set) var contentView: UIView?
   
   // MARK: Private / Internal
-
+  
   private var presentationManager: PopupPresentationManager!
-
+  
   /// The fake background view used for receiving touche events ONLY!
   lazy var touchReceiverView: UIView = {
     
@@ -53,21 +53,21 @@ public class Popup: UIViewController {
   
   /// The view for rendering container shadow ONLY!, it holds container as a subview
   lazy var shadowContainer: PopupContainer = {
-    let shadowContainer = PopupContainer(containerType: .Shadow, appearance: self.appearance)
+    let shadowContainer = PopupContainer(containerType: .shadow, appearance: self.appearance)
     shadowContainer.fillWithSubview(self.container)
     return shadowContainer
   }()
   
   /// The view contains content view
   lazy var container: PopupContainer = {
-    let container = PopupContainer(containerType: .Plain, appearance: self.appearance)
+    let container = PopupContainer(containerType: .plain, appearance: self.appearance)
     if let content = self.contentView {
       content.translatesAutoresizingMaskIntoConstraints = false
       container.fillWithSubview(content)
     }
     return container
   }()
-
+  
   // Todo: Will expose those constraints for dynamic changes, like updating a custom view with textField's position
   
   /// The horizontal position constraint of shadow container (aka. container, same below)
@@ -128,7 +128,7 @@ public class Popup: UIViewController {
   required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   // MARK: View Controller life cycle
   
   public override func viewDidLoad() {
@@ -141,7 +141,8 @@ public class Popup: UIViewController {
     
     //fix the issue of background view from PopupPresentationManager will block the gesture
     view.insertSubview(touchReceiverView, belowSubview: shadowContainer)
-    view.bindFrom("H:|[view]|", views: ["view": touchReceiverView]).bindFrom("V:|[view]|", views: ["view": touchReceiverView])
+    view.bindFrom("H:|[view]|", views: ["view": touchReceiverView])
+    view.bindFrom("V:|[view]|", views: ["view": touchReceiverView])
   }
   
   public override func viewDidDisappear(animated: Bool) {

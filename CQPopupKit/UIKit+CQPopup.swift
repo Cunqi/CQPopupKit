@@ -23,18 +23,16 @@ extension UIView {
   
   // MARK: convenience method for constraints binding
   
-  func bindWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
+  func bindWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) {
     addConstraint(buildConstraintWith(item, attribute: attribute, relation: relation, multiplier: multiplier, constant: constant))
-    return self
   }
   
   func buildConstraintWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
     return bindConstraint(item, attribute: attribute, to: self, toAttribute: attribute, withRelation: relation, multiplier: multiplier, constant: constant)
   }
   
-  func bind(item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
+  func bind(item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) {
     addConstraint(bindConstraint(item, attribute: attribute, to: toView, toAttribute: toAttribute, withRelation: relation, multiplier: multiplier, constant: constant))
-    return self
   }
   
   func bindConstraint(item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
@@ -43,9 +41,8 @@ extension UIView {
   }
   
   
-  func bindFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> UIView {
+  func bindFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) {
     addConstraints(buildConstraintFrom(format, views: views, options: options, metrics: metrics))
-    return self
   }
   
   func buildConstraintFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> [NSLayoutConstraint] {
@@ -56,7 +53,9 @@ extension UIView {
     subView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(subView)
     let views = ["subView": subView]
-    bindFrom("H:|[subView]|", views: views).bindFrom("V:|[subView]|", views: views).layoutIfNeeded()
+    bindFrom("H:|[subView]|", views: views)
+    bindFrom("V:|[subView]|", views: views)
+    layoutIfNeeded()
   }
 }
 

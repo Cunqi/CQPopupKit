@@ -100,7 +100,8 @@ public final class PresentationController: UIPresentationController {
   public override func presentationTransitionWillBegin() {
     coverLayerView.translatesAutoresizingMaskIntoConstraints = false
     containerView!.insertSubview(coverLayerView, atIndex: 0)
-    containerView!.bindFrom("H:|[cover]|", views: ["cover": coverLayerView]).bindFrom("V:|[cover]|", views: ["cover": coverLayerView])
+    containerView!.bindFrom("H:|[cover]|", views: ["cover": coverLayerView])
+    containerView!.bindFrom("V:|[cover]|", views: ["cover": coverLayerView])
     
     let alpha = coverLayerView.alpha
     coverLayerView.alpha = 0

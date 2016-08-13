@@ -8,12 +8,12 @@ import UIKit
 /**
  Container type
  
- - Shadow: For Container shadow rendering
- - Plain:  Normal container
+ - shadow: For Container shadow rendering
+ - plain:  Normal container
  */
 enum ContainerType: Int {
-  case Shadow = 0
-  case Plain = 1
+  case shadow = 0
+  case plain = 1
 }
 
 /// Popup container
@@ -57,7 +57,7 @@ final class PopupContainer: UIView {
     
     layer.cornerRadius = appearance.cornerRadius
     
-    if type == .Plain {
+    if type == .plain {
       backgroundColor = appearance.containerBackgroundColor
       layer.masksToBounds = true
       layer.borderWidth = appearance.borderWidth
