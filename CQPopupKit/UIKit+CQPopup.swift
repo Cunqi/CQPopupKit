@@ -13,7 +13,7 @@ extension UIView {
   public var popup: Popup? {
     var parentResponder: UIResponder? = self
     while parentResponder != nil {
-      parentResponder = parentResponder!.nextResponder()
+      parentResponder = parentResponder!.next
       if let popup = parentResponder as? Popup {
         return popup
       }
@@ -23,40 +23,39 @@ extension UIView {
   
   // MARK: convenience method for constraints binding
   
-  func bindWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
+  func bindWith(_ item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) {
     addConstraint(buildConstraintWith(item, attribute: attribute, relation: relation, multiplier: multiplier, constant: constant))
-    return self
   }
   
-  func buildConstraintWith(item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+  func buildConstraintWith(_ item: UIView, attribute: NSLayoutAttribute, relation: NSLayoutRelation = .equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
     return bindConstraint(item, attribute: attribute, to: self, toAttribute: attribute, withRelation: relation, multiplier: multiplier, constant: constant)
   }
   
-  func bind(item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> UIView {
+  func bind(_ item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) {
     addConstraint(bindConstraint(item, attribute: attribute, to: toView, toAttribute: toAttribute, withRelation: relation, multiplier: multiplier, constant: constant))
-    return self
   }
   
-  func bindConstraint(item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+  func bindConstraint(_ item: UIView, attribute: NSLayoutAttribute, to toView: UIView?, toAttribute: NSLayoutAttribute? = nil, withRelation relation: NSLayoutRelation = .equal, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
     let toAttr = toAttribute == nil ? attribute : toAttribute!
-    return NSLayoutConstraint.init(item: item, attribute: attribute, relatedBy: .Equal, toItem: toView, attribute: toAttr, multiplier: multiplier, constant: constant)
+    return NSLayoutConstraint.init(item: item, attribute: attribute, relatedBy: .equal, toItem: toView, attribute: toAttr, multiplier: multiplier, constant: constant)
   }
   
   
-  func bindFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> UIView {
+  func bindFrom(_ format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) {
     addConstraints(buildConstraintFrom(format, views: views, options: options, metrics: metrics))
-    return self
   }
   
-  func buildConstraintFrom(format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> [NSLayoutConstraint] {
-    return NSLayoutConstraint.constraintsWithVisualFormat(format, options: options, metrics: metrics, views: views)
+  func buildConstraintFrom(_ format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> [NSLayoutConstraint] {
+    return NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views)
   }
   
-  func fillWithSubview(subView: UIView) {
+  func fillWithSubview(_ subView: UIView) {
     subView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(subView)
     let views = ["subView": subView]
-    bindFrom("H:|[subView]|", views: views).bindFrom("V:|[subView]|", views: views).layoutIfNeeded()
+    bindFrom("H:|[subView]|", views: views)
+    bindFrom("V:|[subView]|", views: views)
+    layoutIfNeeded()
   }
 }
 
@@ -67,22 +66,22 @@ extension UIViewController {
    - parameter popup:      popup with custom view
    - parameter completion: completion handler
    */
-  public func popUp(popup: Popup, completion: (() -> Void)? = nil) {
-    popup.view.backgroundColor = UIColor.clearColor()
+  public func popUp(_ popup: Popup, completion: (() -> Void)? = nil) {
+    popup.view.backgroundColor = UIColor.clear
     definesPresentationContext = true
-    presentViewController(popup, animated: true, completion: completion)
+    present(popup, animated: true, completion: completion)
   }
   
-  func delay(delay:Double, closure:()->()) {
-    dispatch_after(
-      dispatch_time( DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), closure)
+  func delay(_ delay:Double, closure:()->()) {
+    DispatchQueue.main.asyncAfter(
+      deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
   }
 }
 
 extension UIFont {
-  func sizeOfString (string: NSString, constrainedToWidth width: Double) -> CGSize {
-    return string.boundingRectWithSize(CGSize(width: width, height: DBL_MAX),
-                                       options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+  func sizeOfString (_ string: NSString, constrainedToWidth width: Double) -> CGSize {
+    return string.boundingRect(with: CGSize(width: width, height: DBL_MAX),
+                                       options: NSStringDrawingOptions.usesLineFragmentOrigin,
                                        attributes: [NSFontAttributeName: self],
                                        context: nil).size
   }

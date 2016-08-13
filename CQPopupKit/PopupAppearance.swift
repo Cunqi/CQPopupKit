@@ -104,7 +104,7 @@ public struct PopupAppearance {
   public var viewAttachedPosition: AttachedPosition = .center
   
   /// Padding space between container and popup's view, default is `UIEdgeInsetsZero`
-  public var containerPadding: UIEdgeInsets = UIEdgeInsetsZero
+  public var containerPadding: UIEdgeInsets = UIEdgeInsets.zero
   
   /// Control the width of container, maximum is 1.0, means container width equals to popup view width, default is `1.0`
   public var widthMultiplier: CGFloat = 0.8
@@ -112,10 +112,10 @@ public struct PopupAppearance {
   /// Control the width of container with fixed width value
   public var popupWidth: CGFloat {
     get {
-      return widthMultiplier * UIScreen.mainScreen().bounds.width
+      return widthMultiplier * UIScreen.main.bounds.width
     }
     set {
-      widthMultiplier = newValue / UIScreen.mainScreen().bounds.width
+      widthMultiplier = newValue / UIScreen.main.bounds.width
     }
   }
   
@@ -131,10 +131,10 @@ public struct PopupAppearance {
   /// Control the height of container with fixed height value
   public var popupHeight: CGFloat {
     get {
-      return heightMultiplier * UIScreen.mainScreen().bounds.height
+      return heightMultiplier * UIScreen.main.bounds.height
     }
     set {
-      heightMultiplier = newValue / UIScreen.mainScreen().bounds.height
+      heightMultiplier = newValue / UIScreen.main.bounds.height
     }
   }
   
@@ -142,7 +142,7 @@ public struct PopupAppearance {
   public var cornerRadius: CGFloat = 8
   
   /// Container's background color, default is `White`
-  public var containerBackgroundColor: UIColor = UIColor.whiteColor()
+  public var containerBackgroundColor: UIColor = UIColor.white
   
   /// Container's border width, default is `0` (no border)
   public var borderWidth: CGFloat = 0
@@ -163,7 +163,7 @@ public struct PopupAppearance {
   public var shadowOffset: CGSize = CGSize(width: 0.5, height: 0.5)
   
   /// Container shadow color, default is `white`s
-  public var shadowColor: UIColor = UIColor.whiteColor()
+  public var shadowColor: UIColor = UIColor.white
 }
 
 /// Popup animation appearance
@@ -175,19 +175,19 @@ public struct PopupAnimationAppearance {
   public var transitionDirection: PopupTransitionDirection = .leftToRight
   
   /// Popup transition in time duration
-  public var transitionInDuration: NSTimeInterval = 0.4
+  public var transitionInDuration: TimeInterval = 0.4
   
   /// Popup transition out time duration
-  public var transitionOutDuration: NSTimeInterval = 0.2
+  public var transitionOutDuration: TimeInterval = 0.2
 }
 
 /// Popup alert controller appearance
 public struct PopupAlertControllerAppearance {
   /// Font of title
-  public var titleFont: UIFont = UIFont.systemFontOfSize(18)
+  public var titleFont: UIFont = UIFont.systemFont(ofSize: 18)
   
   /// Font of message
-  public var messageFont: UIFont = UIFont.systemFontOfSize(14)
+  public var messageFont: UIFont = UIFont.systemFont(ofSize: 14)
   
   /// Horizontal space(for left and right)
   public var horizontalSpace: CGFloat = 16
@@ -205,22 +205,22 @@ public struct PopupAlertControllerAppearance {
   public var alertButtonHeight: CGFloat = 44
   
   /// Font of plain button
-  public var plainButtonFont: UIFont = UIFont.systemFontOfSize(14)
+  public var plainButtonFont: UIFont = UIFont.systemFont(ofSize: 14)
   
   /// Title color of plain button
   public var plainButtonTitleColor: UIColor = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
   
   /// Background color of plain button
-  public var plainButtonBackgroundColor: UIColor = UIColor.whiteColor()
+  public var plainButtonBackgroundColor: UIColor = UIColor.white
   
   /// Font of cancel button
-  public var cancelButtonFont: UIFont = UIFont.boldSystemFontOfSize(14)
+  public var cancelButtonFont: UIFont = UIFont.boldSystemFont(ofSize: 14)
   
   /// Title color of cancel button
   public var cancelButtonTitleColor: UIColor = UIColor(white: 0.4, alpha: 1)
   
   /// Background color of cancel button
-  public var cancelButtonBackgroundColor: UIColor = UIColor.whiteColor()
+  public var cancelButtonBackgroundColor: UIColor = UIColor.white
   
   /// If true buttons separator will be rendered, otherwise, false
   public var enableButtonSeparator: Bool = true

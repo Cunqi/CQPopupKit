@@ -30,15 +30,15 @@ class ViewController: UITableViewController {
     self.tableView.tableFooterView = UIView()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
   }
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
       return self.alertViews.count
     } else {
@@ -46,17 +46,17 @@ class ViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("option", forIndexPath: indexPath)
-    if indexPath.section == 0 {
-      cell.textLabel?.text = alertViews[indexPath.row]
-    } else if indexPath.section == 1 {
-      cell.textLabel?.text = actionSheets[indexPath.row]
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "option", for: indexPath)
+    if (indexPath as NSIndexPath).section == 0 {
+      cell.textLabel?.text = alertViews[(indexPath as NSIndexPath).row]
+    } else if (indexPath as NSIndexPath).section == 1 {
+      cell.textLabel?.text = actionSheets[(indexPath as NSIndexPath).row]
     }
     return cell
   }
   
-  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if section == 0 {
       return "AlertView"
     } else if section == 1 {
@@ -66,7 +66,7 @@ class ViewController: UITableViewController {
     }
   }
   
-  @IBAction func optionButtonTapped(sender: AnyObject) {
+  @IBAction func optionButtonTapped(_ sender: AnyObject) {
     let popup = Popup()
     popup.appearance.widthMultiplier = 0.9
     popup.appearance.heightMultiplier = 0.9
@@ -78,22 +78,22 @@ class ViewController: UITableViewController {
 }
 
 extension ViewController {
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath.section == 0 {
-      if indexPath.row == 0 {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if (indexPath as NSIndexPath).section == 0 {
+      if (indexPath as NSIndexPath).row == 0 {
         let alertView = CQAlertView(title: "Overwatch", message: nil, dismiss: nil)
         self.popUp(alertView)
-      } else if indexPath.row == 1 {
+      } else if (indexPath as NSIndexPath).row == 1 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: nil)
         self.popUp(alertView)
-      } else if indexPath.row == 2 {
+      } else if (indexPath as NSIndexPath).row == 2 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: "Ok")
         self.popUp(alertView)
-      } else if indexPath.row == 3 {
+      } else if (indexPath as NSIndexPath).row == 3 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", cancel: "Exit", confirm: "I'm ready!")
         alertView.appearance.enableTouchOutsideToDismiss = false
         self.popUp(alertView)
-      } else if indexPath.row == 4 {
+      } else if (indexPath as NSIndexPath).row == 4 {
         let alertView = CQAlertView.init(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
         
         alertView.alertCanceledAction = {
@@ -106,8 +106,8 @@ extension ViewController {
         
         self.popUp(alertView)
       }
-    } else if indexPath.section == 1 {
-      if indexPath.row == 0 {
+    } else if (indexPath as NSIndexPath).section == 1 {
+      if (indexPath as NSIndexPath).row == 0 {
         let actionSheet = CQActionSheet.init(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
         
         actionSheet.alertCanceledAction = {

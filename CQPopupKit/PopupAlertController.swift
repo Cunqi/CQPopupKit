@@ -27,7 +27,7 @@ public class PopupAlertController: Popup {
   
   /// Titles of each option
   public var itemOptions: [String]!
-
+  
   /// Get the alert title label
   public private(set) var alertTitle: UILabel!
   
@@ -36,10 +36,10 @@ public class PopupAlertController: Popup {
   
   /// Get the alert buttons
   public private(set) var alertButtons: [PopupAlertButton]!
-
+  
   /// Invoke alert canceled action when alert controller receives negative notification
   public var alertCanceledAction: (() -> Void)?
-
+  
   /// Invoke alert selected action when alert controller receives positive notification
   public var alertSelectedAction: ((Int, String) -> Void)?
   
@@ -118,11 +118,12 @@ public class PopupAlertController: Popup {
   private func configureAlertTitle() -> UILabel {
     let title = createLabel(alertAppearance.titleFont)
     title.text = titleText
-
+    
     content.addSubview(title)
     let hs = alertAppearance.horizontalSpace
     let constant = alertAppearance.verticalSpaceBetweenTitleAndTop
-    content.bindWith(title, attribute: .Top, constant: constant).bindFrom("H:|-(\(hs))-[title]-(\(hs))-|", views: ["title" : title])
+    content.bindWith(title, attribute: .top, constant: constant)
+    content.bindFrom("H:|-(\(hs))-[title]-(\(hs))-|", views: ["title" : title])
     return title
   }
   
@@ -134,12 +135,12 @@ public class PopupAlertController: Popup {
   private func configureAlertMessage() -> UILabel {
     let message = createLabel(alertAppearance.messageFont)
     message.text = messageText
-
+    
     content.addSubview(message)
     let hs = alertAppearance.horizontalSpace
     let constant = alertAppearance.verticalSpaceBetweenTitleAndMessage
-    content.bind(message, attribute: .Top, to: alertTitle, toAttribute: .Bottom, constant: constant)
-      .bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
+    content.bind(message, attribute: .top, to: alertTitle, toAttribute: .bottom, constant: constant)
+    content.bindFrom("H:|-(\(hs))-[message]-(\(hs))-|", views: ["message" : message])
     return message
   }
   
@@ -153,14 +154,14 @@ public class PopupAlertController: Popup {
     var buttons = [PopupAlertButton]()
     if hasCancelButton {   //if cancel button was set, set it with cancel style
       let cancelButton = PopupAlertButton(style: .cancel, title: cancelTitle!, appearance: alertAppearance)
-      cancelButton.addTarget(self, action: #selector(cancelButtonSelected), forControlEvents: .TouchUpInside)
+      cancelButton.addTarget(self, action: #selector(cancelButtonSelected), for: .touchUpInside)
       content.addSubview(cancelButton)
       buttons.append(cancelButton)
     }
     
     for option in itemOptions {    //set other buttons with plain style
       let button = PopupAlertButton(style: .plain, title: option, appearance: alertAppearance)
-      button.addTarget(self, action: #selector(buttonSelected), forControlEvents: .TouchUpInside)
+      button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
       content.addSubview(button)
       buttons.append(button)
     }
@@ -177,7 +178,7 @@ public class PopupAlertController: Popup {
     super.viewDidLoad()
   }
   
-  public final override func viewDidDisappear(animated: Bool) {
+  public final override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     alertCanceledAction = nil
     alertSelectedAction = nil
@@ -194,7 +195,7 @@ public class PopupAlertController: Popup {
     let buttonsHeight = alertAppearance.verticalSpaceBetweenMessageAndButtons + calcHeightOfAlertButtons()
     return (titleHeight + messageHeight + buttonsHeight)
   }
-
+  
   /**
    Calculate height of alert title
    
@@ -223,7 +224,7 @@ public class PopupAlertController: Popup {
    
    - parameter sender: Cancel button
    */
-  func cancelButtonSelected(sender: AnyObject) {
+  func cancelButtonSelected(_ sender: AnyObject) {
     if let popup = content.popup {
       popup.invokeNegativeAction(nil)
     }
@@ -234,11 +235,11 @@ public class PopupAlertController: Popup {
    
    - parameter sender: Selected alert button
    */
-  func buttonSelected(sender: AnyObject) {
+  func buttonSelected(_ sender: AnyObject) {
     if let popup = content.popup {
       let button = sender as! UIButton
-      let title = button.titleForState(.Normal)!
-      let index = itemOptions.indexOf(title)!
+      let title = button.title(for: UIControlState())!
+      let index = itemOptions.index(of: title)!
       popup.invokePositiveAction([selectedIndex: index, selectedTitle:title])
     }
   }
@@ -250,11 +251,11 @@ public class PopupAlertController: Popup {
    
    - returns: UILabel instance
    */
-  private func createLabel(font: UIFont) -> UILabel {
+  private func createLabel(_ font: UIFont) -> UILabel {
     let title = UILabel()
     title.translatesAutoresizingMaskIntoConstraints = false
     title.font = font
-    title.textAlignment = .Center
+    title.textAlignment = .center
     title.numberOfLines = 0
     return title
   }
@@ -319,7 +320,7 @@ public final class PopupAlertButton: UIButton {
   }
   
   // MARK: Initializer
-
+  
   /**
    Creates popup alert button with style and title
    
@@ -332,8 +333,8 @@ public final class PopupAlertButton: UIButton {
   init(style: PopupAlertButtonStype, title: String, appearance: PopupAlertControllerAppearance?) {
     self.style = style
     super.init(frame: .zero)
-    setTitle(title, forState: .Normal)
-    setTitleColor(UIColor.blackColor(), forState: .Normal)
+    setTitle(title, for: UIControlState())
+    setTitleColor(UIColor.black, for: UIControlState())
     translatesAutoresizingMaskIntoConstraints = false
     
     guard let _ = appearance else {return}
@@ -341,12 +342,14 @@ public final class PopupAlertButton: UIButton {
     if appearance!.enableButtonSeparator {
       topSeparator.backgroundColor = appearance!.buttonSeparatorColor
       addSubview(topSeparator)
-      bindFrom("V:|[separator(1)]", views: ["separator": topSeparator]).bindFrom("H:|[separator]|", views: ["separator": topSeparator])
+      bindFrom("V:|[separator(1)]", views: ["separator": topSeparator])
+      bindFrom("H:|[separator]|", views: ["separator": topSeparator])
       
       if style == .cancel {
         rightSeparator.backgroundColor = appearance!.buttonSeparatorColor
         addSubview(rightSeparator)
-        bindFrom("H:[separator(1)]|", views: ["separator": rightSeparator]).bindFrom("V:|[separator]|", views: ["separator": rightSeparator])
+        bindFrom("H:[separator(1)]|", views: ["separator": rightSeparator])
+        bindFrom("V:|[separator]|", views: ["separator": rightSeparator])
       }
     }
     
@@ -354,11 +357,11 @@ public final class PopupAlertButton: UIButton {
     case .plain:
       backgroundColor = appearance!.plainButtonBackgroundColor
       titleLabel?.font = appearance!.plainButtonFont
-      setTitleColor(appearance!.plainButtonTitleColor, forState: .Normal)
+      setTitleColor(appearance!.plainButtonTitleColor, for: UIControlState())
     case .cancel:
       backgroundColor = appearance!.cancelButtonBackgroundColor
       titleLabel?.font = appearance!.cancelButtonFont
-      setTitleColor(appearance!.cancelButtonTitleColor, forState: .Normal)
+      setTitleColor(appearance!.cancelButtonTitleColor, for: UIControlState())
     }
   }
   

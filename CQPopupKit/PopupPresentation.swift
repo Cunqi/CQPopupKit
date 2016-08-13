@@ -34,17 +34,17 @@ public final class PopupPresentationManager: NSObject, UIViewControllerTransitio
     self.coverLayerView = coverLayerView
   }
   
-  public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-    let controller = PresentationController(presentedViewController: presented, presentingViewController: presenting)
+  public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    let controller = PresentationController(presentedViewController: presented, presenting: presenting)
     controller.coverLayerView = coverLayerView
     return controller
   }
   
-  public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+  public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return getAnimation(animationAppearance.transitionInDuration, status: .transitIn, direction: animationAppearance.transitionDirection, style: animationAppearance.transitionStyle)
   }
   
-  public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+  public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return getAnimation(animationAppearance.transitionOutDuration, status: .transitOut, direction: animationAppearance.transitionDirection, style: animationAppearance.transitionStyle)
   }
   
@@ -58,7 +58,7 @@ public final class PopupPresentationManager: NSObject, UIViewControllerTransitio
    
    - returns: Transition animation
    */
-  func getAnimation(duration: NSTimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection, style: PopupTransitionStyle) -> PopupAnimation {
+  func getAnimation(_ duration: TimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection, style: PopupTransitionStyle) -> PopupAnimation {
     switch style {
     case .plain:
       return PopupPlainAnimation(duration: duration, status: status, direction: direction)
@@ -84,7 +84,7 @@ public final class PopupPresentationManager: NSObject, UIViewControllerTransitio
    
    - returns: Custom transition animation
    */
-  func customPopupAnimation(duration: NSTimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection) -> PopupAnimation {
+  func customPopupAnimation(_ duration: TimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection) -> PopupAnimation {
     return PopupFadeAnimation(duration: duration, status: status, direction: direction)
   }
 }
@@ -99,19 +99,20 @@ public final class PresentationController: UIPresentationController {
   
   public override func presentationTransitionWillBegin() {
     coverLayerView.translatesAutoresizingMaskIntoConstraints = false
-    containerView!.insertSubview(coverLayerView, atIndex: 0)
-    containerView!.bindFrom("H:|[cover]|", views: ["cover": coverLayerView]).bindFrom("V:|[cover]|", views: ["cover": coverLayerView])
+    containerView!.insertSubview(coverLayerView, at: 0)
+    containerView!.bindFrom("H:|[cover]|", views: ["cover": coverLayerView])
+    containerView!.bindFrom("V:|[cover]|", views: ["cover": coverLayerView])
     
     let alpha = coverLayerView.alpha
     coverLayerView.alpha = 0
     
-    presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
+    presentedViewController.transitionCoordinator?.animate(alongsideTransition: {context in
       self.coverLayerView.alpha = alpha
       }, completion: nil)
   }
   
   public override func dismissalTransitionWillBegin() {
-    presentedViewController.transitionCoordinator()?.animateAlongsideTransition({context in
+    presentedViewController.transitionCoordinator?.animate(alongsideTransition: {context in
       self.coverLayerView.alpha = 0.0
       }, completion: nil)
   }
