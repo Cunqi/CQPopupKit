@@ -7,7 +7,7 @@
 		<key>CQPopupKit-Demo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>CQPopupKit.xcscheme_^#shared#^_</key>
 		<dict>
@@ -20,17 +20,17 @@
 		<key>11A2D8701D5E400E00B25C8F</key>
 		<dict>
 			<key>primary</key>
-			<true/>
+			<true />
 		</dict>
 		<key>D2E9299E1D5CCC2500A1B34F</key>
 		<dict>
 			<key>primary</key>
-			<true/>
+			<true />
 		</dict>
 		<key>D2E929BF1D5CCC5800A1B34F</key>
 		<dict>
 			<key>primary</key>
-			<true/>
+			<true />
 		</dict>
 	</dict>
 </dict>

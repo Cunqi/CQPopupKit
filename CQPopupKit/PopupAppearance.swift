@@ -84,6 +84,10 @@ public class CQAppearance: NSObject {
   public lazy var alert: PopupAlertControllerAppearance = {
     return PopupAlertControllerAppearance()
   }()
+  
+  public lazy var dialogue: PopupDialogueAppearance = {
+    return PopupDialogueAppearance()
+  }()
 
   // MARK: Initializer
 
@@ -91,11 +95,13 @@ public class CQAppearance: NSObject {
   private override init(){}
 }
 
-/// Popup basic appearance
+/**
+ *  Popup basic appearance
+ */
 public struct PopupAppearance {
   
   /// Background color of pop up
-  public var popUpBackgroundColor: UIColor = UIColor(white: 0, alpha: 0.5)
+  public var popUpBackgroundColor = UIColor(white: 0, alpha: 0.5)
   
   /// If true tap outside of the container will dismiss the popup, otherwise false, default is `true`
   public var enableTouchOutsideToDismiss: Bool = true
@@ -104,7 +110,7 @@ public struct PopupAppearance {
   public var viewAttachedPosition: AttachedPosition = .center
   
   /// Padding space between container and popup's view, default is `UIEdgeInsetsZero`
-  public var containerPadding: UIEdgeInsets = UIEdgeInsetsZero
+  public var containerPadding = UIEdgeInsetsZero
   
   /// Control the width of container, maximum is 1.0, means container width equals to popup view width, default is `1.0`
   public var widthMultiplier: CGFloat = 0.8
@@ -142,16 +148,16 @@ public struct PopupAppearance {
   public var cornerRadius: CGFloat = 8
   
   /// Container's background color, default is `White`
-  public var containerBackgroundColor: UIColor = UIColor.whiteColor()
+  public var containerBackgroundColor = UIColor.whiteColor()
   
   /// Container's border width, default is `0` (no border)
   public var borderWidth: CGFloat = 0
   
   /// Container's border color, (if border width is not 0)
-  public var borderColor: UIColor = UIColor.init(white: 0.9, alpha: 1.0)
+  public var borderColor = UIColor.init(white: 0.9, alpha: 1.0)
   
   /// If true container will render shadow, otherwise, false, default is `true`
-  public var enableShadow: Bool = true
+  public var enableShadow = true
   
   /// Container shadow radius, default is `3`
   public var shadowRadius: CGFloat = 3
@@ -160,13 +166,15 @@ public struct PopupAppearance {
   public var shadowOpacity: CGFloat = 0.4
   
   /// Container shadow offset, default is `(0.5, 0.5)`
-  public var shadowOffset: CGSize = CGSize(width: 0.5, height: 0.5)
+  public var shadowOffset = CGSize(width: 0.5, height: 0.5)
   
   /// Container shadow color, default is `white`s
-  public var shadowColor: UIColor = UIColor.whiteColor()
+  public var shadowColor = UIColor.whiteColor()
 }
 
-/// Popup animation appearance
+/**
+ *  Popup animation appearance
+ */
 public struct PopupAnimationAppearance {
   /// Popup transition style
   public var transitionStyle: PopupTransitionStyle = .fade
@@ -181,13 +189,15 @@ public struct PopupAnimationAppearance {
   public var transitionOutDuration: NSTimeInterval = 0.2
 }
 
-/// Popup alert controller appearance
+/**
+ *  Popup alert controller appearance
+ */
 public struct PopupAlertControllerAppearance {
   /// Font of title
-  public var titleFont: UIFont = UIFont.systemFontOfSize(18)
+  public var titleFont = UIFont.systemFontOfSize(18)
   
   /// Font of message
-  public var messageFont: UIFont = UIFont.systemFontOfSize(14)
+  public var messageFont = UIFont.systemFontOfSize(14)
   
   /// Horizontal space(for left and right)
   public var horizontalSpace: CGFloat = 16
@@ -205,26 +215,44 @@ public struct PopupAlertControllerAppearance {
   public var alertButtonHeight: CGFloat = 44
   
   /// Font of plain button
-  public var plainButtonFont: UIFont = UIFont.systemFontOfSize(14)
+  public var plainButtonFont = UIFont.systemFontOfSize(14)
   
   /// Title color of plain button
-  public var plainButtonTitleColor: UIColor = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
+  public var plainButtonTitleColor = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
   
   /// Background color of plain button
-  public var plainButtonBackgroundColor: UIColor = UIColor.whiteColor()
+  public var plainButtonBackgroundColor = UIColor.whiteColor()
   
   /// Font of cancel button
-  public var cancelButtonFont: UIFont = UIFont.boldSystemFontOfSize(14)
+  public var cancelButtonFont = UIFont.boldSystemFontOfSize(14)
   
   /// Title color of cancel button
-  public var cancelButtonTitleColor: UIColor = UIColor(white: 0.4, alpha: 1)
+  public var cancelButtonTitleColor = UIColor(white: 0.4, alpha: 1)
   
   /// Background color of cancel button
-  public var cancelButtonBackgroundColor: UIColor = UIColor.whiteColor()
+  public var cancelButtonBackgroundColor = UIColor.whiteColor()
   
   /// If true buttons separator will be rendered, otherwise, false
-  public var enableButtonSeparator: Bool = true
+  public var enableButtonSeparator = true
   
   /// Color of button separator
-  public var buttonSeparatorColor: UIColor = UIColor(white: 0.9, alpha: 1.0)
+  public var buttonSeparatorColor = UIColor(white: 0.9, alpha: 1.0)
+}
+
+/**
+ *  Popup dialogue appearance
+ */
+public struct PopupDialogueAppearance {
+  
+  /// Navigation bar background color
+  public var navBarBackgroundColor = UIColor(white: 0.97, alpha: 1.0)
+  
+  /// Navigation title font
+  public var titleFont = UIFont.boldSystemFontOfSize(18)
+  
+  /// Navigation title color
+  public var titleColor = UIColor.blackColor()
+  
+  /// Navigation bottom separator color 
+  public var separatorColor = UIColor(white: 0.8, alpha: 1.0)
 }

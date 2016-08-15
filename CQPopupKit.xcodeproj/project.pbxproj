@@ -12,6 +12,11 @@
 		11A2D87E1D5E400E00B25C8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A2D87C1D5E400E00B25C8F /* LaunchScreen.storyboard */; };
 		11A2D8841D5E408100B25C8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2D8831D5E408100B25C8F /* ViewController.swift */; };
 		11A2D8871D5E409000B25C8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A2D8851D5E409000B25C8F /* Main.storyboard */; };
+		D2BA3B4A1D60C99E00B6C885 /* PopupDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA3B491D60C99E00B6C885 /* PopupDialogue.swift */; };
+		D2BA3B4B1D60C9B200B6C885 /* CQPopupKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */; };
+		D2BA3B4C1D60C9B200B6C885 /* CQPopupKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D2BA3B511D60CC2D00B6C885 /* CQDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA3B501D60CC2D00B6C885 /* CQDatePicker.swift */; };
+		D2BA3B531D60DE0500B6C885 /* CQPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA3B521D60DE0500B6C885 /* CQPicker.swift */; };
 		D2E929A31D5CCC2500A1B34F /* CQPopupKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2E929B31D5CCC4200A1B34F /* CQActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AA1D5CCC4200A1B34F /* CQActionSheet.swift */; };
 		D2E929B41D5CCC4200A1B34F /* CQAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929AB1D5CCC4200A1B34F /* CQAlertView.swift */; };
@@ -24,6 +29,30 @@
 		D2E929BB1D5CCC4200A1B34F /* UIKit+CQPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E929B21D5CCC4200A1B34F /* UIKit+CQPopup.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D2BA3B4D1D60C9B200B6C885 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2E929961D5CCC2500A1B34F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2E9299E1D5CCC2500A1B34F;
+			remoteInfo = CQPopupKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2BA3B4F1D60C9B200B6C885 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D2BA3B4C1D60C9B200B6C885 /* CQPopupKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		11A2D8711D5E400E00B25C8F /* CQPopupKit-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CQPopupKit-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A2D8731D5E400E00B25C8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +61,9 @@
 		11A2D87F1D5E400E00B25C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11A2D8831D5E408100B25C8F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		11A2D8861D5E409000B25C8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2BA3B491D60C99E00B6C885 /* PopupDialogue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialogue.swift; sourceTree = "<group>"; };
+		D2BA3B501D60CC2D00B6C885 /* CQDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQDatePicker.swift; sourceTree = "<group>"; };
+		D2BA3B521D60DE0500B6C885 /* CQPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQPicker.swift; sourceTree = "<group>"; };
 		D2E9299F1D5CCC2500A1B34F /* CQPopupKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CQPopupKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQPopupKit.h; sourceTree = "<group>"; };
 		D2E929A41D5CCC2500A1B34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BA3B4B1D60C9B200B6C885 /* CQPopupKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +131,7 @@
 		D2E929A11D5CCC2500A1B34F /* CQPopupKit */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA3B491D60C99E00B6C885 /* PopupDialogue.swift */,
 				D2E929AA1D5CCC4200A1B34F /* CQActionSheet.swift */,
 				D2E929AB1D5CCC4200A1B34F /* CQAlertView.swift */,
 				D2E929AC1D5CCC4200A1B34F /* Popup.swift */,
@@ -109,6 +143,8 @@
 				D2E929B21D5CCC4200A1B34F /* UIKit+CQPopup.swift */,
 				D2E929A21D5CCC2500A1B34F /* CQPopupKit.h */,
 				D2E929A41D5CCC2500A1B34F /* Info.plist */,
+				D2BA3B501D60CC2D00B6C885 /* CQDatePicker.swift */,
+				D2BA3B521D60DE0500B6C885 /* CQPicker.swift */,
 			);
 			path = CQPopupKit;
 			sourceTree = "<group>";
@@ -134,10 +170,12 @@
 				11A2D86D1D5E400E00B25C8F /* Sources */,
 				11A2D86E1D5E400E00B25C8F /* Frameworks */,
 				11A2D86F1D5E400E00B25C8F /* Resources */,
+				D2BA3B4F1D60C9B200B6C885 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D2BA3B4E1D60C9B200B6C885 /* PBXTargetDependency */,
 			);
 			name = "CQPopupKit-Demo";
 			productName = "CQPopupKit-Demo";
@@ -237,15 +275,26 @@
 				D2E929B71D5CCC4200A1B34F /* PopupAnimation.swift in Sources */,
 				D2E929B91D5CCC4200A1B34F /* PopupContainer.swift in Sources */,
 				D2E929B31D5CCC4200A1B34F /* CQActionSheet.swift in Sources */,
+				D2BA3B511D60CC2D00B6C885 /* CQDatePicker.swift in Sources */,
 				D2E929B81D5CCC4200A1B34F /* PopupAppearance.swift in Sources */,
 				D2E929BB1D5CCC4200A1B34F /* UIKit+CQPopup.swift in Sources */,
+				D2BA3B4A1D60C99E00B6C885 /* PopupDialogue.swift in Sources */,
 				D2E929B41D5CCC4200A1B34F /* CQAlertView.swift in Sources */,
 				D2E929B51D5CCC4200A1B34F /* Popup.swift in Sources */,
 				D2E929B61D5CCC4200A1B34F /* PopupAlertController.swift in Sources */,
+				D2BA3B531D60DE0500B6C885 /* CQPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2BA3B4E1D60C9B200B6C885 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2E9299E1D5CCC2500A1B34F /* CQPopupKit */;
+			targetProxy = D2BA3B4D1D60C9B200B6C885 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		11A2D87C1D5E400E00B25C8F /* LaunchScreen.storyboard */ = {
@@ -271,6 +320,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "CQPopupKit-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -283,6 +334,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "CQPopupKit-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

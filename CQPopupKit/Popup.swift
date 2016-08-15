@@ -32,9 +32,6 @@ public class Popup: UIViewController {
   /// Positive action after popup returning with a positive status
   public internal(set) var positiveAction: PopupAction?
   
-  /// The view displayed on the container
-  public private(set) var contentView: UIView?
-  
   // MARK: Private / Internal
   
   private var presentationManager: PopupPresentationManager!
@@ -42,7 +39,7 @@ public class Popup: UIViewController {
   /// The fake background view used for receiving touche events ONLY!
   lazy var touchReceiverView: UIView = {
     
-    let touchReceiverView = UIView.init()
+    let touchReceiverView = UIView()
     touchReceiverView.translatesAutoresizingMaskIntoConstraints = false
     if self.appearance.enableTouchOutsideToDismiss {
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToDismiss))
@@ -54,19 +51,17 @@ public class Popup: UIViewController {
   /// The view for rendering container shadow ONLY!, it holds container as a subview
   lazy var shadowContainer: PopupContainer = {
     let shadowContainer = PopupContainer(containerType: .shadow, appearance: self.appearance)
-    shadowContainer.fillWithSubview(self.container)
     return shadowContainer
   }()
   
   /// The view contains content view
   lazy var container: PopupContainer = {
     let container = PopupContainer(containerType: .plain, appearance: self.appearance)
-    if let content = self.contentView {
-      content.translatesAutoresizingMaskIntoConstraints = false
-      container.fillWithSubview(content)
-    }
     return container
   }()
+  
+  /// The view displayed on the container
+  var contentView: UIView?
   
   // Todo: Will expose those constraints for dynamic changes, like updating a custom view with textField's position
   
@@ -91,24 +86,27 @@ public class Popup: UIViewController {
    - returns: Popup with blank container
    */
   public convenience init() {
-    self.init(contentView: UIView(), negativeAction: nil, positiveAction: nil)
+    self.init(contentView: UIView(), positiveAction: nil, negativeAction: nil)
   }
   
   /**
    Creates a popup view controller containing a custom view
    
    - parameter contentView:    Custom view to be displayed on popup container
-   - parameter negativeAction: Negative action when popup returns with negative status (like canceled, failed etc.)
    - parameter positiveAction: Positive action when popup returns with positive status (like confirmed, selected etc.)
+   - parameter negativeAction: Negative action when popup returns with negative status (like canceled, failed etc.)
    
    - returns: Popup with custom view
    */
-  public init(contentView: UIView?, negativeAction: PopupAction? = nil, positiveAction: PopupAction? = nil) {
+  public init(contentView: UIView?, positiveAction: PopupAction? = nil, negativeAction: PopupAction? = nil) {
     self.contentView = contentView
     self.negativeAction = negativeAction
     self.positiveAction = positiveAction
     
     super.init(nibName: nil, bundle: nil)
+    
+    shadowContainer.fillWithSubview(self.container)
+    installContentView()
     
     // Define popup presentation style
     modalPresentationStyle = .Custom
@@ -165,6 +163,16 @@ public class Popup: UIViewController {
     //update width & height constraints
     view.removeConstraints([widthConst, heightConst])
     self.bindHeightConstraint().bindWidthConstraint()
+  }
+  
+  /**
+   install content view to container
+   */
+  func installContentView() {
+    if let content = self.contentView {
+      content.translatesAutoresizingMaskIntoConstraints = false
+      container.fillWithSubview(content)
+    }
   }
   
   /**
@@ -275,7 +283,7 @@ public class Popup: UIViewController {
   /**
    Dismiss the popup when outside of the container is tapped, negative action (if have) will be invoked first
    */
-  @objc private func tapToDismiss() {
+  func tapToDismiss() {
     invokeNegativeAction(nil)
   }
   

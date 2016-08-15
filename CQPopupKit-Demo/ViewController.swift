@@ -23,11 +23,18 @@ class ViewController: UITableViewController {
     "ActionSheet - Basic"
   ]
   
+  let popupDialogs = [
+    "PopupDialogue - Basic",
+    "PopupDialogue - DatePicker",
+    "PopupDialogue - SinglePicker",
+    "PopupDialogue - MultiPicker"
+  ]
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.title = "CQPopupKit Demo"
-    self.tableView.tableFooterView = UIView()
+    title = "CQPopupKit Demo"
+    tableView.tableFooterView = UIView()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -35,14 +42,16 @@ class ViewController: UITableViewController {
   }
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
+    return 3
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
-      return self.alertViews.count
+      return alertViews.count
+    } else if section == 1 {
+      return actionSheets.count
     } else {
-      return self.actionSheets.count
+      return popupDialogs.count
     }
   }
   
@@ -52,6 +61,8 @@ class ViewController: UITableViewController {
       cell.textLabel?.text = alertViews[indexPath.row]
     } else if indexPath.section == 1 {
       cell.textLabel?.text = actionSheets[indexPath.row]
+    } else if indexPath.section == 2 {
+      cell.textLabel?.text = popupDialogs[indexPath.row]
     }
     return cell
   }
@@ -61,9 +72,10 @@ class ViewController: UITableViewController {
       return "AlertView"
     } else if section == 1 {
       return "ActionSheet"
-    } else {
-      return ""
+    } else if section == 2{
+      return "PopupDialogue"
     }
+    return nil
   }
   
   @IBAction func optionButtonTapped(sender: AnyObject) {
@@ -78,37 +90,35 @@ class ViewController: UITableViewController {
 }
 
 extension ViewController {
+  // FIX Double click on table cell
+  // http://stackoverflow.com/questions/20320591/uitableview-and-presentviewcontroller-takes-2-clicks-to-display
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == 0 {
+      var alertView: CQAlertView!
       if indexPath.row == 0 {
-        let alertView = CQAlertView(title: "Overwatch", message: nil, dismiss: nil)
-        self.popUp(alertView)
+         alertView = CQAlertView(title: "Overwatch", message: nil, dismiss: nil)
       } else if indexPath.row == 1 {
-        let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: nil)
-        self.popUp(alertView)
+        alertView = CQAlertView(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: nil)
       } else if indexPath.row == 2 {
-        let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: "Ok")
-        self.popUp(alertView)
+        alertView = CQAlertView(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: "Ok")
       } else if indexPath.row == 3 {
-        let alertView = CQAlertView.init(title: "Overwatch", message: "Traveling to Lijiang Tower", cancel: "Exit", confirm: "I'm ready!")
+        alertView = CQAlertView(title: "Overwatch", message: "Traveling to Lijiang Tower", cancel: "Exit", confirm: "I'm ready!")
         alertView.appearance.enableTouchOutsideToDismiss = false
-        self.popUp(alertView)
       } else if indexPath.row == 4 {
-        let alertView = CQAlertView.init(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
-        
+        alertView = CQAlertView(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
         alertView.alertCanceledAction = {
           print("Fight by my self!")
         }
-        
         alertView.alertSelectedAction = {index, title in
           print("You picked \(title) @ \(index)")
         }
-        
-        self.popUp(alertView)
       }
+      dispatch_async(dispatch_get_main_queue(), {
+        self.popUp(alertView)
+      })
     } else if indexPath.section == 1 {
       if indexPath.row == 0 {
-        let actionSheet = CQActionSheet.init(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
+        let actionSheet = CQActionSheet(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
         
         actionSheet.alertCanceledAction = {
           print("Fight by my self!")
@@ -118,7 +128,45 @@ extension ViewController {
           print("You picked \(title) @ \(index)")
         }
         
-        self.popUp(actionSheet)
+        dispatch_async(dispatch_get_main_queue(), {
+          self.popUp(actionSheet)
+        })
+      }
+    } else if indexPath.section == 2 {
+      if indexPath.row == 0 {
+        let dialogue = PopupDialogue(title: "Empty Picker", contentView: UIView(),  positiveAction: nil, negativeAction: nil)
+        dispatch_async(dispatch_get_main_queue(), {
+          self.popUp(dialogue)
+        })
+      } else if indexPath.row == 1 {
+        let dialogue = CQDatePicker(title: "Date Picker", mode: .Time)
+        dialogue.appearance.widthMultiplier = 1.0
+        dialogue.appearance.heightMultiplier = 0.4
+        dialogue.appearance.viewAttachedPosition = .bottom
+        dialogue.animationAppearance.transitionDirection = .bottomToTop
+        
+        dialogue.confirmAction = {date in
+          let formatter = NSDateFormatter()
+          formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+          print(formatter.stringFromDate(date))
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), {
+          self.popUp(dialogue)
+        })
+      } else if indexPath.row == 2 {
+        let dialogue = CQPicker(title: "Single Picker", options: ["Mercy", "Anna", "Lucio", "Waston", "Bastion"])
+        dialogue.appearance.widthMultiplier = 1.0
+        dialogue.appearance.heightMultiplier = 0.4
+        dialogue.appearance.viewAttachedPosition = .bottom
+        dialogue.animationAppearance.transitionDirection = .bottomToTop
+        dialogue.confirmAction = { (options) in
+          print(options)
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), {
+          self.popUp(dialogue)
+        })
       }
     }
   }

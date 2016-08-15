@@ -77,7 +77,7 @@ public class PopupAlertController: Popup {
     // create container for alert title, message and buttons
     content = UIView()
     content.translatesAutoresizingMaskIntoConstraints = false
-    super.init(contentView: content, negativeAction: nil, positiveAction: nil)
+    super.init(contentView: content)
     
     titleText = title
     messageText = message
