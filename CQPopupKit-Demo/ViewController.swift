@@ -156,10 +156,6 @@ extension ViewController {
         })
       } else if indexPath.row == 2 {
         let dialogue = CQPicker(title: "Single Picker", options: ["Mercy", "Anna", "Lucio", "Waston", "Bastion"])
-        dialogue.appearance.widthMultiplier = 1.0
-        dialogue.appearance.heightMultiplier = 0.4
-        dialogue.appearance.viewAttachedPosition = .bottom
-        dialogue.animationAppearance.transitionDirection = .bottomToTop
         dialogue.confirmAction = { (options) in
           print(options)
         }
