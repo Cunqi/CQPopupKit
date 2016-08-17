@@ -57,6 +57,11 @@ public final class CQPicker: PopupDialogue {
   public init (title: String, multiOptions: [[String]], cancelText: String, confirmText: String) {
     super.init(title: title, contentView: picker, positiveAction: nil, negativeAction: nil, cancelText: cancelText, confirmText: confirmText)
     
+    appearance.widthMultiplier = 1.0
+    appearance.heightMultiplier = 0.4
+    appearance.viewAttachedPosition = .bottom
+    animationAppearance.transitionDirection = .bottomToTop
+    
     self.multiOptions = multiOptions
     
     picker.dataSource = self

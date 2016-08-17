@@ -78,18 +78,6 @@ public class PopupDialogue: Popup {
     confirm.addTarget(self, action: #selector(tapToConfirm), forControlEvents: .TouchUpInside)
   }
   
-  /**
-   When confirm button is tapped
-   */
-  func tapToConfirm() {
-    guard let _ = self.delegate else {
-      self.tapToDismiss()
-      return
-    }
-    let popupInfo = self.delegate!.prepareConfirmedData()
-    invokePositiveAction(popupInfo)
-  }
-  
   required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -101,6 +89,19 @@ public class PopupDialogue: Popup {
     installNavBar()
     installContent()
   }
+  
+  /**
+   When confirm button is tapped
+   */
+  func tapToConfirm() {
+    guard let _ = self.delegate else {
+      self.tapToDismiss()
+      return
+    }
+    let popupInfo = self.delegate!.prepareConfirmedData()
+    invokePositiveAction(popupInfo)
+  }
+
   
   private func installNavBar() {
     // Cancel button
