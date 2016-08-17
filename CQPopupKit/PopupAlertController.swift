@@ -88,13 +88,13 @@ public class PopupAlertController: Popup {
     alertMessage = configureAlertMessage()
     alertButtons = configureAlertButtons()
     
-    negativeAction = {popUpInfo in
+    negativeAction = { (popUpInfo) in
       if let action = self.alertCanceledAction {
         action()
       }
     }
     
-    positiveAction = {popUpInfo in
+    positiveAction = { (popUpInfo) in
       if let info = popUpInfo, let action = self.alertSelectedAction {
         let index = info[self.selectedIndex] as! Int
         let title = info[self.selectedTitle] as! String

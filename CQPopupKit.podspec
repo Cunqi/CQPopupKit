@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CQPopupKit'
-  s.version          = '1.2.0'
+  s.version          = '1.2.3'
   s.summary          = 'A popup kit for creating highly customizable popup view, based on Swift 2.2'
 
 # This description is used to generate tags and improve search results.

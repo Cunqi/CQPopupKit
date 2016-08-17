@@ -83,7 +83,7 @@ public class Popup: UIViewController {
   /**
    Creates a popup with blank container
    
-   - returns: Popup with blank container
+   - returns: Popup with empty container
    */
   public convenience init() {
     self.init(contentView: UIView(), positiveAction: nil, negativeAction: nil)
@@ -162,7 +162,8 @@ public class Popup: UIViewController {
     
     //update width & height constraints
     view.removeConstraints([widthConst, heightConst])
-    self.bindHeightConstraint().bindWidthConstraint()
+    bindHeightConstraint()
+    bindWidthConstraint()
   }
   
   /**
@@ -180,7 +181,10 @@ public class Popup: UIViewController {
    */
   private func bindConstraintsToContainer() {
     view.addSubview(shadowContainer)
-    self.bindHorizontalConstraint().bindVerticalConstraint().bindHeightConstraint().bindWidthConstraint()
+    bindHorizontalConstraint()
+    bindVerticalConstraint()
+    bindHeightConstraint()
+    bindWidthConstraint()
     view.layoutIfNeeded()
   }
   
@@ -189,7 +193,7 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindHorizontalConstraint() -> Popup {
+  private func bindHorizontalConstraint() {
     switch appearance.viewAttachedPosition {
     case .center:
       fallthrough
@@ -203,7 +207,6 @@ public class Popup: UIViewController {
       horizontalConst = view.buildConstraintWith(shadowContainer, attribute: .Trailing, constant: -appearance.containerPadding.right)
     }
     view.addConstraint(horizontalConst)
-    return self
   }
   
   /**
@@ -216,7 +219,7 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindVerticalConstraint() -> Popup {
+  private func bindVerticalConstraint() {
     let defaultStatusBarHeight: CGFloat = 20
     switch appearance.viewAttachedPosition {
     case .center:
@@ -231,7 +234,6 @@ public class Popup: UIViewController {
       verticalConst = view.buildConstraintWith(shadowContainer, attribute: .Bottom, constant: -appearance.containerPadding.bottom)
     }
     view.addConstraint(verticalConst)
-    return self
   }
   
   /**
@@ -239,10 +241,9 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindWidthConstraint() -> Popup {
+  private func bindWidthConstraint() {
     widthConst = view.buildConstraintWith(shadowContainer, attribute: .Width, multiplier: appearance.widthMultiplier)
     view.addConstraint(widthConst)
-    return self
   }
   
   /**
@@ -250,10 +251,9 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindHeightConstraint() -> Popup {
+  private func bindHeightConstraint() {
     heightConst = view.buildConstraintWith(shadowContainer, attribute: .Height, multiplier: appearance.heightMultiplier)
     view.addConstraint(heightConst)
-    return self
   }
   
   /**

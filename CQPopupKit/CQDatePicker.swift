@@ -38,6 +38,11 @@ public final class CQDatePicker: PopupDialogue {
     datePicker.datePickerMode = mode
     super.init(title: title, contentView: datePicker, positiveAction: nil, negativeAction: nil, cancelText: cancelText, confirmText: confirmText)
     
+    appearance.widthMultiplier = 1.0
+    appearance.heightMultiplier = 0.4
+    appearance.viewAttachedPosition = .bottom
+    animationAppearance.transitionDirection = .bottomToTop
+    
     negativeAction = { (popupInfo) in
       if let action = self.cancelAction {
         action()
