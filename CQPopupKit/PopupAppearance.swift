@@ -169,7 +169,7 @@ public struct PopupAppearance {
   public var shadowOffset = CGSize(width: 0.5, height: 0.5)
   
   /// Container shadow color, default is `white`s
-  public var shadowColor = UIColor.whiteColor()
+  public var shadowColor = UIColor.darkGrayColor()
 }
 
 /**

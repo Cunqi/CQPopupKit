@@ -96,7 +96,7 @@ extension ViewController {
     if indexPath.section == 0 {
       var alertView: CQAlertView!
       if indexPath.row == 0 {
-         alertView = CQAlertView(title: "Overwatch", message: nil, dismiss: nil)
+        alertView = CQAlertView(title: "Overwatch", message: nil, dismiss: nil)
       } else if indexPath.row == 1 {
         alertView = CQAlertView(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: nil)
       } else if indexPath.row == 2 {
@@ -109,7 +109,7 @@ extension ViewController {
         alertView.alertCanceledAction = {
           print("Fight by my self!")
         }
-        alertView.alertSelectedAction = {index, title in
+        alertView.alertConfirmedAction = {index, title in
           print("You picked \(title) @ \(index)")
         }
       }
@@ -124,7 +124,7 @@ extension ViewController {
           print("Fight by my self!")
         }
         
-        actionSheet.alertSelectedAction = {index, title in
+        actionSheet.alertConfirmedAction = {index, title in
           print("You picked \(title) @ \(index)")
         }
         
@@ -156,6 +156,15 @@ extension ViewController {
         })
       } else if indexPath.row == 2 {
         let dialogue = CQPicker(title: "Single Picker", options: ["Mercy", "Anna", "Lucio", "Waston", "Bastion"])
+        dialogue.confirmAction = { (options) in
+          print(options)
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), {
+          self.popUp(dialogue)
+        })
+      } else if indexPath.row == 3 {
+        let dialogue = CQPicker(title: "Multi Picker", multiOptions: [["Lijiang Tower", "Route 66", "Dorado"],  ["Mercy", "Anna", "Lucio", "Waston", "Bastion"]], confirmText: "Fight")
         dialogue.confirmAction = { (options) in
           print(options)
         }

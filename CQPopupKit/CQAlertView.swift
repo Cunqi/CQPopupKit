@@ -9,7 +9,7 @@
 import UIKit
 
 /// Creates an alert view similar to UIAlertController .alertView style
-final public class CQAlertView: PopupAlertController {
+public final class CQAlertView: PopupAlertController {
   
   // MARK: Initializer
   
@@ -57,8 +57,8 @@ final public class CQAlertView: PopupAlertController {
     animationAppearance.transitionDirection = .center
     animationAppearance.transitionStyle = .zoom
   }
-  
-  // Init with codervart implemented
+
+  // Init with coder not implemented
   required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

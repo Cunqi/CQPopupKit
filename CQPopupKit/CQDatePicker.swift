@@ -51,7 +51,7 @@ public final class CQDatePicker: PopupDialogue {
     
     positiveAction = { (popupInfo) in
       if let action = self.confirmAction {
-        let date = popupInfo!["selectedDate"] as! NSDate
+        let date = popupInfo as! NSDate
         action(date)
       }
     }
@@ -64,7 +64,7 @@ public final class CQDatePicker: PopupDialogue {
 
 // MARK: - PopupDialogueDelegate
 extension UIDatePicker: PopupDialogueDelegate {
-  public func prepareConfirmedData() -> [NSObject : AnyObject]? {
-    return ["selectedDate": self.date]
+  public func prepareConfirmedData() -> AnyObject? {
+    return date
   }
 }

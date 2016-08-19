@@ -54,7 +54,7 @@ public final class CQPicker: PopupDialogue {
    
    - returns: Popup picker view
    */
-  public init (title: String, multiOptions: [[String]], cancelText: String, confirmText: String) {
+  public init (title: String, multiOptions: [[String]], cancelText: String = "Cancel", confirmText: String = "Choose") {
     super.init(title: title, contentView: picker, positiveAction: nil, negativeAction: nil, cancelText: cancelText, confirmText: confirmText)
     
     appearance.widthMultiplier = 1.0
@@ -75,7 +75,7 @@ public final class CQPicker: PopupDialogue {
     
     positiveAction = { (popupInfo) in
       if let action = self.confirmAction {
-        let options = popupInfo!["options"]! as! [String]
+        let options = popupInfo as! [String]
         action(options)
       }
     }
@@ -111,7 +111,7 @@ extension CQPicker: UIPickerViewDelegate {
 
 // MARK: - PopupDialogueDelegate
 extension UIPickerView: PopupDialogueDelegate {
-  public func prepareConfirmedData() -> [NSObject : AnyObject]? {
+  public func prepareConfirmedData() -> AnyObject? {
     var options: [String] = []
     
     for i in 0 ..< numberOfComponents {
@@ -119,6 +119,6 @@ extension UIPickerView: PopupDialogueDelegate {
       options.append((self.delegate?.pickerView!(self, titleForRow: index, forComponent: i))!)
     }
     
-    return ["options": options]
+    return options
   }
 }

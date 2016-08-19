@@ -41,15 +41,9 @@ public class PopupAlertController: Popup {
   public var alertCanceledAction: (() -> Void)?
 
   /// Invoke alert selected action when alert controller receives positive notification
-  public var alertSelectedAction: ((Int, String) -> Void)?
+  public var alertConfirmedAction: ((Int, String) -> Void)?
   
   // MARK: Private & Internal
-  
-  /// Use to get the selected action index in PopupAction
-  private let selectedIndex = "selectedIndex"
-  
-  /// Use to get the selected action title in PopupAction
-  private let selectedTitle = "selectedTitle"
   
   /// Content view contains alert title, alert message, and alert buttons
   private var content: UIView
@@ -95,9 +89,9 @@ public class PopupAlertController: Popup {
     }
     
     positiveAction = { (popUpInfo) in
-      if let info = popUpInfo, let action = self.alertSelectedAction {
-        let index = info[self.selectedIndex] as! Int
-        let title = info[self.selectedTitle] as! String
+      if let info = popUpInfo as? [AnyObject], let action = self.alertConfirmedAction {
+        let index = info[0] as! Int
+        let title = info[1] as! String
         action(index, title)
       }
     }
@@ -181,7 +175,7 @@ public class PopupAlertController: Popup {
   public final override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
     alertCanceledAction = nil
-    alertSelectedAction = nil
+    alertConfirmedAction = nil
   }
   
   /**
@@ -236,12 +230,10 @@ public class PopupAlertController: Popup {
    - parameter sender: Selected alert button
    */
   func buttonSelected(sender: AnyObject) {
-    if let popup = content.popup {
-      let button = sender as! UIButton
-      let title = button.titleForState(.Normal)!
-      let index = itemOptions.indexOf(title)!
-      popup.invokePositiveAction([selectedIndex: index, selectedTitle:title])
-    }
+    let button = sender as! UIButton
+    let title = button.titleForState(.Normal)!
+    let index = itemOptions.indexOf(title)!
+    content.popup?.invokePositiveAction([index, title])
   }
   
   /**

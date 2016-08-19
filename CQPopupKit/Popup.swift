@@ -6,7 +6,7 @@
 import UIKit
 
 /// Typealias of popup action
-public typealias PopupAction = ([NSObject: AnyObject]?) -> Void
+public typealias PopupAction = (AnyObject?) -> Void
 
 /// Creates a custom popup container
 public class Popup: UIViewController {
@@ -261,7 +261,7 @@ public class Popup: UIViewController {
    
    - parameter popupInfo: popup info passed to negative action
    */
-  public func invokeNegativeAction(popupInfo: [NSObject: AnyObject]?) {
+  public func invokeNegativeAction(popupInfo: AnyObject?) {
     if let action = negativeAction {
       action(popupInfo)
     }
@@ -273,7 +273,7 @@ public class Popup: UIViewController {
    
    - parameter popupInfo: popup info passed to positive action
    */
-  public func invokePositiveAction(popupInfo: [NSObject: AnyObject]?) {
+  public func invokePositiveAction(popupInfo: AnyObject?) {
     if let action = positiveAction {
       action(popupInfo)
     }

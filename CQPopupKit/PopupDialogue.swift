@@ -15,7 +15,7 @@ public protocol PopupDialogueDelegate: class {
    
    - returns: confirmed data
    */
-  func prepareConfirmedData() -> [NSObject: AnyObject]?
+  func prepareConfirmedData() -> AnyObject?
 }
 
 /// Popup view with navigation bar on the top, contains title, cancel button, confirm button
@@ -102,7 +102,6 @@ public class PopupDialogue: Popup {
     invokePositiveAction(popupInfo)
   }
 
-  
   private func installNavBar() {
     // Cancel button
     cancel.translatesAutoresizingMaskIntoConstraints = false
