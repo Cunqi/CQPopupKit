@@ -89,10 +89,8 @@ open class PopupAlertController: Popup {
     }
     
     positiveAction = { (popUpInfo) in
-      if let info = popUpInfo as? [AnyObject], let action = self.alertConfirmedAction {
-        let index = info[0] as! Int
-        let title = info[1] as! String
-        action(index, title)
+      if let info = popUpInfo as? (Int, String), let action = self.alertConfirmedAction {
+        action(info.0, info.1)
       }
     }
   }
@@ -197,7 +195,7 @@ open class PopupAlertController: Popup {
    */
   fileprivate func calcHeightOfAlertTitle() -> CGFloat {
     let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
-    return alertTitle.font.sizeOfString(titleText, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
+    return alertTitle.font.sizeOfString(titleText as NSString, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
   }
   
   /**
@@ -210,7 +208,7 @@ open class PopupAlertController: Popup {
       return 0
     }
     let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
-    return alertMessage.font.sizeOfString(text, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
+    return alertMessage.font.sizeOfString(text as NSString, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
   }
   
   /**
@@ -233,7 +231,7 @@ open class PopupAlertController: Popup {
     let button = sender as! UIButton
     let title = button.title(for: UIControlState())!
     let index = itemOptions.index(of: title)!
-    content.popup?.invokePositiveAction([index, title])
+    content.popup?.invokePositiveAction((index, title))
   }
   
   /**
