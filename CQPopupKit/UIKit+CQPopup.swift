@@ -41,11 +41,11 @@ extension UIView {
   }
   
   
-  func bindFrom(_ format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) {
+  func bindFrom(_ format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: Any]? = nil) {
     addConstraints(buildConstraintFrom(format, views: views, options: options, metrics: metrics))
   }
   
-  func buildConstraintFrom(_ format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: AnyObject]? = nil) -> [NSLayoutConstraint] {
+  func buildConstraintFrom(_ format: String, views: [String: UIView], options: NSLayoutFormatOptions = NSLayoutFormatOptions.init(rawValue: 0), metrics: [String: Any]? = nil) -> [NSLayoutConstraint] {
     return NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views)
   }
   

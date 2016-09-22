@@ -111,7 +111,7 @@ extension CQPicker: UIPickerViewDelegate {
 
 // MARK: - PopupDialogueDelegate
 extension UIPickerView: PopupDialogueDelegate {
-  public func prepareConfirmedData() -> AnyObject? {
+  public func prepareConfirmedData() -> Any? {
     var options: [String] = []
     
     for i in 0 ..< numberOfComponents {
@@ -119,6 +119,6 @@ extension UIPickerView: PopupDialogueDelegate {
       options.append((self.delegate?.pickerView!(self, titleForRow: index, forComponent: i))!)
     }
     
-    return options as AnyObject?
+    return options as Any?
   }
 }

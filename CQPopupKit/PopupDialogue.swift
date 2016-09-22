@@ -15,7 +15,7 @@ public protocol PopupDialogueDelegate: class {
    
    - returns: confirmed data
    */
-  func prepareConfirmedData() -> AnyObject?
+  func prepareConfirmedData() -> Any?
 }
 
 /// Popup view with navigation bar on the top, contains title, cancel button, confirm button

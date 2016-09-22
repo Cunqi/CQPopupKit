@@ -78,7 +78,7 @@ class ViewController: UITableViewController {
     return nil
   }
   
-  @IBAction func optionButtonTapped(_ sender: AnyObject) {
+  @IBAction func optionButtonTapped(_ sender: Any) {
     let popup = Popup()
     popup.appearance.widthMultiplier = 0.9
     popup.appearance.heightMultiplier = 0.9

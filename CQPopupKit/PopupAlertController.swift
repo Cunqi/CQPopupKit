@@ -89,7 +89,7 @@ open class PopupAlertController: Popup {
     }
     
     positiveAction = { (popUpInfo) in
-      if let info = popUpInfo as? [AnyObject], let action = self.alertConfirmedAction {
+      if let info = popUpInfo as? [Any], let action = self.alertConfirmedAction {
         let index = info[0] as! Int
         let title = info[1] as! String
         action(index, title)
@@ -197,7 +197,7 @@ open class PopupAlertController: Popup {
    */
   fileprivate func calcHeightOfAlertTitle() -> CGFloat {
     let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
-    return alertTitle.font.sizeOfString(titleText, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
+    return alertTitle.font.sizeOfString(titleText as NSString, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
   }
   
   /**
@@ -210,7 +210,7 @@ open class PopupAlertController: Popup {
       return 0
     }
     let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
-    return alertMessage.font.sizeOfString(text, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
+    return alertMessage.font.sizeOfString(text as NSString, constrainedToWidth: Double(width - alertAppearance.horizontalSpace - alertAppearance.horizontalSpace)).height
   }
   
   /**
@@ -218,7 +218,7 @@ open class PopupAlertController: Popup {
    
    - parameter sender: Cancel button
    */
-  func cancelButtonSelected(_ sender: AnyObject) {
+  func cancelButtonSelected(_ sender: Any) {
     if let popup = content.popup {
       popup.invokeNegativeAction(nil)
     }
@@ -229,11 +229,12 @@ open class PopupAlertController: Popup {
    
    - parameter sender: Selected alert button
    */
-  func buttonSelected(_ sender: AnyObject) {
+  func buttonSelected(_ sender: Any) {
     let button = sender as! UIButton
     let title = button.title(for: UIControlState())!
     let index = itemOptions.index(of: title)!
-    content.popup?.invokePositiveAction([index, title])
+    let result = [index, title] as [Any]
+    content.popup?.invokePositiveAction(result)
   }
   
   /**

@@ -64,7 +64,7 @@ public final class CQDatePicker: PopupDialogue {
 
 // MARK: - PopupDialogueDelegate
 extension UIDatePicker: PopupDialogueDelegate {
-  public func prepareConfirmedData() -> AnyObject? {
-    return date as AnyObject?
+  public func prepareConfirmedData() -> Any? {
+    return date as Any?
   }
 }
