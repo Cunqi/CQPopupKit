@@ -9,15 +9,15 @@ import UIKit
 public typealias PopupAction = (AnyObject?) -> Void
 
 /// Creates a custom popup container
-public class Popup: UIViewController {
+open class Popup: UIViewController {
   
   // MARK: Public
   
   /// Custom popup appearance
-  public var appearance = CQAppearance.appearance.popup
+  open var appearance = CQAppearance.appearance.popup
   
   /// Custom popup animation appearance
-  public var animationAppearance: PopupAnimationAppearance {
+  open var animationAppearance: PopupAnimationAppearance {
     get {
       return presentationManager.animationAppearance
     }
@@ -27,14 +27,14 @@ public class Popup: UIViewController {
   }
   
   /// Negative action after popup returning with a negative status
-  public internal(set) var negativeAction: PopupAction?
+  open internal(set) var negativeAction: PopupAction?
   
   /// Positive action after popup returning with a positive status
-  public internal(set) var positiveAction: PopupAction?
+  open internal(set) var positiveAction: PopupAction?
   
   // MARK: Private / Internal
   
-  private var presentationManager: PopupPresentationManager!
+  fileprivate var presentationManager: PopupPresentationManager!
   
   /// The fake background view used for receiving touche events ONLY!
   lazy var touchReceiverView: UIView = {
@@ -109,7 +109,7 @@ public class Popup: UIViewController {
     installContentView()
     
     // Define popup presentation style
-    modalPresentationStyle = .Custom
+    modalPresentationStyle = .custom
     
     // Transition delegate
     presentationManager = PopupPresentationManager(animationAppearance: CQAppearance.appearance.animation)
@@ -118,7 +118,7 @@ public class Popup: UIViewController {
   }
   
   // Hide super class's designated initializer
-  private override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+  fileprivate override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
@@ -129,12 +129,12 @@ public class Popup: UIViewController {
   
   // MARK: View Controller life cycle
   
-  public override func viewDidLoad() {
+  open override func viewDidLoad() {
     super.viewDidLoad()
     bindConstraintsToContainer()
   }
   
-  public override func viewWillAppear(animated: Bool) {
+  open override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     //fix the issue of background view from PopupPresentationManager will block the gesture
@@ -143,7 +143,7 @@ public class Popup: UIViewController {
     view.bindFrom("V:|[view]|", views: ["view": touchReceiverView])
   }
   
-  public override func viewDidDisappear(animated: Bool) {
+  open override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     positiveAction = nil
     negativeAction = nil
@@ -151,7 +151,7 @@ public class Popup: UIViewController {
   
   /// Support orientation changed
   /// if fixed width / height is set, ignore popupWidth / popupHeight
-  public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+  open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     let width = appearance.fixedWidth == 0 ? appearance.popupWidth : appearance.fixedWidth
     let height = appearance.fixedHeight == 0 ? appearance.popupHeight : appearance.fixedHeight
     let newWidthMultiplier = width / size.width
@@ -179,7 +179,7 @@ public class Popup: UIViewController {
   /**
    Bind constraints to shadow container
    */
-  private func bindConstraintsToContainer() {
+  fileprivate func bindConstraintsToContainer() {
     view.addSubview(shadowContainer)
     bindHorizontalConstraint()
     bindVerticalConstraint()
@@ -193,18 +193,18 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindHorizontalConstraint() {
+  fileprivate func bindHorizontalConstraint() {
     switch appearance.viewAttachedPosition {
     case .center:
       fallthrough
     case .top:
       fallthrough
     case .bottom:
-      horizontalConst = view.buildConstraintWith(shadowContainer, attribute: .CenterX)
+      horizontalConst = view.buildConstraintWith(shadowContainer, attribute: .centerX)
     case .left:
-      horizontalConst = view.buildConstraintWith(shadowContainer, attribute: .Leading, constant: appearance.containerPadding.left)
+      horizontalConst = view.buildConstraintWith(shadowContainer, attribute: .leading, constant: appearance.containerPadding.left)
     case .right:
-      horizontalConst = view.buildConstraintWith(shadowContainer, attribute: .Trailing, constant: -appearance.containerPadding.right)
+      horizontalConst = view.buildConstraintWith(shadowContainer, attribute: .trailing, constant: -appearance.containerPadding.right)
     }
     view.addConstraint(horizontalConst)
   }
@@ -219,7 +219,7 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindVerticalConstraint() {
+  fileprivate func bindVerticalConstraint() {
     let defaultStatusBarHeight: CGFloat = 20
     switch appearance.viewAttachedPosition {
     case .center:
@@ -227,11 +227,11 @@ public class Popup: UIViewController {
     case .left:
       fallthrough
     case .right:
-      verticalConst = view.buildConstraintWith(shadowContainer, attribute: .CenterY)
+      verticalConst = view.buildConstraintWith(shadowContainer, attribute: .centerY)
     case .top:
-      verticalConst = view.buildConstraintWith(shadowContainer, attribute: .Top, constant: appearance.containerPadding.top + defaultStatusBarHeight)
+      verticalConst = view.buildConstraintWith(shadowContainer, attribute: .top, constant: appearance.containerPadding.top + defaultStatusBarHeight)
     case .bottom:
-      verticalConst = view.buildConstraintWith(shadowContainer, attribute: .Bottom, constant: -appearance.containerPadding.bottom)
+      verticalConst = view.buildConstraintWith(shadowContainer, attribute: .bottom, constant: -appearance.containerPadding.bottom)
     }
     view.addConstraint(verticalConst)
   }
@@ -241,8 +241,8 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindWidthConstraint() {
-    widthConst = view.buildConstraintWith(shadowContainer, attribute: .Width, multiplier: appearance.widthMultiplier)
+  fileprivate func bindWidthConstraint() {
+    widthConst = view.buildConstraintWith(shadowContainer, attribute: .width, multiplier: appearance.widthMultiplier)
     view.addConstraint(widthConst)
   }
   
@@ -251,8 +251,8 @@ public class Popup: UIViewController {
    
    - returns: Popup view controller
    */
-  private func bindHeightConstraint() {
-    heightConst = view.buildConstraintWith(shadowContainer, attribute: .Height, multiplier: appearance.heightMultiplier)
+  fileprivate func bindHeightConstraint() {
+    heightConst = view.buildConstraintWith(shadowContainer, attribute: .height, multiplier: appearance.heightMultiplier)
     view.addConstraint(heightConst)
   }
   
@@ -261,7 +261,7 @@ public class Popup: UIViewController {
    
    - parameter popupInfo: popup info passed to negative action
    */
-  public func invokeNegativeAction(popupInfo: AnyObject?) {
+  open func invokeNegativeAction(_ popupInfo: AnyObject?) {
     if let action = negativeAction {
       action(popupInfo)
     }
@@ -273,7 +273,7 @@ public class Popup: UIViewController {
    
    - parameter popupInfo: popup info passed to positive action
    */
-  public func invokePositiveAction(popupInfo: AnyObject?) {
+  open func invokePositiveAction(_ popupInfo: AnyObject?) {
     if let action = positiveAction {
       action(popupInfo)
     }
@@ -290,7 +290,7 @@ public class Popup: UIViewController {
   /**
    Dismiss the popup
    */
-  public func dismiss() {
-    dismissViewControllerAnimated(true, completion: nil)
+  open func dismiss() {
+    self.dismiss(animated: true, completion: nil)
   }
 }

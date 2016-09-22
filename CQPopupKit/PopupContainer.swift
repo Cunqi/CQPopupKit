@@ -61,14 +61,14 @@ final class PopupContainer: UIView {
       backgroundColor = appearance.containerBackgroundColor
       layer.masksToBounds = true
       layer.borderWidth = appearance.borderWidth
-      layer.borderColor = appearance.borderColor.CGColor
+      layer.borderColor = appearance.borderColor.cgColor
       
     } else if appearance.enableShadow {
-      backgroundColor = UIColor.clearColor()
+      backgroundColor = UIColor.clear
       layer.shadowRadius = appearance.shadowRadius
       layer.shadowOpacity = Float(appearance.shadowOpacity)
       layer.shadowOffset = appearance.shadowOffset
-      layer.shadowColor = appearance.shadowColor.CGColor
+      layer.shadowColor = appearance.shadowColor.cgColor
     }
   }
 }

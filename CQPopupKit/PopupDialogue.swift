@@ -19,27 +19,27 @@ public protocol PopupDialogueDelegate: class {
 }
 
 /// Popup view with navigation bar on the top, contains title, cancel button, confirm button
-public class PopupDialogue: Popup {
+open class PopupDialogue: Popup {
   
   // MARK: Public
   
   /// Navigation bar view
-  public let navBar = UIView()
+  open let navBar = UIView()
   
   /// Title label
-  public let dialogueTitle = UILabel(frame: .zero)
+  open let dialogueTitle = UILabel(frame: .zero)
   
   /// Cancel button
-  public let cancel = UIButton(type: .System)
+  open let cancel = UIButton(type: .system)
   
   /// Confirm button
-  public let confirm = UIButton(type: .System)
+  open let confirm = UIButton(type: .system)
   
   /// Dialogue appearance
-  public var dialogueAppearance: PopupDialogueAppearance!
+  open var dialogueAppearance: PopupDialogueAppearance!
   
   /// PopupDialogueDelegate
-  private weak var delegate: PopupDialogueDelegate?
+  fileprivate weak var delegate: PopupDialogueDelegate?
   
   // MARK: Initializer
   
@@ -68,14 +68,14 @@ public class PopupDialogue: Popup {
     dialogueTitle.text = title
     dialogueTitle.font = dialogueAppearance.titleFont
     dialogueTitle.textColor = dialogueAppearance.titleColor
-    dialogueTitle.textAlignment = .Center
+    dialogueTitle.textAlignment = .center
     dialogueTitle.numberOfLines = 1
     
-    cancel.setTitle(cancelText, forState: .Normal)
-    cancel.addTarget(self, action: #selector(tapToDismiss), forControlEvents: .TouchUpInside)
+    cancel.setTitle(cancelText, for: UIControlState())
+    cancel.addTarget(self, action: #selector(tapToDismiss), for: .touchUpInside)
     
-    confirm.setTitle(confirmText, forState: .Normal)
-    confirm.addTarget(self, action: #selector(tapToConfirm), forControlEvents: .TouchUpInside)
+    confirm.setTitle(confirmText, for: UIControlState())
+    confirm.addTarget(self, action: #selector(tapToConfirm), for: .touchUpInside)
   }
   
   required public init?(coder aDecoder: NSCoder) {
@@ -102,27 +102,27 @@ public class PopupDialogue: Popup {
     invokePositiveAction(popupInfo)
   }
 
-  private func installNavBar() {
+  fileprivate func installNavBar() {
     // Cancel button
     cancel.translatesAutoresizingMaskIntoConstraints = false
     navBar.addSubview(cancel)
     navBar.bindFrom("V:|[cancel]|", views: ["cancel": cancel])
-    navBar.bindWith(cancel, attribute: .Leading)
-    navBar.bindWith(cancel, attribute: .Width, multiplier: 0.25)
+    navBar.bindWith(cancel, attribute: .leading)
+    navBar.bindWith(cancel, attribute: .width, multiplier: 0.25)
     
     // Confirm button
     confirm.translatesAutoresizingMaskIntoConstraints = false
     navBar.addSubview(confirm)
     navBar.bindFrom("V:|[confirm]|", views: ["confirm": confirm])
-    navBar.bindWith(confirm, attribute: .Trailing)
-    navBar.bindWith(confirm, attribute: .Width, multiplier: 0.25)
+    navBar.bindWith(confirm, attribute: .trailing)
+    navBar.bindWith(confirm, attribute: .width, multiplier: 0.25)
     
     // Title Label
     dialogueTitle.translatesAutoresizingMaskIntoConstraints = false
     navBar.addSubview(dialogueTitle)
     navBar.bindFrom("V:|[title]|", views: ["title": dialogueTitle])
-    navBar.bind(cancel, attribute: .Trailing, to: dialogueTitle, toAttribute: .Leading)
-    navBar.bind(confirm, attribute: .Leading, to: dialogueTitle, toAttribute: .Trailing)
+    navBar.bind(cancel, attribute: .trailing, to: dialogueTitle, toAttribute: .leading)
+    navBar.bind(confirm, attribute: .leading, to: dialogueTitle, toAttribute: .trailing)
     
     // Bottom Separator
     let bottomSeparator = UIView(frame: .zero)
@@ -130,15 +130,15 @@ public class PopupDialogue: Popup {
     bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
     navBar.addSubview(bottomSeparator)
     navBar.bindFrom("H:|[separator]|", views: ["separator": bottomSeparator])
-    navBar.bindWith(bottomSeparator, attribute: .Bottom)
-    navBar.bind(bottomSeparator, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: 1.0)
+    navBar.bindWith(bottomSeparator, attribute: .bottom)
+    navBar.bind(bottomSeparator, attribute: .height, to: nil, toAttribute: .notAnAttribute, constant: 1.0)
     
     navBar.translatesAutoresizingMaskIntoConstraints = false
     container.addSubview(navBar)
     
-    container.bind(navBar, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: 44)
+    container.bind(navBar, attribute: .height, to: nil, toAttribute: .notAnAttribute, constant: 44)
     container.bindFrom("H:|[nav]|", views: ["nav": navBar])
-    container.bindWith(navBar, attribute: .Top)
+    container.bindWith(navBar, attribute: .top)
   }
   
   func installContent() {
@@ -146,8 +146,8 @@ public class PopupDialogue: Popup {
       content.translatesAutoresizingMaskIntoConstraints = false
       container.addSubview(content)
       container.bindFrom("H:|[content]|", views: ["content": content])
-      container.bindWith(content, attribute: .Bottom)
-      container.bind(navBar, attribute: .Bottom, to: content, toAttribute: .Top)
+      container.bindWith(content, attribute: .bottom)
+      container.bind(navBar, attribute: .bottom, to: content, toAttribute: .top)
     }
   }
 }

@@ -76,28 +76,28 @@ public final class CQAlertView: PopupAlertController {
     }
     
     let anchorButton = buttons[0]
-    parent.bindWith(anchorButton, attribute: .Leading)
-    parent.bindWith(anchorButton, attribute: .Bottom)
-    parent.bind(anchorButton, attribute: .Height, to: nil, toAttribute: .NotAnAttribute, constant: alertAppearance.alertButtonHeight)
+    parent.bindWith(anchorButton, attribute: .leading)
+    parent.bindWith(anchorButton, attribute: .bottom)
+    parent.bind(anchorButton, attribute: .height, to: nil, toAttribute: .notAnAttribute, constant: alertAppearance.alertButtonHeight)
     
     if hasCancelButton && buttons.count == 2 {
       let confirmButton = buttons[1]
-      parent.bindWith(anchorButton, attribute: .Width, multiplier: 0.5)
-      parent.bind(confirmButton, attribute: .Width, to: anchorButton)
-      parent.bind(confirmButton, attribute: .Height, to: anchorButton)
-      parent.bind(anchorButton, attribute: .Trailing, to: confirmButton, toAttribute: .Leading)
-      parent.bindWith(confirmButton, attribute: .Bottom)
+      parent.bindWith(anchorButton, attribute: .width, multiplier: 0.5)
+      parent.bind(confirmButton, attribute: .width, to: anchorButton)
+      parent.bind(confirmButton, attribute: .height, to: anchorButton)
+      parent.bind(anchorButton, attribute: .trailing, to: confirmButton, toAttribute: .leading)
+      parent.bindWith(confirmButton, attribute: .bottom)
       anchorButton.enableRightSeparator = true    //Two buttons on a row, shold render the right separator
     } else {
-      parent.bindWith(anchorButton, attribute: .Width)
+      parent.bindWith(anchorButton, attribute: .width)
       var prevButton = anchorButton
       for i in 1 ..< buttons.count {
         let currButton = buttons[i]
         parent.addSubview(currButton)
-        parent.bind(currButton, attribute: .Width, to: anchorButton)
-        parent.bind(currButton, attribute: .Height, to: anchorButton)
-        parent.bind(currButton, attribute: .Leading, to: prevButton)
-        parent.bind(currButton, attribute: .Bottom, to: prevButton, toAttribute: .Top)
+        parent.bind(currButton, attribute: .width, to: anchorButton)
+        parent.bind(currButton, attribute: .height, to: anchorButton)
+        parent.bind(currButton, attribute: .leading, to: prevButton)
+        parent.bind(currButton, attribute: .bottom, to: prevButton, toAttribute: .top)
         prevButton = currButton
       }
     }

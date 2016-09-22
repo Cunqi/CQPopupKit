@@ -26,7 +26,7 @@ public final class CQPicker: PopupDialogue {
   public var cancelAction: (() -> Void)?
   
   /// Confirm action when confirm button tapped
-  public var confirmAction: ([String] -> Void)?
+  public var confirmAction: (([String]) -> Void)?
   
   // MARK: Initializer
   
@@ -88,22 +88,22 @@ public final class CQPicker: PopupDialogue {
 
 // MARK: - UIPickerViewDataSource
 extension CQPicker: UIPickerViewDataSource {
-  public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+  public func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return multiOptions.count
   }
   
-  public func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     return multiOptions[component].count
   }
 }
 
 // MARK: - UIPickerViewDelegate
 extension CQPicker: UIPickerViewDelegate {
-  public func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+  public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
     return rowHeight
   }
   
-  public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     let options = multiOptions[component]
     return options[row]
   }
@@ -115,10 +115,10 @@ extension UIPickerView: PopupDialogueDelegate {
     var options: [String] = []
     
     for i in 0 ..< numberOfComponents {
-      let index = self.selectedRowInComponent(i)
+      let index = self.selectedRow(inComponent: i)
       options.append((self.delegate?.pickerView!(self, titleForRow: index, forComponent: i))!)
     }
     
-    return options
+    return options as AnyObject?
   }
 }

@@ -37,15 +37,15 @@ class ViewController: UITableViewController {
     tableView.tableFooterView = UIView()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
   }
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 3
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
       return alertViews.count
     } else if section == 1 {
@@ -55,19 +55,19 @@ class ViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("option", forIndexPath: indexPath)
-    if indexPath.section == 0 {
-      cell.textLabel?.text = alertViews[indexPath.row]
-    } else if indexPath.section == 1 {
-      cell.textLabel?.text = actionSheets[indexPath.row]
-    } else if indexPath.section == 2 {
-      cell.textLabel?.text = popupDialogs[indexPath.row]
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "option", for: indexPath)
+    if (indexPath as NSIndexPath).section == 0 {
+      cell.textLabel?.text = alertViews[(indexPath as NSIndexPath).row]
+    } else if (indexPath as NSIndexPath).section == 1 {
+      cell.textLabel?.text = actionSheets[(indexPath as NSIndexPath).row]
+    } else if (indexPath as NSIndexPath).section == 2 {
+      cell.textLabel?.text = popupDialogs[(indexPath as NSIndexPath).row]
     }
     return cell
   }
   
-  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if section == 0 {
       return "AlertView"
     } else if section == 1 {
@@ -78,7 +78,7 @@ class ViewController: UITableViewController {
     return nil
   }
   
-  @IBAction func optionButtonTapped(sender: AnyObject) {
+  @IBAction func optionButtonTapped(_ sender: AnyObject) {
     let popup = Popup()
     popup.appearance.widthMultiplier = 0.9
     popup.appearance.heightMultiplier = 0.9
@@ -92,19 +92,19 @@ class ViewController: UITableViewController {
 extension ViewController {
   // FIX Double click on table cell
   // http://stackoverflow.com/questions/20320591/uitableview-and-presentviewcontroller-takes-2-clicks-to-display
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath.section == 0 {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if (indexPath as NSIndexPath).section == 0 {
       var alertView: CQAlertView!
-      if indexPath.row == 0 {
+      if (indexPath as NSIndexPath).row == 0 {
         alertView = CQAlertView(title: "Overwatch", message: nil, dismiss: nil)
-      } else if indexPath.row == 1 {
+      } else if (indexPath as NSIndexPath).row == 1 {
         alertView = CQAlertView(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: nil)
-      } else if indexPath.row == 2 {
+      } else if (indexPath as NSIndexPath).row == 2 {
         alertView = CQAlertView(title: "Overwatch", message: "Traveling to Lijiang Tower", dismiss: "Ok")
-      } else if indexPath.row == 3 {
+      } else if (indexPath as NSIndexPath).row == 3 {
         alertView = CQAlertView(title: "Overwatch", message: "Traveling to Lijiang Tower", cancel: "Exit", confirm: "I'm ready!")
         alertView.appearance.enableTouchOutsideToDismiss = false
-      } else if indexPath.row == 4 {
+      } else if (indexPath as NSIndexPath).row == 4 {
         alertView = CQAlertView(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
         alertView.alertCanceledAction = {
           print("Fight by my self!")
@@ -113,11 +113,11 @@ extension ViewController {
           print("You picked \(title) @ \(index)")
         }
       }
-      dispatch_async(dispatch_get_main_queue(), {
+      DispatchQueue.main.async(execute: {
         self.popUp(alertView)
       })
-    } else if indexPath.section == 1 {
-      if indexPath.row == 0 {
+    } else if (indexPath as NSIndexPath).section == 1 {
+      if (indexPath as NSIndexPath).row == 0 {
         let actionSheet = CQActionSheet(title: "Overwatch", message: "Which hero you want to pick up?", dismiss: "I'll fight by myself", options: ["Solder.76", "Mei", "Hanzo", "Genji", "Ana"])
         
         actionSheet.alertCanceledAction = {
@@ -128,48 +128,48 @@ extension ViewController {
           print("You picked \(title) @ \(index)")
         }
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
           self.popUp(actionSheet)
         })
       }
-    } else if indexPath.section == 2 {
-      if indexPath.row == 0 {
+    } else if (indexPath as NSIndexPath).section == 2 {
+      if (indexPath as NSIndexPath).row == 0 {
         let dialogue = PopupDialogue(title: "Empty Picker", contentView: UIView(),  positiveAction: nil, negativeAction: nil)
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
           self.popUp(dialogue)
         })
-      } else if indexPath.row == 1 {
-        let dialogue = CQDatePicker(title: "Date Picker", mode: .Time)
+      } else if (indexPath as NSIndexPath).row == 1 {
+        let dialogue = CQDatePicker(title: "Date Picker", mode: .time)
         dialogue.appearance.widthMultiplier = 1.0
         dialogue.appearance.heightMultiplier = 0.4
         dialogue.appearance.viewAttachedPosition = .bottom
         dialogue.animationAppearance.transitionDirection = .bottomToTop
         
         dialogue.confirmAction = {date in
-          let formatter = NSDateFormatter()
+          let formatter = DateFormatter()
           formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-          print(formatter.stringFromDate(date))
+          print(formatter.string(from: date))
         }
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
           self.popUp(dialogue)
         })
-      } else if indexPath.row == 2 {
+      } else if (indexPath as NSIndexPath).row == 2 {
         let dialogue = CQPicker(title: "Single Picker", options: ["Mercy", "Anna", "Lucio", "Waston", "Bastion"])
         dialogue.confirmAction = { (options) in
           print(options)
         }
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
           self.popUp(dialogue)
         })
-      } else if indexPath.row == 3 {
+      } else if (indexPath as NSIndexPath).row == 3 {
         let dialogue = CQPicker(title: "Multi Picker", multiOptions: [["Lijiang Tower", "Route 66", "Dorado"],  ["Mercy", "Anna", "Lucio", "Waston", "Bastion"]], confirmText: "Fight")
         dialogue.confirmAction = { (options) in
           print(options)
         }
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
           self.popUp(dialogue)
         })
       }

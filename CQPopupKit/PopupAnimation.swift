@@ -10,7 +10,7 @@ class PopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
   
   // MARK: Private & Internal
   
-  let transitionDuration: NSTimeInterval
+  let transitionDuration: TimeInterval
   let status: PopupAnimationStatus
   let direction: PopupTransitionDirection
   
@@ -38,46 +38,46 @@ class PopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
    
    - returns: Popup animation
    */
-  init(duration: NSTimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection) {
+  init(duration: TimeInterval, status: PopupAnimationStatus, direction: PopupTransitionDirection) {
     transitionDuration = duration
     self.status = status
     self.direction = direction
     super.init()
   }
   
-  func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+  func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return transitionDuration
   }
   
-  func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+  func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     switch status {
     case .transitIn:
-      popup = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! Popup
-      another = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+      popup = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! Popup
+      another = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
 
-      transitionContext.containerView()?.addSubview(popup.view)
+      transitionContext.containerView.addSubview(popup.view)
     case .transitOut:
-      another = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-      popup = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)  as! Popup
+      another = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
+      popup = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)  as! Popup
     }
 
-    let bounds = UIScreen.mainScreen().bounds
+    let bounds = UIScreen.main.bounds
     
     // Set in initial frame & in final frame & out final frame
-    inFinalFrame = transitionContext.finalFrameForViewController(popup)
+    inFinalFrame = transitionContext.finalFrame(for: popup)
     switch direction {
     case .leftToRight:
-      inStartFrame = CGRectOffset(inFinalFrame, -bounds.width, 0)
-      outFinalFrame = CGRectOffset(inFinalFrame, bounds.width, 0)
+      inStartFrame = inFinalFrame.offsetBy(dx: -bounds.width, dy: 0)
+      outFinalFrame = inFinalFrame.offsetBy(dx: bounds.width, dy: 0)
     case .rightToLeft:
-      inStartFrame = CGRectOffset(inFinalFrame,  bounds.width, 0)
-      outFinalFrame = CGRectOffset(inFinalFrame, -bounds.width, 0)
+      inStartFrame = inFinalFrame.offsetBy(dx: bounds.width, dy: 0)
+      outFinalFrame = inFinalFrame.offsetBy(dx: -bounds.width, dy: 0)
     case .topToBottom:
-      inStartFrame = CGRectOffset(inFinalFrame, 0, -bounds.height)
-      outFinalFrame = CGRectOffset(inFinalFrame, 0, bounds.height)
+      inStartFrame = inFinalFrame.offsetBy(dx: 0, dy: -bounds.height)
+      outFinalFrame = inFinalFrame.offsetBy(dx: 0, dy: bounds.height)
     case .bottomToTop:
-      inStartFrame = CGRectOffset(inFinalFrame, 0, bounds.height)
-      outFinalFrame = CGRectOffset(inFinalFrame, 0, +bounds.height)
+      inStartFrame = inFinalFrame.offsetBy(dx: 0, dy: bounds.height)
+      outFinalFrame = inFinalFrame.offsetBy(dx: 0, dy: +bounds.height)
     case .center:
       inStartFrame = inFinalFrame
       outFinalFrame = inFinalFrame
@@ -87,18 +87,18 @@ class PopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
 /// Popup plain animation
 class PopupPlainAnimation: PopupAnimation {
-  override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-    super.animateTransition(transitionContext)
+  override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    super.animateTransition(using: transitionContext)
     switch status {
     case .transitIn:
       popup.view.frame = inStartFrame
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveLinear, animations: {
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
         self.popup.view.frame = self.inFinalFrame
       }, completion: {finished in
         transitionContext.completeTransition(finished)
       })
     case .transitOut:
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveLinear, animations: {
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
         self.popup.view.frame = self.outFinalFrame
       }, completion: {finished in
         transitionContext.completeTransition(finished)
@@ -111,21 +111,21 @@ class PopupPlainAnimation: PopupAnimation {
 class PopupFadeAnimation: PopupAnimation {
   var alpha: CGFloat = 0
   
-  override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-    super.animateTransition(transitionContext)
+  override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    super.animateTransition(using: transitionContext)
     switch status {
     case .transitIn:
       popup.view.frame = inStartFrame
       alpha = popup.view.alpha
       popup.view.alpha = 0
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveLinear, animations: {
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
         self.popup.view.alpha = self.alpha
         self.popup.view.frame = self.inFinalFrame
         }, completion: {finished in
           transitionContext.completeTransition(finished)
       })
     case .transitOut:
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveLinear, animations: {
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
         self.popup.view.alpha = 0
         self.popup.view.frame = self.outFinalFrame
         }, completion: {finished in
@@ -137,18 +137,18 @@ class PopupFadeAnimation: PopupAnimation {
 
 /// Popup bounce animation
 class PopupBounceAnimation: PopupAnimation {
-  override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-    super.animateTransition(transitionContext)
+  override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    super.animateTransition(using: transitionContext)
     switch status {
     case .transitIn:
       popup.view.frame = inStartFrame
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
         self.popup.view.frame = self.inFinalFrame
         }, completion: {finished in
           transitionContext.completeTransition(finished)
       })
     case .transitOut:
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveEaseIn, animations: {
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveEaseIn, animations: {
         self.popup.view.frame = self.outFinalFrame
         }, completion: {finished in
           transitionContext.completeTransition(finished)
@@ -160,19 +160,19 @@ class PopupBounceAnimation: PopupAnimation {
 
 /// Popup zoom animation
 class PopupZoomAnimation: PopupAnimation {
-  override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-    super.animateTransition(transitionContext)
+  override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    super.animateTransition(using: transitionContext)
     switch status {
     case .transitIn:
-      popup.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .CurveEaseInOut, animations:  {
-        self.popup.view.transform = CGAffineTransformIdentity
+      popup.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations:  {
+        self.popup.view.transform = CGAffineTransform.identity
         }, completion: {finished in
           transitionContext.completeTransition(finished)
       })
     case .transitOut:
-      UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveEaseIn, animations: {
-        self.popup.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveEaseIn, animations: {
+        self.popup.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         self.popup.view.alpha = 0
         }, completion: {finished in
           transitionContext.completeTransition(finished)
