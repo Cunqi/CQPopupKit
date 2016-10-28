@@ -82,7 +82,7 @@ class ViewController: UITableViewController {
     let popup = Popup()
     popup.appearance.widthMultiplier = 0.9
     popup.appearance.heightMultiplier = 0.9
-    popup.animationAppearance.transitionDirection = .topToBottom
+    popup.animationAppearance.transitionDirection = .leftReverse
     popup.animationAppearance.transitionStyle = .bounce
     self.popUp(popup)
   }

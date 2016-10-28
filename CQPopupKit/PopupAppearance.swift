@@ -57,6 +57,8 @@ public enum PopupTransitionDirection: Int {
   case topToBottom = 2
   case bottomToTop = 3
   case center = 4
+  case leftReverse = 5
+  case rightReverse = 6
 }
 
 /**

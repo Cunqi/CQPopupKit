@@ -81,6 +81,12 @@ class PopupAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     case .center:
       inStartFrame = inFinalFrame
       outFinalFrame = inFinalFrame
+    case .leftReverse:
+      inStartFrame = inFinalFrame.offsetBy(dx: -bounds.width, dy: 0)
+      outFinalFrame = inFinalFrame.offsetBy(dx: -bounds.width, dy: 0)
+    case .rightReverse:
+      inStartFrame = inFinalFrame.offsetBy(dx: bounds.width, dy: 0)
+      inStartFrame = inFinalFrame.offsetBy(dx: -bounds.width, dy: 0)
     }
   }
 }
