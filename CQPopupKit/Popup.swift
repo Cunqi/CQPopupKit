@@ -14,7 +14,7 @@ open class Popup: UIViewController {
   // MARK: Public
   
   /// Custom popup appearance
-  open var appearance = CQAppearance.appearance.popup
+  open var appearance: PopupAppearance!
   
   /// Custom popup animation appearance
   open var animationAppearance: PopupAnimationAppearance {
@@ -95,10 +95,11 @@ open class Popup: UIViewController {
    - parameter contentView:    Custom view to be displayed on popup container
    - parameter positiveAction: Positive action when popup returns with positive status (like confirmed, selected etc.)
    - parameter negativeAction: Negative action when popup returns with negative status (like canceled, failed etc.)
-   
+   - parameter appearance:     Specific popup appearance setting
    - returns: Popup with custom view
    */
-  public init(contentView: UIView?, positiveAction: PopupAction? = nil, negativeAction: PopupAction? = nil) {
+  public init(contentView: UIView?, positiveAction: PopupAction? = nil, negativeAction: PopupAction? = nil, appearance: PopupAppearance = CQAppearance.appearance.popup) {
+    self.appearance = appearance
     self.contentView = contentView
     self.negativeAction = negativeAction
     self.positiveAction = positiveAction
