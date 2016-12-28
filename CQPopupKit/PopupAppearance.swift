@@ -145,6 +145,9 @@ public struct PopupAppearance {
       heightMultiplier = newValue / UIScreen.main.bounds.height
     }
   }
+    
+  /// should auto rotate
+  public var autoRotate: Bool = false
   
   /// Corner radius of container, default is `10`
   public var cornerRadius: CGFloat = 8

@@ -12,6 +12,10 @@ public typealias PopupAction = (Any) -> Void
 open class Popup: UIViewController {
   
   // MARK: Public
+    
+  open override var shouldAutorotate: Bool {
+    return appearance.autoRotate
+  }
   
   /// Custom popup appearance
   open var appearance: PopupAppearance!

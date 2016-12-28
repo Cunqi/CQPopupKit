@@ -79,7 +79,10 @@ class ViewController: UITableViewController {
   }
   
   @IBAction func optionButtonTapped(_ sender: AnyObject) {
-    let popup = Popup()
+    var appearance = CQAppearance.appearance.popup
+    appearance.cornerRadius = 0
+    let popup = Popup(contentView: nil, positiveAction: nil, negativeAction: nil, appearance: appearance)
+    
     popup.appearance.widthMultiplier = 0.9
     popup.appearance.heightMultiplier = 0.9
     popup.animationAppearance.transitionDirection = .leftReverse
